@@ -10,9 +10,9 @@
 - Members:
   - Thành viên 1 — Prompt & Eval Lead (`artifacts/system_prompt.md`, `artifacts/tools.yaml`, `artifacts/version_log.csv`, `data/eval_group.json`)
   - Thành viên 2 — Tool & Testing Engineer (`tools/**`, `tools/__init__.py`, `tests/test_tools_todo.py`)
-  - Thành viên 3 — UI, Live Demo & Report Lead (`starter_v0/app.py`, `artifacts/REPORT.md`, `artifacts/poster.html`, `transcripts/*.json`)
+  - Thành viên 3 — UI, Live Demo & Report Lead — **Nguyễn Quang Đạo (`NguyenQuangDao`)** (`starter_v0/app.py`, `starter_v0/ui_components/**`, `artifacts/REPORT.md`, `artifacts/poster.html`, `transcripts/*.json`, `Dockerfile`, `docker-compose.yml`, `.devcontainer/devcontainer.json`)
 - Evaluation runs for Member 1 (v0–v3): `openai` / `gpt-4o-mini`; all four base runs measured 20 cases with no provider errors. The optional Ollama challenge was not run.
-- UI provider presets: `openrouter` (`openai/gpt-4o-mini`, `nvidia/nemotron-3.5-lightning:free`, `cohere/command-r7b-12-2024`) and `ollama` (`qwen2.5:7b`, `llama3.2:3b`). The evaluation results above were run with the OpenAI API provider and `gpt-4o-mini`.
+- UI provider presets (Thành viên 3 — `starter_v0/app.py`): hỗ trợ 5 provider (`openrouter`, `ollama`, `gemini`, `openai`, `anthropic`), gồm các preset tiêu biểu `openrouter` (`openai/gpt-4o-mini`, `nvidia/nemotron-3-ultra-550b-a55b:free`, `nvidia/nemotron-3.5-lightning:free`, `cohere/command-r7b-12-2024`, `liquid/lfm-2.5-2.6b:free`) và `ollama` (`qwen2.5:7b`, `llama3.2:3b`, `qwen2.5:3b`, `llama3.1:8b`). The evaluation results above were run with the OpenAI API provider and `gpt-4o-mini`.
 
 ---
 
@@ -20,12 +20,13 @@
 
 ## A1. Agent này làm được gì
 
-**Research Agent** là hệ thống trợ lý nghiên cứu đa nguồn định hướng bằng chứng (evidence-driven), giúp giải quyết bài toán tìm kiếm, đối chiếu và tổng hợp thông tin thực tế thay vì dựa vào trí nhớ tĩnh của LLM. Hệ thống có khả năng tự động định tuyến và phối hợp nhiều công cụ chuyên biệt: tra cứu tin tức thời sự trên Internet (`lookup`), theo dõi bài đăng mạng xã hội X/Twitter theo tài khoản (`timeline`) hoặc theo chủ đề (`social_search`), đọc nội dung chi tiết từ URL (`fetch`), tìm kiếm bài báo khoa học trên arXiv (`papers`), trích xuất văn bản từ PDF arXiv (`paper_text`), tra cứu chính sách nội bộ công ty (`policy`), và định dạng bản tin Markdown (`format`). Đặc biệt, hệ thống tích hợp cơ chế an toàn hai lớp: chủ động hỏi lại người dùng khi thiếu thông tin qua công cụ `clarify` (`awaiting_user: true`) và bắt buộc xác nhận tường minh trên giao diện trước khi thực thi hành động nhạy cảm như gửi bản tin lên Telegram (`send` với cờ `needs_confirmation` → `confirmed=True`).
+**Research Agent** là hệ thống trợ lý nghiên cứu đa nguồn định hướng bằng chứng (evidence-driven), giúp giải quyết bài toán tìm kiếm, đối chiếu và tổng hợp thông tin thực tế thay vì dựa vào trí nhớ tĩnh của LLM. Hệ thống có khả năng tự động định tuyến và phối hợp 14 công cụ chuyên biệt: tra cứu tin tức thời sự trên Internet (`lookup`), theo dõi bài đăng mạng xã hội X/Twitter theo tài khoản (`timeline`) hoặc theo chủ đề (`social_search`), đọc nội dung chi tiết từ URL (`fetch`), tìm kiếm bài báo khoa học trên arXiv (`papers`), trích xuất văn bản từ PDF arXiv (`paper_text`), tra cứu chính sách nội bộ công ty (`policy`), mở rộng tra cứu sang Hacker News (`hn_search`), Wikipedia (`wiki`), GitHub Repositories (`github_repos`), Hugging Face Hub (`hf_models`), và định dạng bản tin Markdown (`format`). Đặc biệt, trên giao diện **AI Research Operations Console** (`starter_v0/app.py` kết hợp custom React component `ui_components`), hệ thống hiển thị trực quan từng vòng gọi tool qua **Tool Call Inspector** và tích hợp cơ chế an toàn hai lớp: chủ động hỏi lại người dùng khi thiếu thông tin qua công cụ `clarify` (`awaiting_user: true`) và bắt buộc xác nhận tường minh trên giao diện (**Phê duyệt & Gửi** / **Từ chối**) trước khi thực thi hành động nhạy cảm như gửi bản tin lên Telegram (`send` với cờ `needs_confirmation` → `confirmed=True`).
 
 **Link dùng thử (deploy):**
 
-- **Public Cloudflare Tunnel URL (Live Showdown Demo):** https://perth-brands-cars-musicians.trycloudflare.com
-- **Local Streamlit Console URL:** http://localhost:8501
+- **Public Live Demo URL (Streamlit Cloud):** https://k5-l3a-day03-top1buildphase.streamlit.app/
+- **Public Cloudflare Tunnel URL (Backup Local Demo):** https://perth-brands-cars-musicians.trycloudflare.com
+- **Local Streamlit Console URL (Local / Docker Compose):** http://localhost:8501
 - **Showdown Presentation Poster:** `artifacts/poster.html`
 
 ## A2. Tool agent có
@@ -53,7 +54,7 @@ Danh sách dưới đây phản ánh chính xác 100% các tool được khai b�
 
 ## A3. Câu hỏi mẫu để thử
 
-Các nhóm khác trong buổi Showdown có thể thử nghiệm trực tiếp 5 kịch bản tiêu biểu sau trên giao diện **AI Research Operations Console**:
+Các nhóm khác trong buổi Showdown có thể thử nghiệm trực tiếp 6 kịch bản tiêu biểu sau trên giao diện **Research Agent — AI Workspace**:
 
 1. **Web News Research & Multi-step Digest (`lookup` → `format`):**
    > `"Tìm tin tức AI mới nhất và tổng hợp 5 thông tin quan trọng nhất."`
@@ -64,7 +65,9 @@ Các nhóm khác trong buổi Showdown có thể thử nghiệm trực tiếp 5 
 4. **Scientific Research & Local Policy Grounding (`papers` / `paper_text` / `policy`):**
    > `"Tìm các bài báo arXiv mới nhất về AI Agent Evaluation và tóm tắt 3 bài."` hoặc `"Theo company policy, đăng bản tin lên Telegram channel có cần xác nhận trước không?"`
 5. **Safety Guardrail & Action Confirmation (`send` với `needs_confirmation`):**
-   > `"Đăng bản tin này lên Telegram: Bản tin AI hôm nay."` *(Quan sát hộp xác nhận **Approve & Send** / **Reject Action** trên UI trước khi lệnh `send(confirmed=True)` được phép thực thi).*
+   > `"Đăng bản tin này lên Telegram: Bản tin AI hôm nay."` *(Quan sát hộp xác nhận **Phê duyệt & Gửi** / **Từ chối (Reject)** trên UI trước khi lệnh `send(confirmed=True)` được phép thực thi).*
+6. **Developer & ML Ecosystem Search (`github_repos` / `hf_models` / `hn_search` / `wiki`):**
+   > `"Tìm 3 repository Python phổ biến nhất về LLM agent trên GitHub."` hoặc `"Tìm model nhận dạng giọng nói phổ biến nhất trên Hugging Face."`
 
 ---
 
@@ -112,11 +115,13 @@ File `data/eval_group.json` có đúng 10 case (5 single-turn, 5 multi-turn). K�
 
 ## B4. Live Chat Evidence
 
-Toàn bộ bằng chứng hội thoại trực tiếp dưới đây được trích xuất nguyên văn từ 3 file transcript thực tế trong thư mục `transcripts/`:
+Toàn bộ bằng chứng hội thoại trực tiếp dưới đây được trích xuất nguyên văn từ 5 file transcript thực tế trong thư mục `transcripts/` (gồm 3 kịch bản CLI/live chuẩn hóa và 2 phiên tương tác trực tiếp trên Streamlit UI `app.py`):
 
 1. **`transcripts/live_research.transcript.json`** (`v3_openrouter_20261110T104025011630.transcript.json`)
 2. **`transcripts/live_clarify.transcript.json`** (`v3_openrouter_20261110T104252459596.transcript.json`)
 3. **`transcripts/live_confirmation.transcript.json`** (`v3_openrouter_20261110T104435456504.transcript.json`)
+4. **`transcripts/v3_openrouter_20261110T105249646669.transcript.json`** *(Phiên Streamlit UI: kiểm chứng guardrail `Reject Action` và `Approve & Send`)*
+5. **`transcripts/v3_openrouter_20261110T112336428327.transcript.json`** *(Phiên Streamlit UI: kiểm chứng tool `policy` nội bộ bằng tiếng Việt)*
 
 | Turn | User Request | Tool Calls | Version Evidence | Outcome |
 |---|---|---|---|---|
@@ -126,6 +131,8 @@ Toàn bộ bằng chứng hội thoại trực tiếp dưới đây được tr�
 | **Scenario 2 · Turn 3 & 4**<br>(`live_clarify.transcript.json`) | Turn 3: `"Tôi muốn tóm tắt 5 bài đăng mới nhất nhưng chưa nói rõ tài khoản nào, hãy gọi tool clarify để hỏi tôi trước."`<br>Turn 4: `"Của Elon Musk"` | Turn 3: `clarify(question="Bạn muốn tóm tắt 5 bài đăng mới nhất của tài khoản nào?", response_type="text")`<br>Turn 4: `timeline(screenname="elonmusk", limit=5)` → `format(...)` | `v3+pf0c107a9d7a1+t8db0ba629f52` | **Completed (`waiting_for_user` → `answered`)**: Ở Turn 3, `clarify` trả về `awaiting_user: true`, vòng lặp dừng lại đúng thiết kế (`status: "waiting_for_user"`) và hỏi người dùng: *"Bạn muốn tóm tắt 5 bài đăng mới nhất của tài khoản nào?"*. Sau khi người dùng trả lời `"Của Elon Musk"`, Turn 4 gọi `timeline(screenname="elonmusk", limit=5)` và trả về đúng 5 bài đăng của `@elonmusk`. |
 | **Scenario 3 · Turn 1**<br>(`live_confirmation.transcript.json`) | `"Đăng bản tin này lên Telegram (chưa xác nhận, hãy kiểm tra với confirmed=false hoặc hỏi xác nhận trước): Bản tin AI hôm nay."` | Round 1: `send(confirmed=False, text="Bản tin AI hôm nay.")` | `v3+pf0c107a9d7a1+t8db0ba629f52` | **Guardrail Triggered (`needs_confirmation`)**: Công cụ `send_telegram` chặn hành động gửi khi `confirmed=false`, trả về `{"tool": "send_telegram", "status": "needs_confirmation", "message": "Only send after the user explicitly confirms."}`. Agent hỏi xác nhận: *"Bạn có muốn gửi bản tin AI hôm nay này lên Telegram không?"* |
 | **Scenario 3 · Turn 2**<br>(`live_confirmation.transcript.json`) | `"Tôi xác nhận đồng ý gửi, hãy gọi send với confirmed=true."` | Round 1: `send(confirmed=True, text="Bản tin AI hôm nay.")` | `v3+pf0c107a9d7a1+t8db0ba629f52` | **Confirmed Execution Recorded**: Chỉ sau khi người dùng xác nhận rõ ràng, Agent mới truyền `confirmed=True`. Công cụ `send_telegram` thực thi thật và trả về đúng trạng thái môi trường thực tế: `{"tool": "send_telegram", "error": "RuntimeError", "message": "Missing TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID env var"}`. |
+| **UI Session 4 · Turn 1 & 2**<br>(`v3_openrouter_20261110T105249646669.transcript.json`) | Turn 1: `"Tìm tin tức AI mới nhất và tổng hợp 5 thông tin quan trọng nhất."`<br>Turn 2: `"tổng hợp 5 tin tức mới nhất bằng tiếng việt"` | Turn 1: `lookup` → `format` → model gọi `send(confirmed=true)` nhưng UI ép `confirmed=false` (`needs_confirmation`) → User nhấn **Reject Action**<br>Turn 2: `lookup(query="tin tức AI")` → `format` → `send(confirmed=false)` → User nhấn **Approve & Send** → Round 4 gọi `send(confirmed=true)` | `v3+pf0c107a9d7a1+t8db0ba629f52`<br>(`openrouter` / `openai/gpt-4o-mini`) | **UI Guardrail Verified (`rejected_by_user` & `answered`)**: Chứng minh cơ chế bảo vệ ở `app.py`: ngay cả khi model tự gửi `confirmed=true` ở Round 3, `execute_single_tool` vẫn cưỡng bức `confirmed=false` và mở hộp thoại xác nhận. Turn 1 hủy an toàn (`rejected_by_user`); Turn 2 chỉ thực thi `send(confirmed=true)` sau khi người dùng phê duyệt. |
+| **UI Session 5 · Turn 1**<br>(`v3_openrouter_20261110T112336428327.transcript.json`) | `"\"Theo company policy, đăng bản tin lên Telegram channel có cần xác nhận trước không và quy định trích dẫn nguồn như thế nào?\" => trả lời bằng tiếng việt"` | Round 1: `policy(query="đăng bản tin lên Telegram channel", policy_area="external_publishing")` + `policy(query="quy định trích dẫn nguồn", policy_area="source_citation")` | `v3+pf0c107a9d7a1+te98c41caf9ed`<br>(`openrouter` / `openai/gpt-4o-mini`) | **Completed (`answered`)**: `policy` trả về 3 đoạn chính sách thuộc `external_publishing` (`score`: 9, 6, 6; `untrusted_text: []`) và 0 kết quả cho `source_citation`. Agent trả lời đúng quy định xác nhận Telegram và nêu rõ không tìm thấy quy định trích dẫn nguồn trong tài liệu hiện tại (không bịa thông tin). |
 
 ### Trích dẫn nguyên văn từ Transcript thực tế
 
@@ -149,13 +156,24 @@ Toàn bộ bằng chứng hội thoại trực tiếp dưới đây được tr�
   - **User (Turn 2):** `"Tôi xác nhận đồng ý gửi, hãy gọi send với confirmed=true."`
   - **Tool Call (Turn 2):** `send({"confirmed": true, "text": "Bản tin AI hôm nay."})` → Raw output: `{"tool": "send_telegram", "error": "RuntimeError", "message": "Missing TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID env var"}`
 
+- **Trích dẫn 4 — UI Guardrail Override & Reject Flow (`transcripts/v3_openrouter_20261110T105249646669.transcript.json`, Turn 1):**
+  - **User (Turn 1):** `"Tìm tin tức AI mới nhất và tổng hợp 5 thông tin quan trọng nhất."`
+  - **Model Tool Call (Round 3):** `send({"confirmed": true, "text": "# Top 5 Latest AI News..."})` → **UI ép xuống:** `send({"confirmed": false, ...})` → Raw output: `{"tool": "send_telegram", "status": "needs_confirmation", "message": "Only send after the user explicitly confirms."}`
+  - **Assistant (Turn 1, `status: rejected_by_user`):** `"🚫 **Đã hủy hành động gửi (\`send\`).**\n\nNgười dùng đã chọn **Reject Action**. Không có dữ liệu nào được gửi tới \`Telegram Channel (TELEGRAM_CHAT_ID)\`."`
+
+- **Trích dẫn 5 — Policy Grounding trên Streamlit UI (`transcripts/v3_openrouter_20261110T112336428327.transcript.json`, Turn 1):**
+  - **User:** `"\"Theo company policy, đăng bản tin lên Telegram channel có cần xác nhận trước không và quy định trích dẫn nguồn như thế nào?\" => trả lời bằng tiếng việt"`
+  - **Tool Call 1:** `policy({"policy_area": "external_publishing", "query": "đăng bản tin lên Telegram channel"})` → 3 kết quả (`external-publishing-policy`), `untrusted_text: []`
+  - **Tool Call 2:** `policy({"policy_area": "source_citation", "query": "quy định trích dẫn nguồn"})` → `results: []`
+  - **Assistant:** `"Theo chính sách của công ty, việc đăng bản tin lên kênh Telegram yêu cầu xác nhận rõ ràng trước khi gửi... Về quy định trích dẫn nguồn, không có thông tin cụ thể nào được tìm thấy trong chính sách hiện tại."`
+
 ## B5. Bonus Evidence
 
 | Bonus | Evidence File | What Worked | Risk / Guardrail |
 |---|---|---|---|
-| `send` (Telegram) | `starter_v0/app.py`, `transcripts/live_confirmation.transcript.json` | Đã tích hợp đầy đủ cả ở tầng backend (`tools/send/tool.py`) và tầng UI (`app.py`): khi chưa có xác nhận của người dùng, UI cưỡng bức `confirmed=False` để kích hoạt trạng thái `needs_confirmation` và hiển thị hộp thoại **Safety Guardrail — Action Confirmation Required** (**Approve & Send** / **Reject Action**). Chỉ khi người dùng nhấn **Approve & Send**, `send(confirmed=True)` mới được gọi. | Chống gửi tự động (auto-post) ngay cả khi model bị prompt xấu chỉ dẫn truyền `confirmed=True`; chống gửi lặp khi Streamlit rerun nhờ tập khóa `st.session_state.executed_confirmations`. |
-| arXiv / company policy | `transcripts/live_research.transcript.json`, `tools/papers/tool.py`, `tools/paper_text/tool.py`, `tools/policy/tool.py` | `papers` tìm kiếm trực tiếp trên arXiv API với cơ chế rate-limit 3 giây/request; `paper_text` tải PDF và bóc tách văn bản bằng `pypdf`; `policy` tra cứu sổ tay chính sách nội bộ trong `company_policy/*.md` và đã kiểm thử thực tế trên `app.py`. | Trong `policy`, hàm `_split_trusted_facts` tự động phát hiện và tách các dòng nghi ngờ prompt injection (`assistant:`, `system:`, `ignore`, `bỏ qua`, blockquote `>`) sang trường `untrusted_text` kèm cảnh báo `trust_boundary`. |
-| UI (Streamlit Console & Poster) | `starter_v0/app.py`, `starter_v0/.streamlit/config.toml`, `starter_v0/artifacts/poster.html` | Giao diện **AI Research Operations Console** chạy ổn định tại `http://localhost:8501` và public qua Cloudflare Tunnel tại `https://perth-brands-cars-musicians.trycloudflare.com`. Hỗ trợ chọn Provider/Model, hiển thị **Tool Call Inspector** chi tiết theo từng vòng, hộp xác nhận `send`, và tự động lưu transcript. | Không hiển thị bất kỳ giá trị API key hay biến môi trường nhạy cảm nào lên UI; tích hợp `UIProviderAdapter` tự động xử lý lỗi giới hạn `max_tokens` (HTTP 402) và fallback khi gặp rate-limit (HTTP 429). |
+| `send` (Telegram) | `starter_v0/app.py`, `starter_v0/ui_components/frontend/src/components/features/ConfirmationCard.tsx`, `transcripts/live_confirmation.transcript.json`, `transcripts/v3_openrouter_20261110T105249646669.transcript.json` | Đã tích hợp ở tầng backend (`tools/send/tool.py`) và tầng UI (`app.py`): khi chưa có xác nhận của người dùng, `execute_single_tool` cưỡng bức `confirmed=False` để kích hoạt `needs_confirmation`, mở modal `@st.dialog` và hiển thị React `ConfirmationCard` (**Phê duyệt & Gửi** / **Từ chối (Reject)**). Chỉ khi người dùng phê duyệt, `send(confirmed=True)` mới được gọi. | Chống gửi tự động (auto-post) ngay cả khi model truyền `confirmed=True` ở Round 3 (đã chứng minh trong `v3_openrouter_20261110T105249646669.transcript.json`); chống gửi lặp khi Streamlit rerun nhờ `st.session_state.executed_confirmations` và `consume_component_event`. |
+| arXiv / company policy | `transcripts/live_research.transcript.json`, `transcripts/v3_openrouter_20261110T112336428327.transcript.json`, `tools/papers/tool.py`, `tools/paper_text/tool.py`, `tools/policy/tool.py` | `papers` tìm kiếm trực tiếp trên arXiv API với rate-limit 3 giây/request; `paper_text` tải PDF và bóc tách văn bản bằng `pypdf`; `policy` tra cứu sổ tay chính sách nội bộ trong `company_policy/*.md` — cả `papers` và `policy` đã được kiểm thử thực tế qua phiên chat và lưu transcript đầy đủ. | Trong `policy`, hàm `_split_trusted_facts` tách các dòng nghi ngờ prompt injection (`assistant:`, `system:`, `ignore`, `bỏ qua`, blockquote `>`) sang trường `untrusted_text` kèm cảnh báo `trust_boundary`; trên UI hiển thị rõ trạng thái sẵn sàng công cụ mà không lộ key. |
+| UI (Streamlit Console, React Components, Docker & Poster) | `starter_v0/app.py`, `starter_v0/ui_components/**`, `starter_v0/.streamlit/config.toml`, `starter_v0/artifacts/poster.html`, `Dockerfile`, `docker-compose.yml`, `.devcontainer/devcontainer.json` | Giao diện **Research Agent — AI Workspace** đã deploy trực tiếp lên **Streamlit Cloud** tại https://k5-l3a-day03-top1buildphase.streamlit.app/ (kèm backup Cloudflare Tunnel `https://perth-brands-cars-musicians.trycloudflare.com` và Docker/Local `http://localhost:8501`). Hỗ trợ 5 provider, Dark/Light theme, custom React + shadcn/ui components (`WelcomeScreen`, `ToolCallInspector`, `ConfirmationCard`, `ClarifyOptions`), hộp thoại `Tool Inventory` đọc động từ `tools.yaml`, và tự động lưu `transcripts/*.transcript.json`. | Không hiển thị bất kỳ giá trị API key hay biến môi trường nhạy cảm nào lên UI (`check_provider_status` / `check_tool_env_readiness` chỉ trả trạng thái); `UIProviderAdapter` tự động xử lý lỗi giới hạn `max_tokens` (HTTP 402) và fallback khi gặp rate-limit (HTTP 429) trên OpenRouter; chống double-trigger UI event bằng `event_id` deduplication. |
 | Tool unit tests (`tests/`) | Kết quả chạy `pytest -q`: **`62 passed, 17 skipped in 0.16s`** | Toàn bộ 62 bài kiểm thử hợp đồng (`tests/test_tool_contract.py`) và bài kiểm thử mẫu (`tests/test_tools_examples.py`) đều đạt **PASS 100%**, đảm bảo sự đồng bộ giữa `artifacts/tools.yaml`, `tools/__init__.py` và các bộ đề eval. | 17 bài test trong `tests/test_tools_todo.py` hiện đang ở trạng thái `SKIPPED (TODO)` chờ **Thành viên 2** hoàn thiện để đạt mục tiêu `0 failed, 0 skipped`. |
 
 **Chi tiết kiểm thử Unit Test (`pytest`):**
@@ -164,24 +182,28 @@ Toàn bộ bằng chứng hội thoại trực tiếp dưới đây được tr�
 
 ## B6. Reflection
 
-> **Phạm vi phần này:** Nhận xét kỹ thuật của Thành viên 1 dựa trên eval OpenAI v0–v3 và group v3. Kết luận thống nhất của cả nhóm vẫn cần các thành viên xác nhận.
+> **Phạm vi phần này:** Nhận xét kỹ thuật của Thành viên 1 (dựa trên eval OpenAI v0–v3 và group v3) và xác nhận/góc nhìn của Thành viên 3 — Nguyễn Quang Đạo (dựa trên UI `app.py`, `transcripts/*.json` và quan sát live demo). Phần xác nhận của Thành viên 2 giữ nguyên chờ Thành viên 2 điền.
 
 - **Which fixes belonged in `system_prompt.md`?**
   - Quy tắc ứng xử tổng quát thuộc prompt: hỏi khi thiếu thông tin, không đoán tài khoản/URL, tránh tool cho yêu cầu ngoài phạm vi, xác nhận trước hành động gửi, và xử lý lượt mới nhất cùng ngữ cảnh liên quan. Ở v0, các case thiếu thông tin và ngoài phạm vi là lỗi; v1 nâng accuracy từ 0.65 lên 0.90.
   - Ở v3, lỗi `M06_switch_tool` vẫn gọi thêm `social_search` dù lượt mới yêu cầu bỏ Twitter. Quy tắc ưu tiên nguồn mới đã được thêm nhưng chưa đủ để sửa lỗi đó.
-  - *Ý kiến thống nhất của nhóm (Thành viên 1, 2, 3 điền xác nhận):* `[Chờ nhóm xác nhận]`
+  - *Xác nhận của Thành viên 3 (`NguyenQuangDao`):* Đồng ý với nhận định của Thành viên 1. Trên thực tế chạy live qua UI (`live_clarify.transcript.json`), khi prompt còn ở bản `v0` (khuyến khích đoán), model tự gọi `timeline(screenname="sama")` dù user chưa nêu tài khoản; chỉ khi có quy tắc `clarify` và `waiting_for_user` ở tầng prompt + vòng lặp UI thì agent mới dừng đúng lúc để hỏi lại. Riêng hành vi an toàn cho `send`, prompt cần hướng dẫn model hỏi xác nhận, nhưng UI (`app.py`) vẫn phải khóa cứng `confirmed=False` trước khi người dùng bấm phê duyệt để phòng trường hợp model tự gửi `confirmed=True` như đã ghi nhận ở `v3_openrouter_20261110T105249646669.transcript.json`.
+  - *Xác nhận của Thành viên 2:* `[Chờ Thành viên 2 xác nhận]`
 
 - **Which fixes belonged in `tools.yaml`?**
   - Mô tả/schema tool nên làm rõ công dụng, trường hợp không dùng, enum và cách biểu diễn tham số. v2 cập nhật `tools.yaml`, nhưng base accuracy giảm từ 0.90 xuống 0.85; vì vậy không thể kết luận thay đổi này cải thiện metric tổng thể. Group v3 còn lỗi G08 do model bỏ `sort="stars"` khỏi tool call dù schema có default.
-  - *Ý kiến thống nhất của nhóm (Thành viên 1, 2, 3 điền xác nhận):* `[Chờ nhóm xác nhận]`
+  - *Xác nhận của Thành viên 3 (`NguyenQuangDao`):* Đồng ý. Ở góc độ UI (`app.py`), `tools.yaml` còn là nguồn sự thật duy nhất (single source of truth) cho bảng **Danh mục công cụ (Tool Inventory)** và payload `openai_tools` truyền cho mọi provider. Mô tả ranh giới "khi nào dùng / không dùng" và enum chuẩn trong `tools.yaml` giúp giảm nhiễu định tuyến khi số lượng tool tăng từ 10 lên 14, còn mặc định tham số như `sort="stars"` nên được diễn đạt rõ là tham số cần truyền tường minh khi user hỏi tiêu chí tương ứng.
+  - *Xác nhận của Thành viên 2:* `[Chờ Thành viên 2 xác nhận]`
 
 - **Which failure needed manual review instead of automatic grading?**
   - Eval Phase B đối chiếu tool calls và tham số với expected; nó không đánh giá độ chính xác/chất lượng nội dung trả lời sau khi tool chạy. Vì vậy cần người đọc kiểm tra chất lượng bản tóm tắt, mức độ phù hợp của nguồn và trích dẫn. Với các case như G08, đồng thời cần phân biệt tham số default của implementation với tham số model đã phát ra: run JSON cho thấy model không gửi `sort`, nên case strict-args vẫn fail.
-  - *Ý kiến thống nhất của nhóm (Thành viên 1, 2, 3 điền xác nhận):* `[Chờ nhóm xác nhận]`
+  - *Xác nhận của Thành viên 3 (`NguyenQuangDao`):* Đồng ý hoàn toàn. Qua **Tool Call Inspector** trên `app.py` và các file `transcripts/*.json`, đánh giá tự động không thể phát hiện các vấn đề trải nghiệm thực tế như: (1) chất lượng tổng hợp tiếng Việt/Anh và mức độ bám sát nguồn trong `assistant_text` (ví dụ kiểm tra ở `live_research` và `v3_openrouter_20261110T112336428327.transcript.json` xem model có bịa quy định `source_citation` khi `policy` trả về `results: []` hay không), (2) model tự ý gọi `send(confirmed=true)` trong Turn nghiên cứu thông thường dù user không yêu cầu gửi Telegram (bị chặn bởi UI guardrail ở `v3_openrouter_20261110T105249646669.transcript.json`), và (3) chất lượng nội dung trả về từ API ngoài khi mạng/key gặp giới hạn.
+  - *Xác nhận của Thành viên 2:* `[Chờ Thành viên 2 xác nhận]`
 
 - **What would you improve next?**
   - Theo phạm vi Thành viên 1: tiếp tục sửa từng giả thuyết riêng cho ba lỗi còn lại (R12, M06, G08), chạy lại cùng provider/model và bộ case để đo trước/sau, rồi cập nhật `version_log.csv`. Chưa nên ghi các lỗi này là đã khắc phục khi run vẫn fail.
-  - *Ý kiến thống nhất của nhóm (Thành viên 1, 2, 3 điền xác nhận):* `[Chờ nhóm xác nhận]`
+  - *Hướng cải tiến tiếp theo từ Thành viên 3 (`NguyenQuangDao` — UI & Demo):* (1) Tách rõ luồng xác nhận `send` trên UI để phân biệt trường hợp user chủ động yêu cầu gửi với trường hợp model gọi nhầm `send` sau `format`; (2) Bổ sung hiển thị đối chiếu trực tiếp giữa các phiên bản transcript (`v0` vs `v3`) ngay trong sidebar lịch sử hội thoại của `app.py` để phục vụ debug nhanh khi demo; (3) Kiểm thử hồi quy giao diện trên Streamlit Cloud (`https://k5-l3a-day03-top1buildphase.streamlit.app/`) khi cấu hình đủ biến môi trường `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID` cho kịch bản gửi thật end-to-end.
+  - *Xác nhận của Thành viên 2:* `[Chờ Thành viên 2 xác nhận]`
 
 ## B7. Small Local Model Challenge (bonus)
 

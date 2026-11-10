@@ -385,11 +385,11 @@
         </p>
       </div>
       <div class="demo-url-box">
-        <span class="demo-label mono">● LIVE SHOWDOWN DEMO URL (CLOUDFLARE TUNNEL)</span>
-        <a class="demo-link mono" href="https://perth-brands-cars-musicians.trycloudflare.com" target="_blank" rel="noopener noreferrer">
-          https://perth-brands-cars-musicians.trycloudflare.com
+        <span class="demo-label mono">● LIVE DEPLOYED DEMO URL (STREAMLIT CLOUD)</span>
+        <a class="demo-link mono" href="https://k5-l3a-day03-top1buildphase.streamlit.app/" target="_blank" rel="noopener noreferrer">
+          https://k5-l3a-day03-top1buildphase.streamlit.app/
         </a>
-        <span class="demo-sub mono">Local Console: http://localhost:8501 &nbsp;|&nbsp; Provider: OpenRouter / Ollama</span>
+        <span class="demo-sub mono">Local / Docker: http://localhost:8501 &nbsp;|&nbsp; Providers: OpenRouter / OpenAI / Gemini / Anthropic / Ollama</span>
       </div>
     </header>
 
@@ -430,7 +430,7 @@
             </li>
             <li class="cap-item">
               <strong>Artifact Versioning &amp; Full Transcript Auditing</strong>
-              <span class="sub">Định danh mỗi phiên bản bằng SHA-256 hash (<code>v3+pf0c107a9d7a1+t8db0ba629f52</code>) và tự động lưu lịch sử đa lượt vào <code>transcripts/*.transcript.json</code>.</span>
+              <span class="sub">Định danh mỗi phiên bản bằng SHA-256 hash (<code>v3+pc95531b2d8b5+te19d85b877e0</code>) và tự động lưu lịch sử đa lượt vào <code>transcripts/*.transcript.json</code>.</span>
             </li>
           </ul>
         </section>
@@ -441,7 +441,7 @@
         <section class="panel fill">
           <div class="panel-header">
             <h2 class="panel-title">3. Registered Tool Ecosystem</h2>
-            <span class="panel-tag mono">10 TOOLS IN artifacts/tools.yaml</span>
+            <span class="panel-tag mono">14 TOOLS IN artifacts/tools.yaml</span>
           </div>
           <table class="tool-table">
             <thead>
@@ -513,6 +513,30 @@
                 <td>Tải file PDF từ arXiv và trích xuất văn bản cục bộ qua <code>pypdf</code> (<code>arxiv_url</code>, <code>max_pages</code>, <code>max_chars</code>).</td>
                 <td><span class="badge badge-no">No</span></td>
               </tr>
+              <tr>
+                <td><code class="tool-name">hn_search</code></td>
+                <td><span class="badge badge-bonus">Custom</span></td>
+                <td>Tìm story Hacker News kèm điểm &amp; bình luận (<code>query</code>, <code>sort</code>: <code>relevance|date</code>, <code>timeframe</code>, <code>limit</code>).</td>
+                <td><span class="badge badge-bonus">Yes</span></td>
+              </tr>
+              <tr>
+                <td><code class="tool-name">wiki</code></td>
+                <td><span class="badge badge-bonus">Custom</span></td>
+                <td>Tìm bài Wikipedia và lấy đoạn tóm tắt mở đầu cho kiến thức nền ổn định (<code>query</code>, <code>lang</code>: <code>en|vi</code>, <code>max_results</code>).</td>
+                <td><span class="badge badge-bonus">Yes</span></td>
+              </tr>
+              <tr>
+                <td><code class="tool-name">github_repos</code></td>
+                <td><span class="badge badge-bonus">Custom</span></td>
+                <td>Tìm repository công khai trên GitHub hỗ trợ lọc ngôn ngữ và sắp xếp (<code>query</code>, <code>language</code>, <code>sort</code>, <code>limit</code>).</td>
+                <td><span class="badge badge-bonus">Yes</span></td>
+              </tr>
+              <tr>
+                <td><code class="tool-name">hf_models</code></td>
+                <td><span class="badge badge-bonus">Custom</span></td>
+                <td>Tìm model trên Hugging Face Hub theo task và thứ tự tải/like/trending (<code>query</code>, <code>task</code>, <code>sort</code>, <code>limit</code>).</td>
+                <td><span class="badge badge-bonus">Yes</span></td>
+              </tr>
             </tbody>
           </table>
         </section>
@@ -535,7 +559,7 @@
             <div class="guardrail-box warn">
               <div class="guardrail-title">🛡️ Write-Action Guardrail (<code>send</code>)</div>
               <p class="guardrail-desc">
-                Mọi lệnh gọi <code>send</code> chưa được duyệt đều bị đặt <code>confirmed=False</code>, trả về <code>status: "needs_confirmation"</code>. Giao diện hiển thị hộp xác nhận <strong>Approve &amp; Send</strong> / <strong>Reject Action</strong> chống thực thi tự động và chống lặp khi rerun.
+                Mọi lệnh gọi <code>send</code> chưa được duyệt đều bị đặt <code>confirmed=False</code>, trả về <code>status: "needs_confirmation"</code>. Giao diện hiển thị hộp xác nhận <strong>Phê duyệt &amp; Gửi</strong> / <strong>Từ chối</strong> chống thực thi tự động và chống lặp khi rerun.
               </p>
             </div>
           </div>
@@ -586,6 +610,14 @@
               </div>
               <div class="prompt-quote">"Tóm tắt 5 bài đăng mới nhất." &nbsp;→&nbsp; "Đăng bản tin này lên Telegram."</div>
             </div>
+
+            <div class="prompt-card">
+              <div class="prompt-meta">
+                <span>06 · DEV &amp; ML ECOSYSTEM SEARCH</span>
+                <span class="mono">github_repos / hf_models</span>
+              </div>
+              <div class="prompt-quote">"Tìm 3 repository Python phổ biến nhất về LLM agent trên GitHub."</div>
+            </div>
           </div>
         </section>
       </div>
@@ -594,12 +626,12 @@
     <!-- FOOTER BAR -->
     <footer class="footer-bar">
       <div class="metric-strip mono">
-        <span class="metric-chip">Artifact Hash: <strong>v3+pf0c107a9d7a1+t8db0ba629f52</strong></span>
-        <span class="metric-chip">Contract Tests: <strong>62 Passed (test_tool_contract.py 100% green)</strong></span>
-        <span class="metric-chip">Live Transcripts: <strong>3 Verified Scenarios in transcripts/</strong></span>
+        <span class="metric-chip">Artifact Hash: <strong>v3+pc95531b2d8b5+te19d85b877e0</strong></span>
+        <span class="metric-chip">Live UI: <strong>Streamlit Cloud + Docker</strong></span>
+        <span class="metric-chip">Live Transcripts: <strong>5 Verified Sessions in transcripts/</strong></span>
       </div>
       <div class="mono">
-        Member 3 — UI, Live Demo &amp; Report Lead · Streamlit Operations Console
+        Member 3 (NguyenQuangDao) — UI, Live Demo &amp; Report Lead
       </div>
     </footer>
   </div>
