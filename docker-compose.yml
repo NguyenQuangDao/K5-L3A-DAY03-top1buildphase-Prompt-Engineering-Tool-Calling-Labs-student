@@ -1,0 +1,11 @@
+services:
+  research-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: research-agent-ui
+    ports:
+      - "8501:8501"
+    env_file:
+      - starter_v0/.env
+    restart: unless-stopped

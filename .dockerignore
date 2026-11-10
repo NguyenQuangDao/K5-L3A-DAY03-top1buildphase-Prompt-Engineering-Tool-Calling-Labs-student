@@ -1,0 +1,11 @@
+.git/
+.gitignore
+**/.env
+**/.env.*
+!starter_v0/.env.example
+**/__pycache__/
+**/.pytest_cache/
+starter_v0/arxiv_papers/
+starter_v0/runs/
+*.pyc
+.DS_Store
