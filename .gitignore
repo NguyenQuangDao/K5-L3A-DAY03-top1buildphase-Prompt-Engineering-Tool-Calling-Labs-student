@@ -17,6 +17,9 @@ starter/
 # Tool scratch output
 arxiv_papers/
 
+# Frontend dependencies (the Streamlit component is served from frontend/dist)
+node_modules/
+
 # OS / editor
 .DS_Store
 Thumbs.db
