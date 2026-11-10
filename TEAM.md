@@ -11,7 +11,7 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | _(Thành viên 1 tự điền)_ | _(tự điền)_ | _(tự điền)_ | `nguyenvulong191` | Prompt & Eval Lead: `system_prompt.md`, `tools.yaml`, v0–v3, `version_log.csv`, `eval_group.json` |
+|   1 | Nguyễn Vũ Thành Long | 2A202603635 | 26ai.longnvt2@vinuni.edu.vn | `nvl191` | Prompt & Eval Lead: `system_prompt.md`, `tools.yaml`, v0–v3, `version_log.csv`, `eval_group.json` |
 |   2 | Nguyễn Gia Bảo | 2A202603647 | 26ai.baong5@vinuni.edu.vn | `Billy3005` | Tool & Testing Engineer: 4 tool mới, unit test, sửa bug tool, Small Local Model (Step 7) |
 |   3 | Nguyễn Quang Đạo | 2A202603614 | _(tự điền)_ | `NguyenQuangDao` | UI, Live Demo & Report Lead: `app.py`, `ui_components/`, poster, REPORT, deploy |
 
