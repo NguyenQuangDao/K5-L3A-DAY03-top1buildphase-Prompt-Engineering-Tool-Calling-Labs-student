@@ -1,0 +1,709 @@
+{
+  "transcript_id": "v3_openrouter_20261110T104025011630",
+  "version": "v3",
+  "artifact_version": "v3+pf0c107a9d7a1+t8db0ba629f52",
+  "prompt_hash": "f0c107a9d7a14032c948d642d7c36f2a85cb6d69a099530093a874c94d472446",
+  "tools_hash": "8db0ba629f52ad1ec171bae4e4e84472c12f950fa1a6db5e1d27bad6e749b740",
+  "provider": "openrouter",
+  "model": "nvidia/nemotron-3.5-lightning:free",
+  "system_prompt": "/Users/macbook/Projects/VINUNI/LAB-DAY3/K5-L3A-DAY03-top1buildphase-Prompt-Engineering-Tool-Calling-Labs-student/starter_v0/artifacts/system_prompt.md",
+  "tools": "/Users/macbook/Projects/VINUNI/LAB-DAY3/K5-L3A-DAY03-top1buildphase-Prompt-Engineering-Tool-Calling-Labs-student/starter_v0/artifacts/tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-11-10T10:40:25",
+  "updated_at": "2026-11-10T10:41:07",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-11-10T10:40:25",
+      "user": "Tìm tin tức AI mới nhất và tổng hợp 5 thông tin quan trọng nhất.",
+      "status": "answered",
+      "assistant_text": "**Top 5 Latest AI News Digest**\n\n- **Cainiao has scaled AI‑powered deployments across express delivery, e‑commerce, FMCG and auto parts, enabling robots to evolve from single‑point operations to sophisticated real‑world applications, supporting faster innovation and global scale.**  \n  [aircargonews.net](https://www.aircargonews.net/supply-chains/2026/11/cainiao-launches-ai-and-tech-airfreight-service)\n\n- **Research shows AI tools like Daybreak and DeepSeek are completing an increasing percentage of cyber‑attack tasks, with criminals setting objectives and AI agents executing them autonomously.**  \n  [tech.co](https://tech.co/news/study-cyber-criminals-are-letting-ai-do-the-hacking)\n\n- **Deutsche Telekom is investing about €250 million to equip its Munich AI data center with advanced Nvidia Blackwell B300 chips, raising the facility's capacity to 20 MW as part of Europe's industrial AI push.**  \n  [bloomberg.com](https://www.bloomberg.com/news/articles/2026-11-09/deutsche-telekom-adds-latest-nvidia-chips-in-german-ai-buildout)\n\n- **Adobe will be Disney's official AI innovation partner, providing early access to Firefly, Firefly Foundry, Premiere, Photoshop and dedicated engineering resources to accelerate creative and guest engagement.**  \n  [variety.com](https://variety.com/2026/digital/news/disney-adobe-official-ai-innovation-partner-1236943275)\n\n- **Modder Kyosuke Yexil demonstrated a Quake 3 Arena gameplay mashup inside Bloodborne, showcasing AI‑driven modding trends.**  \n  [gamingbible.com](https://www.gamingbible.com/news/platform/pc/bloodborne-fps-mod-525518-20261109)",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "lookup",
+              "args": {
+                "topic": "news",
+                "max_results": 10,
+                "query": "latest AI news",
+                "timeframe": "day"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "lookup",
+              "args": {
+                "topic": "news",
+                "max_results": 10,
+                "query": "latest AI news",
+                "timeframe": "day"
+              },
+              "result": {
+                "tool": "web_search",
+                "query": "latest AI news",
+                "topic": "news",
+                "timeframe": "day",
+                "items": [
+                  {
+                    "title": "Cainiao launches AI and tech airfreight service - Air Cargo News",
+                    "url": "https://www.aircargonews.net/supply-chains/2026/11/cainiao-launches-ai-and-tech-airfreight-service",
+                    "source": "aircargonews.net",
+                    "summary": "Other companies have also been looking to capitalise on the growth in AI volumes over the last couple of years.\n\nEarlier this month, Emirates SkyCargo launched a dedicated product designed to help customers move critical and sensitive AI infrastructure safely and on time.\n\nMeanwhile, Qatar Airways Cargo launched its semiconductor product in 2025. [...] “Cainiao has already scaled pilot deployments across express delivery, e-commerce, FMCG and auto parts scenarios, covering three major task types: basic tasks such as parcel feeding and labelling, mid-level precision tasks such as small-item sorting, and advanced long-horizon tasks such as palletising and complex depalletising.\n\n“These deployments are helping robots evolve from single-point operations to more sophisticated real-world applications.”\n\n## Subscribe to gain access to all news. [...] “As AI becomes a new engine of productivity, logistics must evolve to support faster innovation and global scale,” said William Xiong, chief executive of Cainiao Global.\n\n“Over the past decade, Cainiao has built an open, efficient and sustainable smart logistics network. As AI and embodied intelligence move from the lab into real industry, we want to leverage our global network to help partners  \n accelerate value creation.”",
+                    "score": 0.564027
+                  },
+                  {
+                    "title": "AI is Handling Cyber Attacks for Criminals",
+                    "url": "https://tech.co/news/study-cyber-criminals-are-letting-ai-do-the-hacking",
+                    "source": "tech.co",
+                    "summary": "While this certainly means the cost barrier to attacks is lowering, at the same time, the capabilities of Chinese models are also increasing.\n\nVals, in its research, found OpenAI’s most advanced cyber model, Daybreak, was able to complete 81% of the tasks it was given in an average of two tests. DeepSeek, comparatively, was able to complete 73%. [...] Recent research from Check Point findscriminals are offloading cyber attacks to autonomous AI tools. Specifically, humans are setting the objectives, and agents are acting to fulfill them. Humans are checking in with their agents but not carrying out attacks themselves.\n\nCheck Point investigated the AI tool, ARTEX, which is being used for this purpose. Criminal setups of the tool revealed the goals given to it by attackers, the AI models chosen for the task, and each step taken by the agent. [...] Nicole Mousicos\n\nNicole is Tech.co’s News Editor, reporting on the latest technology news and curating The AI Strat newsletter. After studying English Literature and Creative Writing, they worked on local newspapers and online publications, including Outlander Magazine. Previously, they covered tech products and news at Expert Reviews. Outside of Tech.co, they enjoy sports and video games.\n\nMore about\n\nPopular topics\n\nArtificial Intelligence Privacy and Security\n\n### You might also like",
+                    "score": 0.5246632
+                  },
+                  {
+                    "title": "Deutsche Telekom Adds Latest Nvidia Chips in German AI Buildout - Bloomberg",
+                    "url": "https://www.bloomberg.com/news/articles/2026-11-09/deutsche-telekom-adds-latest-nvidia-chips-in-german-ai-buildout",
+                    "source": "bloomberg.com",
+                    "summary": "Telecom\n\n# Deutsche Telekom Adds Latest Nvidia Chips in German AI Buildout\n\nDeutsche Telekom AG will invest about €250 million ($289 million) to equip its Munich artificial intelligence data center with more advanced Nvidia Corp. processors, part of a European push to challenge the US and China in industrial AI. [...] The installation of the new Nvidia Blackwell B300 chips will raise the facility’s capacity to 20 megawatts, less than a year after it opened in February, Deutsche Telekom announced Monday. That’s about twice the upper end of a conventional data center’s typical demand but still well below the 100 megawatts or more used by large hyperscale facilities.",
+                    "score": 0.444493
+                  },
+                  {
+                    "title": "Modder turns Bloodborne into fast-paced FPS in latest 'AI slop' armageddon",
+                    "url": "https://www.gamingbible.com/news/platform/pc/bloodborne-fps-mod-525518-20261109",
+                    "source": "gamingbible.com",
+                    "summary": "Yexil uploaded a nearly three-minute video onto YouTube demonstrating Quake's gameplay mashed up inside Bloodborne. Venturing through the Central Yharnam area, the clip shows them shooting at enemies using various weapons from Quake 3, complete with enemies taking damage and interacting with the player. Another video shows similar gameplay, but with a PS1 filter also layered over the screen for a bigger retro effect. [...] Advert\n\nThe latest abomination to come from this trend sees Quake 3 Arena transposed into Bloodborne, with a demonstration shared by modder Kyosuke Yexil. [...] Looking at Yexil's other videos on their YouTube channel, you can find other game mashups and mods they've created. Bloodborne Isometric is a plugin for bbport that they've created, which adds an isometric view to the game, making the game feel more akin to a dungeon crawler or CRPG than an action RPG. Another one adds Elden Ring movement into the game, allowing the player to jump at will and throw items freely.",
+                    "score": 0.400703
+                  },
+                  {
+                    "title": "Disney Taps Adobe as Official AI Innovation Partner Under Multiyear Pact",
+                    "url": "https://variety.com/2026/digital/news/disney-adobe-official-ai-innovation-partner-1236943275",
+                    "source": "variety.com",
+                    "summary": "Building on the companies’ longstanding relationship, Adobe will be an “official AI innovation partner” of the Walt Disney Co. under which the creative and design software giant will provide Disney early access to its latest AI, creative and media technologies. This includes Adobe Firefly (generative AI for creatives), Adobe Firefly Foundry (proprietary AI models), Adobe Premiere (video editing) and Adobe Photoshop (digital imaging) — along with dedicated engineering and research resources — to [...] the two companies will build a new creative foundation that thoughtfully deploys AI as an accelerant for artistic vision, creativity and guest engagement.” [...] The ESPN Edge Innovation Center was created to explore, test and implement emerging technologies that impact the art of sports storytelling. ESPN and Adobe will identify ways for AI to enhance the engagement with sports fans and shape how ESPN delivers content as well as new ways to bring ESPN’s archive to life.\n\nRELATED: Adobe Unveils 10 Filmmakers Receiving Total of $1 Million in Direct Grants, Forms Film & TV Advisory Board With Lena Waithe, Reggie Hudlin, Kerstin Emhoff and More",
+                    "score": 0.39803258
+                  },
+                  {
+                    "title": "Donald Trump Shares Wild AI Cartoon of UFC Boss Dana White",
+                    "url": "https://mmasucka.com/news/donald-trump-shares-wild-ai-cartoon-of-dana-white-and-ufc-fighters",
+                    "source": "mmasucka.com",
+                    "summary": "MMA Sucka\n\n# Donald Trump's Latest AI Cartoon Catches UFC Fans' Attention for One Notable Reason\n\nBy Sami Haider\n\nEdited by Drew Zuhosky\n\n8 hours ago3 min read\n\nDonald Trump\n\nDonald TrumpIMAGO/ Zuma Press Wire\n\nFollow on Google\n\nDonald Trump shared a wild, \"Family Guy\"-style AI cartoon of UFC boss Dana White unleashing fighters on reporters after joking about offering him the press secretary job. [...] NEWS6 hours ago\n\n### Usman Nurmagomedov Is Eager to Fight Again After PFL Exit\n\nBy Anas Azmi\n\nJohnny Walker has been making waves at heavyweight, whereas Aljamain Sterling is in pursuit of UFC featherweight gold. \n\nNEWS6 hours ago\n\n### Aljamain Sterling warns Johnny Walker's style would eventually backfire in UFC heavyweight division\n\nBy Johny Payne [...] Get breaking MMA news, fight results, and expert analysis straight to your inbox.\n\n## RELATED ARTICLES\n\nView All\n\nAlbina Moldazhanova \n\nNEWS4 hours ago\n\n### Albina Moldazhanova Signs With Jake Paul's MVP After Sixth Straight Knockout\n\nBy Chynelle Dirksz\n\nAmanda Nunes\n\nNEWS5 hours ago\n\n### ‘Punch Her in the Face’: Amanda Nunes’ Daughter Shares Adorable Advice for Kayla Harrison Fight\n\nBy Sami Haider\n\nUsman Nurmagomedov\n\nNEWS6 hours ago",
+                    "score": 0.22081293
+                  },
+                  {
+                    "title": "How AI is helping scammers fool online shoppers with fake stores",
+                    "url": "https://www.abc15.com/videos/scripps-news-life/how-ai-is-helping-scammers-fool-online-shoppers-with-fake-stores",
+                    "source": "abc15.com",
+                    "summary": "KNXV - Phoenix, Arizona \n\nWatch Now\n\nKNXV - Phoenix, Arizona \n\nLocal   National   Weather   Sports   Shop Scripps   Watch Now\n\nWatch Now\n\n abc15\n abc15arizona\n abc15\n\n1   WX Alert\n\n Investigations\n Uplifting Arizona\n Let ABC15 Know\n America Votes\n Let's Talk\n Operation Safe Roads\n The Price of Data\n Things To Do\n Smart Shopper\n The Spot - Arizona 61\n Contests\n\n# How AI is helping scammers fool online shoppers with fake stores\n\nLive Stream Schedule",
+                    "score": 0.13394701
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "format",
+              "args": {
+                "template": "brief",
+                "headline": "Top 5 Latest AI News Digest",
+                "items": [
+                  {
+                    "title": "Cainiao launches AI and tech airfreight service",
+                    "url": "https://www.aircargonews.net/supply-chains/2026/11/cainiao-launches-ai-and-tech-airfreight-service",
+                    "source": "aircargonews.net",
+                    "summary": "Cainiao has scaled AI-powered deployments across express delivery, e-commerce, FMCG and auto parts, enabling robots to evolve from single-point operations to sophisticated real-world applications, supporting faster innovation and global scale."
+                  },
+                  {
+                    "title": "AI is Handling Cyber Attacks for Criminals",
+                    "url": "https://tech.co/news/study-cyber-criminals-are-letting-ai-do-the-hacking",
+                    "source": "tech.co",
+                    "summary": "Research shows AI tools like Daybreak and DeepSeek are completing an increasing percentage of cyber attack tasks, with criminals setting objectives and AI agents executing them autonomously."
+                  },
+                  {
+                    "title": "Deutsche Telekom Adds Latest Nvidia Chips in German AI Buildout",
+                    "url": "https://www.bloomberg.com/news/articles/2026-11-09/deutsche-telekom-adds-latest-nvidia-chips-in-german-ai-buildout",
+                    "source": "bloomberg.com",
+                    "summary": "Deutsche Telekom is investing about €250 million to equip its Munich AI data center with advanced Nvidia Blackwell B300 chips, raising the facility's capacity to 20 MW as part of Europe's industrial AI push."
+                  },
+                  {
+                    "title": "Disney Taps Adobe as Official AI Innovation Partner",
+                    "url": "https://variety.com/2026/digital/news/disney-adobe-official-ai-innovation-partner-1236943275",
+                    "source": "variety.com",
+                    "summary": "Adobe will be Disney's official AI innovation partner, providing early access to Firefly, Firefly Foundry, Premiere, Photoshop and dedicated engineering resources to accelerate creative and guest engagement."
+                  },
+                  {
+                    "title": "Modder turns Bloodborne into fast-paced FPS in latest 'AI slop' armageddon",
+                    "url": "https://www.gamingbible.com/news/platform/pc/bloodborne-fps-mod-525518-20261109",
+                    "source": "gamingbible.com",
+                    "summary": "Modder Kyosuke Yexil demonstrated a Quake 3 Arena gameplay mashup inside Bloodborne, showcasing AI-driven modding trends."
+                  }
+                ]
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "format",
+              "args": {
+                "template": "brief",
+                "headline": "Top 5 Latest AI News Digest",
+                "items": [
+                  {
+                    "title": "Cainiao launches AI and tech airfreight service",
+                    "url": "https://www.aircargonews.net/supply-chains/2026/11/cainiao-launches-ai-and-tech-airfreight-service",
+                    "source": "aircargonews.net",
+                    "summary": "Cainiao has scaled AI-powered deployments across express delivery, e-commerce, FMCG and auto parts, enabling robots to evolve from single-point operations to sophisticated real-world applications, supporting faster innovation and global scale."
+                  },
+                  {
+                    "title": "AI is Handling Cyber Attacks for Criminals",
+                    "url": "https://tech.co/news/study-cyber-criminals-are-letting-ai-do-the-hacking",
+                    "source": "tech.co",
+                    "summary": "Research shows AI tools like Daybreak and DeepSeek are completing an increasing percentage of cyber attack tasks, with criminals setting objectives and AI agents executing them autonomously."
+                  },
+                  {
+                    "title": "Deutsche Telekom Adds Latest Nvidia Chips in German AI Buildout",
+                    "url": "https://www.bloomberg.com/news/articles/2026-11-09/deutsche-telekom-adds-latest-nvidia-chips-in-german-ai-buildout",
+                    "source": "bloomberg.com",
+                    "summary": "Deutsche Telekom is investing about €250 million to equip its Munich AI data center with advanced Nvidia Blackwell B300 chips, raising the facility's capacity to 20 MW as part of Europe's industrial AI push."
+                  },
+                  {
+                    "title": "Disney Taps Adobe as Official AI Innovation Partner",
+                    "url": "https://variety.com/2026/digital/news/disney-adobe-official-ai-innovation-partner-1236943275",
+                    "source": "variety.com",
+                    "summary": "Adobe will be Disney's official AI innovation partner, providing early access to Firefly, Firefly Foundry, Premiere, Photoshop and dedicated engineering resources to accelerate creative and guest engagement."
+                  },
+                  {
+                    "title": "Modder turns Bloodborne into fast-paced FPS in latest 'AI slop' armageddon",
+                    "url": "https://www.gamingbible.com/news/platform/pc/bloodborne-fps-mod-525518-20261109",
+                    "source": "gamingbible.com",
+                    "summary": "Modder Kyosuke Yexil demonstrated a Quake 3 Arena gameplay mashup inside Bloodborne, showcasing AI-driven modding trends."
+                  }
+                ]
+              },
+              "result": {
+                "tool": "render_digest",
+                "template": "brief",
+                "markdown": "**Top 5 Latest AI News Digest**\n\n- Cainiao has scaled AI-powered deployments across express delivery, e-commerce, FMCG and auto parts, enabling robots to evolve from single-point operations to sophisticated real-world applications, supporting faster innovation and global scale. - [aircargonews.net](https://www.aircargonews.net/supply-chains/2026/11/cainiao-launches-ai-and-tech-airfreight-service)\n- Research shows AI tools like Daybreak and DeepSeek are completing an increasing percentage of cyber attack tasks, with criminals setting objectives and AI agents executing them autonomously. - [tech.co](https://tech.co/news/study-cyber-criminals-are-letting-ai-do-the-hacking)\n- Deutsche Telekom is investing about €250 million to equip its Munich AI data center with advanced Nvidia Blackwell B300 chips, raising the facility's capacity to 20 MW as part of Europe's industrial AI push. - [bloomberg.com](https://www.bloomberg.com/news/articles/2026-11-09/deutsche-telekom-adds-latest-nvidia-chips-in-german-ai-buildout)\n- Adobe will be Disney's official AI innovation partner, providing early access to Firefly, Firefly Foundry, Premiere, Photoshop and dedicated engineering resources to accelerate creative and guest engagement. - [variety.com](https://variety.com/2026/digital/news/disney-adobe-official-ai-innovation-partner-1236943275)\n- Modder Kyosuke Yexil demonstrated a Quake 3 Arena gameplay mashup inside Bloodborne, showcasing AI-driven modding trends. - [gamingbible.com](https://www.gamingbible.com/news/platform/pc/bloodborne-fps-mod-525518-20261109)",
+                "item_count": 5
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "assistant_text": "**Top 5 Latest AI News Digest**\n\n- **Cainiao has scaled AI‑powered deployments across express delivery, e‑commerce, FMCG and auto parts, enabling robots to evolve from single‑point operations to sophisticated real‑world applications, supporting faster innovation and global scale.**  \n  [aircargonews.net](https://www.aircargonews.net/supply-chains/2026/11/cainiao-launches-ai-and-tech-airfreight-service)\n\n- **Research shows AI tools like Daybreak and DeepSeek are completing an increasing percentage of cyber‑attack tasks, with criminals setting objectives and AI agents executing them autonomously.**  \n  [tech.co](https://tech.co/news/study-cyber-criminals-are-letting-ai-do-the-hacking)\n\n- **Deutsche Telekom is investing about €250 million to equip its Munich AI data center with advanced Nvidia Blackwell B300 chips, raising the facility's capacity to 20 MW as part of Europe's industrial AI push.**  \n  [bloomberg.com](https://www.bloomberg.com/news/articles/2026-11-09/deutsche-telekom-adds-latest-nvidia-chips-in-german-ai-buildout)\n\n- **Adobe will be Disney's official AI innovation partner, providing early access to Firefly, Firefly Foundry, Premiere, Photoshop and dedicated engineering resources to accelerate creative and guest engagement.**  \n  [variety.com](https://variety.com/2026/digital/news/disney-adobe-official-ai-innovation-partner-1236943275)\n\n- **Modder Kyosuke Yexil demonstrated a Quake 3 Arena gameplay mashup inside Bloodborne, showcasing AI‑driven modding trends.**  \n  [gamingbible.com](https://www.gamingbible.com/news/platform/pc/bloodborne-fps-mod-525518-20261109)",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "lookup",
+          "args": {
+            "topic": "news",
+            "max_results": 10,
+            "query": "latest AI news",
+            "timeframe": "day"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "latest AI news",
+            "topic": "news",
+            "timeframe": "day",
+            "items": [
+              {
+                "title": "Cainiao launches AI and tech airfreight service - Air Cargo News",
+                "url": "https://www.aircargonews.net/supply-chains/2026/11/cainiao-launches-ai-and-tech-airfreight-service",
+                "source": "aircargonews.net",
+                "summary": "Other companies have also been looking to capitalise on the growth in AI volumes over the last couple of years.\n\nEarlier this month, Emirates SkyCargo launched a dedicated product designed to help customers move critical and sensitive AI infrastructure safely and on time.\n\nMeanwhile, Qatar Airways Cargo launched its semiconductor product in 2025. [...] “Cainiao has already scaled pilot deployments across express delivery, e-commerce, FMCG and auto parts scenarios, covering three major task types: basic tasks such as parcel feeding and labelling, mid-level precision tasks such as small-item sorting, and advanced long-horizon tasks such as palletising and complex depalletising.\n\n“These deployments are helping robots evolve from single-point operations to more sophisticated real-world applications.”\n\n## Subscribe to gain access to all news. [...] “As AI becomes a new engine of productivity, logistics must evolve to support faster innovation and global scale,” said William Xiong, chief executive of Cainiao Global.\n\n“Over the past decade, Cainiao has built an open, efficient and sustainable smart logistics network. As AI and embodied intelligence move from the lab into real industry, we want to leverage our global network to help partners  \n accelerate value creation.”",
+                "score": 0.564027
+              },
+              {
+                "title": "AI is Handling Cyber Attacks for Criminals",
+                "url": "https://tech.co/news/study-cyber-criminals-are-letting-ai-do-the-hacking",
+                "source": "tech.co",
+                "summary": "While this certainly means the cost barrier to attacks is lowering, at the same time, the capabilities of Chinese models are also increasing.\n\nVals, in its research, found OpenAI’s most advanced cyber model, Daybreak, was able to complete 81% of the tasks it was given in an average of two tests. DeepSeek, comparatively, was able to complete 73%. [...] Recent research from Check Point findscriminals are offloading cyber attacks to autonomous AI tools. Specifically, humans are setting the objectives, and agents are acting to fulfill them. Humans are checking in with their agents but not carrying out attacks themselves.\n\nCheck Point investigated the AI tool, ARTEX, which is being used for this purpose. Criminal setups of the tool revealed the goals given to it by attackers, the AI models chosen for the task, and each step taken by the agent. [...] Nicole Mousicos\n\nNicole is Tech.co’s News Editor, reporting on the latest technology news and curating The AI Strat newsletter. After studying English Literature and Creative Writing, they worked on local newspapers and online publications, including Outlander Magazine. Previously, they covered tech products and news at Expert Reviews. Outside of Tech.co, they enjoy sports and video games.\n\nMore about\n\nPopular topics\n\nArtificial Intelligence Privacy and Security\n\n### You might also like",
+                "score": 0.5246632
+              },
+              {
+                "title": "Deutsche Telekom Adds Latest Nvidia Chips in German AI Buildout - Bloomberg",
+                "url": "https://www.bloomberg.com/news/articles/2026-11-09/deutsche-telekom-adds-latest-nvidia-chips-in-german-ai-buildout",
+                "source": "bloomberg.com",
+                "summary": "Telecom\n\n# Deutsche Telekom Adds Latest Nvidia Chips in German AI Buildout\n\nDeutsche Telekom AG will invest about €250 million ($289 million) to equip its Munich artificial intelligence data center with more advanced Nvidia Corp. processors, part of a European push to challenge the US and China in industrial AI. [...] The installation of the new Nvidia Blackwell B300 chips will raise the facility’s capacity to 20 megawatts, less than a year after it opened in February, Deutsche Telekom announced Monday. That’s about twice the upper end of a conventional data center’s typical demand but still well below the 100 megawatts or more used by large hyperscale facilities.",
+                "score": 0.444493
+              },
+              {
+                "title": "Modder turns Bloodborne into fast-paced FPS in latest 'AI slop' armageddon",
+                "url": "https://www.gamingbible.com/news/platform/pc/bloodborne-fps-mod-525518-20261109",
+                "source": "gamingbible.com",
+                "summary": "Yexil uploaded a nearly three-minute video onto YouTube demonstrating Quake's gameplay mashed up inside Bloodborne. Venturing through the Central Yharnam area, the clip shows them shooting at enemies using various weapons from Quake 3, complete with enemies taking damage and interacting with the player. Another video shows similar gameplay, but with a PS1 filter also layered over the screen for a bigger retro effect. [...] Advert\n\nThe latest abomination to come from this trend sees Quake 3 Arena transposed into Bloodborne, with a demonstration shared by modder Kyosuke Yexil. [...] Looking at Yexil's other videos on their YouTube channel, you can find other game mashups and mods they've created. Bloodborne Isometric is a plugin for bbport that they've created, which adds an isometric view to the game, making the game feel more akin to a dungeon crawler or CRPG than an action RPG. Another one adds Elden Ring movement into the game, allowing the player to jump at will and throw items freely.",
+                "score": 0.400703
+              },
+              {
+                "title": "Disney Taps Adobe as Official AI Innovation Partner Under Multiyear Pact",
+                "url": "https://variety.com/2026/digital/news/disney-adobe-official-ai-innovation-partner-1236943275",
+                "source": "variety.com",
+                "summary": "Building on the companies’ longstanding relationship, Adobe will be an “official AI innovation partner” of the Walt Disney Co. under which the creative and design software giant will provide Disney early access to its latest AI, creative and media technologies. This includes Adobe Firefly (generative AI for creatives), Adobe Firefly Foundry (proprietary AI models), Adobe Premiere (video editing) and Adobe Photoshop (digital imaging) — along with dedicated engineering and research resources — to [...] the two companies will build a new creative foundation that thoughtfully deploys AI as an accelerant for artistic vision, creativity and guest engagement.” [...] The ESPN Edge Innovation Center was created to explore, test and implement emerging technologies that impact the art of sports storytelling. ESPN and Adobe will identify ways for AI to enhance the engagement with sports fans and shape how ESPN delivers content as well as new ways to bring ESPN’s archive to life.\n\nRELATED: Adobe Unveils 10 Filmmakers Receiving Total of $1 Million in Direct Grants, Forms Film & TV Advisory Board With Lena Waithe, Reggie Hudlin, Kerstin Emhoff and More",
+                "score": 0.39803258
+              },
+              {
+                "title": "Donald Trump Shares Wild AI Cartoon of UFC Boss Dana White",
+                "url": "https://mmasucka.com/news/donald-trump-shares-wild-ai-cartoon-of-dana-white-and-ufc-fighters",
+                "source": "mmasucka.com",
+                "summary": "MMA Sucka\n\n# Donald Trump's Latest AI Cartoon Catches UFC Fans' Attention for One Notable Reason\n\nBy Sami Haider\n\nEdited by Drew Zuhosky\n\n8 hours ago3 min read\n\nDonald Trump\n\nDonald TrumpIMAGO/ Zuma Press Wire\n\nFollow on Google\n\nDonald Trump shared a wild, \"Family Guy\"-style AI cartoon of UFC boss Dana White unleashing fighters on reporters after joking about offering him the press secretary job. [...] NEWS6 hours ago\n\n### Usman Nurmagomedov Is Eager to Fight Again After PFL Exit\n\nBy Anas Azmi\n\nJohnny Walker has been making waves at heavyweight, whereas Aljamain Sterling is in pursuit of UFC featherweight gold. \n\nNEWS6 hours ago\n\n### Aljamain Sterling warns Johnny Walker's style would eventually backfire in UFC heavyweight division\n\nBy Johny Payne [...] Get breaking MMA news, fight results, and expert analysis straight to your inbox.\n\n## RELATED ARTICLES\n\nView All\n\nAlbina Moldazhanova \n\nNEWS4 hours ago\n\n### Albina Moldazhanova Signs With Jake Paul's MVP After Sixth Straight Knockout\n\nBy Chynelle Dirksz\n\nAmanda Nunes\n\nNEWS5 hours ago\n\n### ‘Punch Her in the Face’: Amanda Nunes’ Daughter Shares Adorable Advice for Kayla Harrison Fight\n\nBy Sami Haider\n\nUsman Nurmagomedov\n\nNEWS6 hours ago",
+                "score": 0.22081293
+              },
+              {
+                "title": "How AI is helping scammers fool online shoppers with fake stores",
+                "url": "https://www.abc15.com/videos/scripps-news-life/how-ai-is-helping-scammers-fool-online-shoppers-with-fake-stores",
+                "source": "abc15.com",
+                "summary": "KNXV - Phoenix, Arizona \n\nWatch Now\n\nKNXV - Phoenix, Arizona \n\nLocal   National   Weather   Sports   Shop Scripps   Watch Now\n\nWatch Now\n\n abc15\n abc15arizona\n abc15\n\n1   WX Alert\n\n Investigations\n Uplifting Arizona\n Let ABC15 Know\n America Votes\n Let's Talk\n Operation Safe Roads\n The Price of Data\n Things To Do\n Smart Shopper\n The Spot - Arizona 61\n Contests\n\n# How AI is helping scammers fool online shoppers with fake stores\n\nLive Stream Schedule",
+                "score": 0.13394701
+              }
+            ]
+          }
+        },
+        {
+          "tool": "format",
+          "args": {
+            "template": "brief",
+            "headline": "Top 5 Latest AI News Digest",
+            "items": [
+              {
+                "title": "Cainiao launches AI and tech airfreight service",
+                "url": "https://www.aircargonews.net/supply-chains/2026/11/cainiao-launches-ai-and-tech-airfreight-service",
+                "source": "aircargonews.net",
+                "summary": "Cainiao has scaled AI-powered deployments across express delivery, e-commerce, FMCG and auto parts, enabling robots to evolve from single-point operations to sophisticated real-world applications, supporting faster innovation and global scale."
+              },
+              {
+                "title": "AI is Handling Cyber Attacks for Criminals",
+                "url": "https://tech.co/news/study-cyber-criminals-are-letting-ai-do-the-hacking",
+                "source": "tech.co",
+                "summary": "Research shows AI tools like Daybreak and DeepSeek are completing an increasing percentage of cyber attack tasks, with criminals setting objectives and AI agents executing them autonomously."
+              },
+              {
+                "title": "Deutsche Telekom Adds Latest Nvidia Chips in German AI Buildout",
+                "url": "https://www.bloomberg.com/news/articles/2026-11-09/deutsche-telekom-adds-latest-nvidia-chips-in-german-ai-buildout",
+                "source": "bloomberg.com",
+                "summary": "Deutsche Telekom is investing about €250 million to equip its Munich AI data center with advanced Nvidia Blackwell B300 chips, raising the facility's capacity to 20 MW as part of Europe's industrial AI push."
+              },
+              {
+                "title": "Disney Taps Adobe as Official AI Innovation Partner",
+                "url": "https://variety.com/2026/digital/news/disney-adobe-official-ai-innovation-partner-1236943275",
+                "source": "variety.com",
+                "summary": "Adobe will be Disney's official AI innovation partner, providing early access to Firefly, Firefly Foundry, Premiere, Photoshop and dedicated engineering resources to accelerate creative and guest engagement."
+              },
+              {
+                "title": "Modder turns Bloodborne into fast-paced FPS in latest 'AI slop' armageddon",
+                "url": "https://www.gamingbible.com/news/platform/pc/bloodborne-fps-mod-525518-20261109",
+                "source": "gamingbible.com",
+                "summary": "Modder Kyosuke Yexil demonstrated a Quake 3 Arena gameplay mashup inside Bloodborne, showcasing AI-driven modding trends."
+              }
+            ]
+          },
+          "result": {
+            "tool": "render_digest",
+            "template": "brief",
+            "markdown": "**Top 5 Latest AI News Digest**\n\n- Cainiao has scaled AI-powered deployments across express delivery, e-commerce, FMCG and auto parts, enabling robots to evolve from single-point operations to sophisticated real-world applications, supporting faster innovation and global scale. - [aircargonews.net](https://www.aircargonews.net/supply-chains/2026/11/cainiao-launches-ai-and-tech-airfreight-service)\n- Research shows AI tools like Daybreak and DeepSeek are completing an increasing percentage of cyber attack tasks, with criminals setting objectives and AI agents executing them autonomously. - [tech.co](https://tech.co/news/study-cyber-criminals-are-letting-ai-do-the-hacking)\n- Deutsche Telekom is investing about €250 million to equip its Munich AI data center with advanced Nvidia Blackwell B300 chips, raising the facility's capacity to 20 MW as part of Europe's industrial AI push. - [bloomberg.com](https://www.bloomberg.com/news/articles/2026-11-09/deutsche-telekom-adds-latest-nvidia-chips-in-german-ai-buildout)\n- Adobe will be Disney's official AI innovation partner, providing early access to Firefly, Firefly Foundry, Premiere, Photoshop and dedicated engineering resources to accelerate creative and guest engagement. - [variety.com](https://variety.com/2026/digital/news/disney-adobe-official-ai-innovation-partner-1236943275)\n- Modder Kyosuke Yexil demonstrated a Quake 3 Arena gameplay mashup inside Bloodborne, showcasing AI-driven modding trends. - [gamingbible.com](https://www.gamingbible.com/news/platform/pc/bloodborne-fps-mod-525518-20261109)",
+            "item_count": 5
+          }
+        }
+      ],
+      "ended_at": "2026-11-10T10:40:47"
+    },
+    {
+      "turn_index": 2,
+      "started_at": "2026-11-10T10:40:47",
+      "user": "Tìm các bài báo arXiv mới nhất về AI Agent Evaluation và tóm tắt 3 bài.",
+      "status": "answered",
+      "assistant_text": "**Latest arXiv Papers on AI Agent Evaluation (3 most recent)**  \n\n- **DeepFinance: Can AI Diligence a $100MM Deal?**  \n  Existing evaluations of AI models on high‑finance work focus on retrieving answers from financial documents and producing numerically correct outputs. Real PE and IB work also depends on choosing between conflicting sources, making sound assumptions, and keeping every step auditable. The authors introduce DeepFinance, a 21‑task benchmark taking humans an average of 27.1 hours. Each task pairs a request with a data room of ~19 files and is graded against ~84 expert‑written rubric criteria covering output, workflow, and judgment. Evaluating 22 model configurations, the best (GPT‑6 Astra with max reasoning) satisfies 57.6% of rubric criteria, and the top four configurations are not statistically distinguishable. Frontier models often calculate correctly from the wrong inputs and find decision‑relevant evidence without acting on it.  \n  [arXiv:2611.10926v1](http://arxiv.org/abs/2611.10926v1)  \n\n- **Agents of Chaos: A Systematization of Knowledge (SoK) on Malicious Attacks on Agentic AI Systems**  \n  Agentic AI systems extend LLMs with tools, memory, retrieval, browser/computer‑use interfaces, code execution, external services, and multi‑agent coordination. These capabilities create new attack paths: untrusted content, deceptive metadata, poisoned state, compromised skills, mutable dependencies, or malicious code. The paper presents a systematic review of 284 atomic attacks, 452 atomic safeguards, and 660 attack‑safeguard relationships, organized into eight causal‑mechanism classes. Tool, MCP, and action‑layer attacks dominate, while prompt‑injection and action‑hijacking have the broadest coverage. Safeguard coverage is uneven (only 278 of 660 relationships directly assessed). The analysis supports lifecycle‑aware threat modeling and agent evaluation.  \n  [arXiv:2611.10843v1](http://arxiv.org/abs/2611.10843v1)  \n\n- **The Devil Wears Markdown: Detecting Malicious Intent Hidden in AI Agent Skill Instructions through Hybrid Static, Dynamic, and Agentic Analysis**  \n  Agentic AI ecosystems rely on reusable agent skills that combine executable code, natural‑language instructions, configuration artifacts, and external tool integrations, creating software‑supply‑chain risks. The authors evaluate three open‑source scanners on 140 skills (80 malicious, 60 benign). The default Cisco configuration achieves recall 0.91 with 33 false positives; the LLM‑enabled configuration (Qwen3:8B) achieves recall 0.85 with 40 false positives. They propose a hybrid framework combining static findings, safety‑constrained sandbox evidence, and LLM‑based reasoning. Adding dynamic evidence to skill‑content reasoning raises F1 from 0.70 to 0.85; combining static and dynamic evidence raises F1 to 0.89 (5 false positives). The Full Pipeline detects 68/80 malicious skills, achieving 0.88 accuracy, 0.93 precision, 0.85 recall.  \n  [arXiv:2611.10830v1](http://arxiv.org/abs/2611.10830v1)",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "papers",
+              "args": {
+                "sort_by": "lastUpdatedDate",
+                "max_results": 5,
+                "query": "AI Agent Evaluation"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "papers",
+              "args": {
+                "sort_by": "lastUpdatedDate",
+                "max_results": 5,
+                "query": "AI Agent Evaluation"
+              },
+              "result": {
+                "tool": "arxiv_search",
+                "query": "AI Agent Evaluation",
+                "api_query": "all:AI AND all:Agent AND all:Evaluation",
+                "total_results": 6028,
+                "items": [
+                  {
+                    "arxiv_id": "2611.10926v1",
+                    "title": "DeepFinance: Can AI Diligence a $100MM Deal?",
+                    "summary": "Existing evaluations of AI models on high-finance work focus on retrieving answers from financial documents and producing numerically correct outputs. Real private equity (PE) and investment banking (IB) work also depends on choosing between conflicting sources, making sound assumptions, and keeping every step auditable. We introduce DeepFinance, an ultra long-horizon benchmark of 21 end-to-end PE and IB tasks that take a human professional an average of 27.1 hours. Each task pairs a request with a data room averaging 19 files and is graded against an average of 84 expert-written rubric criteria covering output, workflow, and judgment. We evaluate 22 model configurations, each in its native agent harness. The best configuration, GPT-6 Astra with max reasoning, satisfies 57.6% of rubric criteria, and the top four configurations are not statistically distinguishable. Frontier models often calculate correctly from the wrong inputs and find decision-relevant evidence without acting on it.",
+                    "authors": [
+                      "Drew Hahn",
+                      "Tyler Shibata",
+                      "Jackson Grove",
+                      "Rahul Sonwalkar"
+                    ],
+                    "published": "2026-11-07T19:31:09Z",
+                    "updated": "2026-11-07T19:31:09Z",
+                    "url": "http://arxiv.org/abs/2611.10926v1",
+                    "pdf_url": "https://arxiv.org/pdf/2611.10926v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.CL",
+                    "categories": [
+                      "cs.CL",
+                      "cs.AI",
+                      "q-fin.GN"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2611.10843v1",
+                    "title": "Agents of Chaos: A Systematization of Knowledge (SoK) on Malicious Attacks on Agentic AI Systems",
+                    "summary": "Agentic AI systems extend large language models with tools, memory, retrieval, browser or computer-use interfaces, code execution, external services, and multi-agent coordination. Although these capabilities enable agents to act beyond text generation and perform tasks, they also create attack paths through which adversaries can exploit untrusted content, deceptive metadata, poisoned state, compromised skills, mutable dependencies, or malicious code. Such attacks can manipulate planning and tool use, corrupt memory, abuse code-execution environments, and trigger harmful downstream effects. In this paper, we present a systematic review of malicious attacks targeting agentic AI systems. We screened 186 candidate sources and retained 98. Following independent coding and resolver adjudication, we identified 284 atomic attacks, 452 atomic safeguards, and 660 explicit attack--safeguard relationships. We organize attacks into eight causal-mechanism classes while retaining insertion points, activation conditions, abused capabilities, objectives, impacts, persistence, and evidence as orthogonal dimensions. Our analysis shows that tool, MCP, and action-layer attacks account for the largest share of atomic attacks, while the prompt-injection and action-hijacking class has the broadest paper coverage. We identify distinct class-specific activation patterns and separation between insertion and later activation. Safeguard coverage remains uneven: only 278 of 660 relationships are directly assessed, and strong coverage is uncommon. These findings support lifecycle-aware threat modeling, agent evaluation, tool governance, and defense-in-depth security for agentic AI systems.",
+                    "authors": [
+                      "Thanh M. Truong-Le",
+                      "Amber Bennoui",
+                      "Hoang-Ly Nguyen",
+                      "Gia-Thang Ho",
+                      "Thai-Minh Truong",
+                      "Duc-Ly Vu"
+                    ],
+                    "published": "2026-11-07T16:42:07Z",
+                    "updated": "2026-11-07T16:42:07Z",
+                    "url": "http://arxiv.org/abs/2611.10843v1",
+                    "pdf_url": "https://arxiv.org/pdf/2611.10843v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.CR",
+                    "categories": [
+                      "cs.CR"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2611.10830v1",
+                    "title": "The Devil Wears Markdown: Detecting Malicious Intent Hidden in AI Agent Skill Instructions through Hybrid Static, Dynamic, and Agentic Analysis",
+                    "summary": "Agentic AI ecosystems increasingly rely on reusable agent skills that combine executable code, natural-language instructions, configuration artifacts, and external tool integrations. These hybrid artifacts create software supply-chain risks because malicious intent may be distributed across instructions, code, metadata, and runtime behavior, making isolated alerts difficult to interpret. We evaluate three open-source scanners on a held-out test set of 140 skills comprising 80 malicious and 60 benign samples, including Cisco Skill Scanner with and without its optional LLM analyzer. The default Cisco configuration achieves a recall of 0.91 with 33 false positives among the 60 benign skills, while the LLM-enabled configuration using Qwen3:8B achieves a recall of 0.85 with 40 false positives. We then present a framework that combines static findings, safety-constrained sandbox evidence, and LLM-based reasoning to assess malicious intent. The framework tracks the origins of findings and relates evidence across analysis layers. In a within-system evidence-source ablation using the same reasoning backend, adding dynamic evidence to skill-content reasoning increases F1 from 0.70 to 0.85. Combining static and dynamic evidence further increases F1 to 0.89, with five false positives among 60 benign skills. Dynamic evidence provides the largest observed improvement. The Full Pipeline detects 68 of 80 malicious skills, achieving 0.88 accuracy, 0.93 precision, and 0.85 recall. It matches the observed recall of Cisco Skill Scanner with LLM while reducing false positives from 40 to five. This system-level comparison does not isolate model or architecture effects.",
+                    "authors": [
+                      "Thanh M. Truong-Le",
+                      "Amber Bennoui",
+                      "Hoang-Ly Nguyen",
+                      "Gia-Thang Ho",
+                      "Thai-Minh Truong",
+                      "Duc-Ly Vu"
+                    ],
+                    "published": "2026-11-07T16:16:53Z",
+                    "updated": "2026-11-07T16:16:53Z",
+                    "url": "http://arxiv.org/abs/2611.10830v1",
+                    "pdf_url": "https://arxiv.org/pdf/2611.10830v1",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.CR",
+                    "categories": [
+                      "cs.CR"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2611.07508v2",
+                    "title": "DelegateEval: Evaluating Platforms for Personal External Service Agents",
+                    "summary": "AI agents are expanding from personal assistance into professional services delivered to external clients on an individual's behalf. We define a personal external service agent as one authorized and managed on an ongoing basis by an individual. It uses that person's knowledge, experience, and professional methods to accept client work, deliver results, and provide follow-up support. Client feedback, professional reputation, and potential income may give individuals more direct incentives to keep developing and improving agents for external services than for personal assistance. Yet building a safe, reliable external service system independently remains difficult, even with AI-assisted programming. People without AI expertise need platforms that are easy to use and safe to operate, with support for creating, developing, and running their agents. We propose the DelegateEval evaluation framework and experimental design to assess these platforms and guide their development. The framework covers eight dimensions: ease of creation and management, service discovery and matching, delivery quality, expertise inheritance, service continuity, learning and improvement, reliability and governance, and efficiency and value. A complete dataset, executable environment, and unified scoring protocol remain to be developed, and empirical validation across foundation models has yet to be conducted.",
+                    "authors": [
+                      "Jichao Li",
+                      "Jinrong Lu",
+                      "Manjiang Yu",
+                      "Zhixuan Liu"
+                    ],
+                    "published": "2026-11-05T06:13:41Z",
+                    "updated": "2026-11-07T16:07:39Z",
+                    "url": "http://arxiv.org/abs/2611.07508v2",
+                    "pdf_url": "https://arxiv.org/pdf/2611.07508v2",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.AI",
+                    "categories": [
+                      "cs.AI"
+                    ]
+                  },
+                  {
+                    "arxiv_id": "2605.31463v2",
+                    "title": "PithTrain: A Compact and Agent-Native MoE Training System",
+                    "summary": "Mixture-of-Experts (MoE) has become the dominant architecture for frontier language models. To meet this demand, production frameworks have built optimized MoE training stacks over years of engineering effort. Yet evolving these stacks for new architectures and system optimizations remains expensive. With the rise of AI coding agents, they could automate parts of training-framework development and accelerate this evolution. But applying them to these existing frameworks carries hidden costs, invisible to today's throughput-only evaluations. We name this missing dimension agent-task efficiency (ATE): the cost of using coding agents to understand, operate, and extend a framework. Grounded in four agent-native design principles, we build PithTrain, a compact, agent-native MoE training framework supporting pretraining, supervised fine-tuning, and reinforcement learning. We further introduce ATE-Bench, covering real-world training-framework tasks. Our evaluation shows PithTrain achieves throughput competitive with production frameworks and higher agent-task efficiency on ATE-Bench. On new-feature tasks, PithTrain uses up to 62% fewer Agent Turns than Megatron-LM, and up to 44% and 64% less Active GPU Time than Megatron-LM and TorchTitan, respectively.",
+                    "authors": [
+                      "Ruihang Lai",
+                      "Hao Kang",
+                      "Haozhan Tang",
+                      "Akaash R. Parthasarathy",
+                      "Zichun Yu",
+                      "Junru Shao",
+                      "Todd C. Mowry",
+                      "Chenyan Xiong",
+                      "Tianqi Chen"
+                    ],
+                    "published": "2026-05-29T15:52:58Z",
+                    "updated": "2026-11-07T14:51:08Z",
+                    "url": "http://arxiv.org/abs/2605.31463v2",
+                    "pdf_url": "https://arxiv.org/pdf/2605.31463v2",
+                    "source": "arxiv.org",
+                    "primary_category": "cs.LG",
+                    "categories": [
+                      "cs.LG",
+                      "cs.AI",
+                      "cs.CL",
+                      "cs.DC"
+                    ]
+                  }
+                ],
+                "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "format",
+              "args": {
+                "items": [
+                  {
+                    "title": "DeepFinance: Can AI Diligence a $100MM Deal?",
+                    "url": "http://arxiv.org/abs/2611.10926v1",
+                    "summary": "Existing evaluations of AI models on high‑finance work focus on retrieving answers from financial documents and producing numerically correct outputs. Real PE and IB work also depends on choosing between conflicting sources, making sound assumptions, and keeping every step auditable. The authors introduce DeepFinance, a 21‑task benchmark taking humans an average of 27.1 hours. Each task pairs a request with a data room of ~19 files and is graded against ~84 expert‑written rubric criteria covering output, workflow, and judgment. Evaluating 22 model configurations, the best (GPT‑6 Astra with max reasoning) satisfies 57.6% of rubric criteria, and the top four configurations are not statistically distinguishable. Frontier models often calculate correctly from the wrong inputs and find decision‑relevant evidence without acting on it."
+                  },
+                  {
+                    "title": "Agents of Chaos: A Systematization of Knowledge (SoK) on Malicious Attacks on Agentic AI Systems",
+                    "url": "http://arxiv.org/abs/2611.10843v1",
+                    "summary": "Agentic AI systems extend LLMs with tools, memory, retrieval, browser/computer‑use interfaces, code execution, external services, and multi‑agent coordination. These capabilities create new attack paths: untrusted content, deceptive metadata, poisoned state, compromised skills, mutable dependencies, or malicious code. The paper presents a systematic review of 284 atomic attacks, 452 atomic safeguards, and 660 attack‑safeguard relationships, organized into eight causal‑mechanism classes. Tool, MCP, and action‑layer attacks dominate, while prompt‑injection and action‑hijacking have the broadest coverage. Safeguard coverage is uneven (only 278 of 660 relationships directly assessed). The analysis supports lifecycle‑aware threat modeling and agent evaluation."
+                  },
+                  {
+                    "title": "The Devil Wears Markdown: Detecting Malicious Intent Hidden in AI Agent Skill Instructions through Hybrid Static, Dynamic, and Agentic Analysis",
+                    "url": "http://arxiv.org/abs/2611.10830v1",
+                    "summary": "Agentic AI ecosystems rely on reusable agent skills that combine executable code, natural‑language instructions, configuration artifacts, and external tool integrations, creating software‑supply‑chain risks. The authors evaluate three open‑source scanners on 140 skills (80 malicious, 60 benign). The default Cisco configuration achieves recall 0.91 with 33 false positives; the LLM‑enabled configuration (Qwen3:8B) achieves recall 0.85 with 40 false positives. They propose a hybrid framework combining static findings, safety‑constrained sandbox evidence, and LLM‑based reasoning. Adding dynamic evidence to skill‑content reasoning raises F1 from 0.70 to 0.85; combining static and dynamic evidence raises F1 to 0.89 (5 false positives). The Full Pipeline detects 68/80 malicious skills, achieving 0.88 accuracy, 0.93 precision, 0.85 recall."
+                  }
+                ],
+                "template": "brief",
+                "headline": "Latest arXiv Papers on AI Agent Evaluation (3 most recent)"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "format",
+              "args": {
+                "items": [
+                  {
+                    "title": "DeepFinance: Can AI Diligence a $100MM Deal?",
+                    "url": "http://arxiv.org/abs/2611.10926v1",
+                    "summary": "Existing evaluations of AI models on high‑finance work focus on retrieving answers from financial documents and producing numerically correct outputs. Real PE and IB work also depends on choosing between conflicting sources, making sound assumptions, and keeping every step auditable. The authors introduce DeepFinance, a 21‑task benchmark taking humans an average of 27.1 hours. Each task pairs a request with a data room of ~19 files and is graded against ~84 expert‑written rubric criteria covering output, workflow, and judgment. Evaluating 22 model configurations, the best (GPT‑6 Astra with max reasoning) satisfies 57.6% of rubric criteria, and the top four configurations are not statistically distinguishable. Frontier models often calculate correctly from the wrong inputs and find decision‑relevant evidence without acting on it."
+                  },
+                  {
+                    "title": "Agents of Chaos: A Systematization of Knowledge (SoK) on Malicious Attacks on Agentic AI Systems",
+                    "url": "http://arxiv.org/abs/2611.10843v1",
+                    "summary": "Agentic AI systems extend LLMs with tools, memory, retrieval, browser/computer‑use interfaces, code execution, external services, and multi‑agent coordination. These capabilities create new attack paths: untrusted content, deceptive metadata, poisoned state, compromised skills, mutable dependencies, or malicious code. The paper presents a systematic review of 284 atomic attacks, 452 atomic safeguards, and 660 attack‑safeguard relationships, organized into eight causal‑mechanism classes. Tool, MCP, and action‑layer attacks dominate, while prompt‑injection and action‑hijacking have the broadest coverage. Safeguard coverage is uneven (only 278 of 660 relationships directly assessed). The analysis supports lifecycle‑aware threat modeling and agent evaluation."
+                  },
+                  {
+                    "title": "The Devil Wears Markdown: Detecting Malicious Intent Hidden in AI Agent Skill Instructions through Hybrid Static, Dynamic, and Agentic Analysis",
+                    "url": "http://arxiv.org/abs/2611.10830v1",
+                    "summary": "Agentic AI ecosystems rely on reusable agent skills that combine executable code, natural‑language instructions, configuration artifacts, and external tool integrations, creating software‑supply‑chain risks. The authors evaluate three open‑source scanners on 140 skills (80 malicious, 60 benign). The default Cisco configuration achieves recall 0.91 with 33 false positives; the LLM‑enabled configuration (Qwen3:8B) achieves recall 0.85 with 40 false positives. They propose a hybrid framework combining static findings, safety‑constrained sandbox evidence, and LLM‑based reasoning. Adding dynamic evidence to skill‑content reasoning raises F1 from 0.70 to 0.85; combining static and dynamic evidence raises F1 to 0.89 (5 false positives). The Full Pipeline detects 68/80 malicious skills, achieving 0.88 accuracy, 0.93 precision, 0.85 recall."
+                  }
+                ],
+                "template": "brief",
+                "headline": "Latest arXiv Papers on AI Agent Evaluation (3 most recent)"
+              },
+              "result": {
+                "tool": "render_digest",
+                "template": "brief",
+                "markdown": "**Latest arXiv Papers on AI Agent Evaluation (3 most recent)**\n\n- Existing evaluations of AI models on high‑finance work focus on retrieving answers from financial documents and producing numerically correct outputs. Real PE and IB work also depends on choosing between conflicting sources, making sound assumptions, and keeping every step aud... - [arxiv.org](http://arxiv.org/abs/2611.10926v1)\n- Agentic AI systems extend LLMs with tools, memory, retrieval, browser/computer‑use interfaces, code execution, external services, and multi‑agent coordination. These capabilities create new attack paths: untrusted content, deceptive metadata, poisoned state, compromised skills... - [arxiv.org](http://arxiv.org/abs/2611.10843v1)\n- Agentic AI ecosystems rely on reusable agent skills that combine executable code, natural‑language instructions, configuration artifacts, and external tool integrations, creating software‑supply‑chain risks. The authors evaluate three open‑source scanners on 140 skills (80 mal... - [arxiv.org](http://arxiv.org/abs/2611.10830v1)",
+                "item_count": 3
+              }
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "assistant_text": "**Latest arXiv Papers on AI Agent Evaluation (3 most recent)**  \n\n- **DeepFinance: Can AI Diligence a $100MM Deal?**  \n  Existing evaluations of AI models on high‑finance work focus on retrieving answers from financial documents and producing numerically correct outputs. Real PE and IB work also depends on choosing between conflicting sources, making sound assumptions, and keeping every step auditable. The authors introduce DeepFinance, a 21‑task benchmark taking humans an average of 27.1 hours. Each task pairs a request with a data room of ~19 files and is graded against ~84 expert‑written rubric criteria covering output, workflow, and judgment. Evaluating 22 model configurations, the best (GPT‑6 Astra with max reasoning) satisfies 57.6% of rubric criteria, and the top four configurations are not statistically distinguishable. Frontier models often calculate correctly from the wrong inputs and find decision‑relevant evidence without acting on it.  \n  [arXiv:2611.10926v1](http://arxiv.org/abs/2611.10926v1)  \n\n- **Agents of Chaos: A Systematization of Knowledge (SoK) on Malicious Attacks on Agentic AI Systems**  \n  Agentic AI systems extend LLMs with tools, memory, retrieval, browser/computer‑use interfaces, code execution, external services, and multi‑agent coordination. These capabilities create new attack paths: untrusted content, deceptive metadata, poisoned state, compromised skills, mutable dependencies, or malicious code. The paper presents a systematic review of 284 atomic attacks, 452 atomic safeguards, and 660 attack‑safeguard relationships, organized into eight causal‑mechanism classes. Tool, MCP, and action‑layer attacks dominate, while prompt‑injection and action‑hijacking have the broadest coverage. Safeguard coverage is uneven (only 278 of 660 relationships directly assessed). The analysis supports lifecycle‑aware threat modeling and agent evaluation.  \n  [arXiv:2611.10843v1](http://arxiv.org/abs/2611.10843v1)  \n\n- **The Devil Wears Markdown: Detecting Malicious Intent Hidden in AI Agent Skill Instructions through Hybrid Static, Dynamic, and Agentic Analysis**  \n  Agentic AI ecosystems rely on reusable agent skills that combine executable code, natural‑language instructions, configuration artifacts, and external tool integrations, creating software‑supply‑chain risks. The authors evaluate three open‑source scanners on 140 skills (80 malicious, 60 benign). The default Cisco configuration achieves recall 0.91 with 33 false positives; the LLM‑enabled configuration (Qwen3:8B) achieves recall 0.85 with 40 false positives. They propose a hybrid framework combining static findings, safety‑constrained sandbox evidence, and LLM‑based reasoning. Adding dynamic evidence to skill‑content reasoning raises F1 from 0.70 to 0.85; combining static and dynamic evidence raises F1 to 0.89 (5 false positives). The Full Pipeline detects 68/80 malicious skills, achieving 0.88 accuracy, 0.93 precision, 0.85 recall.  \n  [arXiv:2611.10830v1](http://arxiv.org/abs/2611.10830v1)",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "papers",
+          "args": {
+            "sort_by": "lastUpdatedDate",
+            "max_results": 5,
+            "query": "AI Agent Evaluation"
+          },
+          "result": {
+            "tool": "arxiv_search",
+            "query": "AI Agent Evaluation",
+            "api_query": "all:AI AND all:Agent AND all:Evaluation",
+            "total_results": 6028,
+            "items": [
+              {
+                "arxiv_id": "2611.10926v1",
+                "title": "DeepFinance: Can AI Diligence a $100MM Deal?",
+                "summary": "Existing evaluations of AI models on high-finance work focus on retrieving answers from financial documents and producing numerically correct outputs. Real private equity (PE) and investment banking (IB) work also depends on choosing between conflicting sources, making sound assumptions, and keeping every step auditable. We introduce DeepFinance, an ultra long-horizon benchmark of 21 end-to-end PE and IB tasks that take a human professional an average of 27.1 hours. Each task pairs a request with a data room averaging 19 files and is graded against an average of 84 expert-written rubric criteria covering output, workflow, and judgment. We evaluate 22 model configurations, each in its native agent harness. The best configuration, GPT-6 Astra with max reasoning, satisfies 57.6% of rubric criteria, and the top four configurations are not statistically distinguishable. Frontier models often calculate correctly from the wrong inputs and find decision-relevant evidence without acting on it.",
+                "authors": [
+                  "Drew Hahn",
+                  "Tyler Shibata",
+                  "Jackson Grove",
+                  "Rahul Sonwalkar"
+                ],
+                "published": "2026-11-07T19:31:09Z",
+                "updated": "2026-11-07T19:31:09Z",
+                "url": "http://arxiv.org/abs/2611.10926v1",
+                "pdf_url": "https://arxiv.org/pdf/2611.10926v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.CL",
+                "categories": [
+                  "cs.CL",
+                  "cs.AI",
+                  "q-fin.GN"
+                ]
+              },
+              {
+                "arxiv_id": "2611.10843v1",
+                "title": "Agents of Chaos: A Systematization of Knowledge (SoK) on Malicious Attacks on Agentic AI Systems",
+                "summary": "Agentic AI systems extend large language models with tools, memory, retrieval, browser or computer-use interfaces, code execution, external services, and multi-agent coordination. Although these capabilities enable agents to act beyond text generation and perform tasks, they also create attack paths through which adversaries can exploit untrusted content, deceptive metadata, poisoned state, compromised skills, mutable dependencies, or malicious code. Such attacks can manipulate planning and tool use, corrupt memory, abuse code-execution environments, and trigger harmful downstream effects. In this paper, we present a systematic review of malicious attacks targeting agentic AI systems. We screened 186 candidate sources and retained 98. Following independent coding and resolver adjudication, we identified 284 atomic attacks, 452 atomic safeguards, and 660 explicit attack--safeguard relationships. We organize attacks into eight causal-mechanism classes while retaining insertion points, activation conditions, abused capabilities, objectives, impacts, persistence, and evidence as orthogonal dimensions. Our analysis shows that tool, MCP, and action-layer attacks account for the largest share of atomic attacks, while the prompt-injection and action-hijacking class has the broadest paper coverage. We identify distinct class-specific activation patterns and separation between insertion and later activation. Safeguard coverage remains uneven: only 278 of 660 relationships are directly assessed, and strong coverage is uncommon. These findings support lifecycle-aware threat modeling, agent evaluation, tool governance, and defense-in-depth security for agentic AI systems.",
+                "authors": [
+                  "Thanh M. Truong-Le",
+                  "Amber Bennoui",
+                  "Hoang-Ly Nguyen",
+                  "Gia-Thang Ho",
+                  "Thai-Minh Truong",
+                  "Duc-Ly Vu"
+                ],
+                "published": "2026-11-07T16:42:07Z",
+                "updated": "2026-11-07T16:42:07Z",
+                "url": "http://arxiv.org/abs/2611.10843v1",
+                "pdf_url": "https://arxiv.org/pdf/2611.10843v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.CR",
+                "categories": [
+                  "cs.CR"
+                ]
+              },
+              {
+                "arxiv_id": "2611.10830v1",
+                "title": "The Devil Wears Markdown: Detecting Malicious Intent Hidden in AI Agent Skill Instructions through Hybrid Static, Dynamic, and Agentic Analysis",
+                "summary": "Agentic AI ecosystems increasingly rely on reusable agent skills that combine executable code, natural-language instructions, configuration artifacts, and external tool integrations. These hybrid artifacts create software supply-chain risks because malicious intent may be distributed across instructions, code, metadata, and runtime behavior, making isolated alerts difficult to interpret. We evaluate three open-source scanners on a held-out test set of 140 skills comprising 80 malicious and 60 benign samples, including Cisco Skill Scanner with and without its optional LLM analyzer. The default Cisco configuration achieves a recall of 0.91 with 33 false positives among the 60 benign skills, while the LLM-enabled configuration using Qwen3:8B achieves a recall of 0.85 with 40 false positives. We then present a framework that combines static findings, safety-constrained sandbox evidence, and LLM-based reasoning to assess malicious intent. The framework tracks the origins of findings and relates evidence across analysis layers. In a within-system evidence-source ablation using the same reasoning backend, adding dynamic evidence to skill-content reasoning increases F1 from 0.70 to 0.85. Combining static and dynamic evidence further increases F1 to 0.89, with five false positives among 60 benign skills. Dynamic evidence provides the largest observed improvement. The Full Pipeline detects 68 of 80 malicious skills, achieving 0.88 accuracy, 0.93 precision, and 0.85 recall. It matches the observed recall of Cisco Skill Scanner with LLM while reducing false positives from 40 to five. This system-level comparison does not isolate model or architecture effects.",
+                "authors": [
+                  "Thanh M. Truong-Le",
+                  "Amber Bennoui",
+                  "Hoang-Ly Nguyen",
+                  "Gia-Thang Ho",
+                  "Thai-Minh Truong",
+                  "Duc-Ly Vu"
+                ],
+                "published": "2026-11-07T16:16:53Z",
+                "updated": "2026-11-07T16:16:53Z",
+                "url": "http://arxiv.org/abs/2611.10830v1",
+                "pdf_url": "https://arxiv.org/pdf/2611.10830v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.CR",
+                "categories": [
+                  "cs.CR"
+                ]
+              },
+              {
+                "arxiv_id": "2611.07508v2",
+                "title": "DelegateEval: Evaluating Platforms for Personal External Service Agents",
+                "summary": "AI agents are expanding from personal assistance into professional services delivered to external clients on an individual's behalf. We define a personal external service agent as one authorized and managed on an ongoing basis by an individual. It uses that person's knowledge, experience, and professional methods to accept client work, deliver results, and provide follow-up support. Client feedback, professional reputation, and potential income may give individuals more direct incentives to keep developing and improving agents for external services than for personal assistance. Yet building a safe, reliable external service system independently remains difficult, even with AI-assisted programming. People without AI expertise need platforms that are easy to use and safe to operate, with support for creating, developing, and running their agents. We propose the DelegateEval evaluation framework and experimental design to assess these platforms and guide their development. The framework covers eight dimensions: ease of creation and management, service discovery and matching, delivery quality, expertise inheritance, service continuity, learning and improvement, reliability and governance, and efficiency and value. A complete dataset, executable environment, and unified scoring protocol remain to be developed, and empirical validation across foundation models has yet to be conducted.",
+                "authors": [
+                  "Jichao Li",
+                  "Jinrong Lu",
+                  "Manjiang Yu",
+                  "Zhixuan Liu"
+                ],
+                "published": "2026-11-05T06:13:41Z",
+                "updated": "2026-11-07T16:07:39Z",
+                "url": "http://arxiv.org/abs/2611.07508v2",
+                "pdf_url": "https://arxiv.org/pdf/2611.07508v2",
+                "source": "arxiv.org",
+                "primary_category": "cs.AI",
+                "categories": [
+                  "cs.AI"
+                ]
+              },
+              {
+                "arxiv_id": "2605.31463v2",
+                "title": "PithTrain: A Compact and Agent-Native MoE Training System",
+                "summary": "Mixture-of-Experts (MoE) has become the dominant architecture for frontier language models. To meet this demand, production frameworks have built optimized MoE training stacks over years of engineering effort. Yet evolving these stacks for new architectures and system optimizations remains expensive. With the rise of AI coding agents, they could automate parts of training-framework development and accelerate this evolution. But applying them to these existing frameworks carries hidden costs, invisible to today's throughput-only evaluations. We name this missing dimension agent-task efficiency (ATE): the cost of using coding agents to understand, operate, and extend a framework. Grounded in four agent-native design principles, we build PithTrain, a compact, agent-native MoE training framework supporting pretraining, supervised fine-tuning, and reinforcement learning. We further introduce ATE-Bench, covering real-world training-framework tasks. Our evaluation shows PithTrain achieves throughput competitive with production frameworks and higher agent-task efficiency on ATE-Bench. On new-feature tasks, PithTrain uses up to 62% fewer Agent Turns than Megatron-LM, and up to 44% and 64% less Active GPU Time than Megatron-LM and TorchTitan, respectively.",
+                "authors": [
+                  "Ruihang Lai",
+                  "Hao Kang",
+                  "Haozhan Tang",
+                  "Akaash R. Parthasarathy",
+                  "Zichun Yu",
+                  "Junru Shao",
+                  "Todd C. Mowry",
+                  "Chenyan Xiong",
+                  "Tianqi Chen"
+                ],
+                "published": "2026-05-29T15:52:58Z",
+                "updated": "2026-11-07T14:51:08Z",
+                "url": "http://arxiv.org/abs/2605.31463v2",
+                "pdf_url": "https://arxiv.org/pdf/2605.31463v2",
+                "source": "arxiv.org",
+                "primary_category": "cs.LG",
+                "categories": [
+                  "cs.LG",
+                  "cs.AI",
+                  "cs.CL",
+                  "cs.DC"
+                ]
+              }
+            ],
+            "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+          }
+        },
+        {
+          "tool": "format",
+          "args": {
+            "items": [
+              {
+                "title": "DeepFinance: Can AI Diligence a $100MM Deal?",
+                "url": "http://arxiv.org/abs/2611.10926v1",
+                "summary": "Existing evaluations of AI models on high‑finance work focus on retrieving answers from financial documents and producing numerically correct outputs. Real PE and IB work also depends on choosing between conflicting sources, making sound assumptions, and keeping every step auditable. The authors introduce DeepFinance, a 21‑task benchmark taking humans an average of 27.1 hours. Each task pairs a request with a data room of ~19 files and is graded against ~84 expert‑written rubric criteria covering output, workflow, and judgment. Evaluating 22 model configurations, the best (GPT‑6 Astra with max reasoning) satisfies 57.6% of rubric criteria, and the top four configurations are not statistically distinguishable. Frontier models often calculate correctly from the wrong inputs and find decision‑relevant evidence without acting on it."
+              },
+              {
+                "title": "Agents of Chaos: A Systematization of Knowledge (SoK) on Malicious Attacks on Agentic AI Systems",
+                "url": "http://arxiv.org/abs/2611.10843v1",
+                "summary": "Agentic AI systems extend LLMs with tools, memory, retrieval, browser/computer‑use interfaces, code execution, external services, and multi‑agent coordination. These capabilities create new attack paths: untrusted content, deceptive metadata, poisoned state, compromised skills, mutable dependencies, or malicious code. The paper presents a systematic review of 284 atomic attacks, 452 atomic safeguards, and 660 attack‑safeguard relationships, organized into eight causal‑mechanism classes. Tool, MCP, and action‑layer attacks dominate, while prompt‑injection and action‑hijacking have the broadest coverage. Safeguard coverage is uneven (only 278 of 660 relationships directly assessed). The analysis supports lifecycle‑aware threat modeling and agent evaluation."
+              },
+              {
+                "title": "The Devil Wears Markdown: Detecting Malicious Intent Hidden in AI Agent Skill Instructions through Hybrid Static, Dynamic, and Agentic Analysis",
+                "url": "http://arxiv.org/abs/2611.10830v1",
+                "summary": "Agentic AI ecosystems rely on reusable agent skills that combine executable code, natural‑language instructions, configuration artifacts, and external tool integrations, creating software‑supply‑chain risks. The authors evaluate three open‑source scanners on 140 skills (80 malicious, 60 benign). The default Cisco configuration achieves recall 0.91 with 33 false positives; the LLM‑enabled configuration (Qwen3:8B) achieves recall 0.85 with 40 false positives. They propose a hybrid framework combining static findings, safety‑constrained sandbox evidence, and LLM‑based reasoning. Adding dynamic evidence to skill‑content reasoning raises F1 from 0.70 to 0.85; combining static and dynamic evidence raises F1 to 0.89 (5 false positives). The Full Pipeline detects 68/80 malicious skills, achieving 0.88 accuracy, 0.93 precision, 0.85 recall."
+              }
+            ],
+            "template": "brief",
+            "headline": "Latest arXiv Papers on AI Agent Evaluation (3 most recent)"
+          },
+          "result": {
+            "tool": "render_digest",
+            "template": "brief",
+            "markdown": "**Latest arXiv Papers on AI Agent Evaluation (3 most recent)**\n\n- Existing evaluations of AI models on high‑finance work focus on retrieving answers from financial documents and producing numerically correct outputs. Real PE and IB work also depends on choosing between conflicting sources, making sound assumptions, and keeping every step aud... - [arxiv.org](http://arxiv.org/abs/2611.10926v1)\n- Agentic AI systems extend LLMs with tools, memory, retrieval, browser/computer‑use interfaces, code execution, external services, and multi‑agent coordination. These capabilities create new attack paths: untrusted content, deceptive metadata, poisoned state, compromised skills... - [arxiv.org](http://arxiv.org/abs/2611.10843v1)\n- Agentic AI ecosystems rely on reusable agent skills that combine executable code, natural‑language instructions, configuration artifacts, and external tool integrations, creating software‑supply‑chain risks. The authors evaluate three open‑source scanners on 140 skills (80 mal... - [arxiv.org](http://arxiv.org/abs/2611.10830v1)",
+            "item_count": 3
+          }
+        }
+      ],
+      "ended_at": "2026-11-10T10:41:07"
+    }
+  ]
+}

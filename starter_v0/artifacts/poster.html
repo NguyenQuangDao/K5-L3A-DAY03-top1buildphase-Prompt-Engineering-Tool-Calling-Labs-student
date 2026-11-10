@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research Agent — AI Operations Console | Day 03 Lab Showdown Poster</title>
+  <style>
+    :root {
+      --bg-main: #0B0F14;
+      --bg-panel: #111821;
+      --bg-card: #151E29;
+      --bg-elevated: #1C2835;
+      --accent-primary: #8BDBB1;
+      --accent-secondary: #79B8FF;
+      --text-main: #F1F5F9;
+      --text-secondary: #94A3B8;
+      --border: #293747;
+      --success: #22C55E;
+      --warning: #F59E0B;
+      --error: #EF4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 28px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    code, .mono {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    }
+
+    .poster-container {
+      max-width: 1720px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* HEADER BAR */
+    .header-bar {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--accent-primary);
+      border-radius: 12px;
+      padding: 22px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-width: 980px;
+    }
+
+    .eyebrow {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+      letter-spacing: 0.08em;
+    }
+
+    .project-title {
+      font-size: 2.15rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--text-main);
+      line-height: 1.15;
+    }
+
+    .project-subtitle {
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
+
+    .demo-url-box {
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--accent-primary);
+      border-radius: 10px;
+      padding: 14px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 360px;
+    }
+
+    .demo-label {
+      font-size: 0.75rem;
+      color: var(--accent-primary);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .demo-link {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .demo-link:hover {
+      color: var(--accent-secondary);
+      text-decoration: underline;
+    }
+
+    .demo-sub {
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+    }
+
+    /* MAIN 3-COLUMN WIDESCREEN GRID (16:9 OPTIMIZED) */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1.35fr 1.1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .panel {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .panel.fill {
+      flex: 1;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    .panel-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .panel-tag {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background-color: var(--bg-elevated);
+      color: var(--accent-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .body-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .body-text strong {
+      color: var(--text-main);
+    }
+
+    .cap-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .cap-item {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent-secondary);
+      border-radius: 6px;
+      padding: 9px 12px;
+      font-size: 0.86rem;
+      color: var(--text-main);
+    }
+
+    .cap-item span.sub {
+      display: block;
+      color: var(--text-secondary);
+      font-size: 0.79rem;
+      margin-top: 2px;
+    }
+
+    /* TOOL ECOSYSTEM TABLE */
+    .tool-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+
+    .tool-table th {
+      text-align: left;
+      padding: 8px 10px;
+      background-color: var(--bg-elevated);
+      color: var(--text-secondary);
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tool-table td {
+      padding: 7px 10px;
+      border-bottom: 1px solid rgba(41, 55, 71, 0.65);
+      vertical-align: top;
+    }
+
+    .tool-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .tool-name {
+      color: var(--accent-primary);
+      font-weight: 600;
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    .badge-core {
+      background-color: rgba(121, 184, 255, 0.14);
+      color: var(--accent-secondary);
+      border: 1px solid rgba(121, 184, 255, 0.35);
+    }
+
+    .badge-bonus {
+      background-color: rgba(139, 219, 177, 0.14);
+      color: var(--accent-primary);
+      border: 1px solid rgba(139, 219, 177, 0.35);
+    }
+
+    .badge-no {
+      background-color: rgba(148, 163, 184, 0.12);
+      color: var(--text-secondary);
+    }
+
+    /* GUARDRAILS & CLARIFICATION */
+    .guardrail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .guardrail-box {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 11px 13px;
+    }
+
+    .guardrail-box.warn {
+      border-top: 3px solid var(--warning);
+    }
+
+    .guardrail-box.ok {
+      border-top: 3px solid var(--success);
+    }
+
+    .guardrail-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .guardrail-desc {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    /* SAMPLE PROMPTS */
+    .prompt-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .prompt-card {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 10px 13px;
+    }
+
+    .prompt-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.73rem;
+      color: var(--accent-primary);
+      margin-bottom: 3px;
+      font-weight: 600;
+    }
+
+    .prompt-quote {
+      font-size: 0.85rem;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    /* FOOTER BAR */
+    .footer-bar {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .metric-strip {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .metric-chip {
+      color: var(--text-main);
+    }
+
+    .metric-chip strong {
+      color: var(--accent-primary);
+    }
+
+    @media (max-width: 1280px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="poster-container">
+    <!-- 1. HEADER & LIVE DEMO URL -->
+    <header class="header-bar">
+      <div class="header-left">
+        <span class="eyebrow mono">DAY 03 LAB · RESEARCH AGENT TOOL EVAL &amp; EVIDENCE-DRIVEN OPTIMIZATION</span>
+        <h1 class="project-title">Research Agent — AI Operations Console</h1>
+        <p class="project-subtitle">
+          Hệ thống trợ lý nghiên cứu đa nguồn tích hợp Tool Calling thời gian thực, kiểm tra dữ liệu thô qua Tool Call Inspector và cơ chế xác nhận an toàn trước khi xuất bản.
+        </p>
+      </div>
+      <div class="demo-url-box">
+        <span class="demo-label mono">● LIVE SHOWDOWN DEMO URL (CLOUDFLARE TUNNEL)</span>
+        <a class="demo-link mono" href="https://perth-brands-cars-musicians.trycloudflare.com" target="_blank" rel="noopener noreferrer">
+          https://perth-brands-cars-musicians.trycloudflare.com
+        </a>
+        <span class="demo-sub mono">Local Console: http://localhost:8501 &nbsp;|&nbsp; Provider: OpenRouter / Ollama</span>
+      </div>
+    </header>
+
+    <!-- MAIN 3-COLUMN WIDESCREEN CONTENT -->
+    <main class="main-grid">
+      <!-- COLUMN 1: PROBLEM STATEMENT, CAPABILITIES & KEY FEATURES -->
+      <div class="column">
+        <section class="panel">
+          <div class="panel-header">
+            <h2 class="panel-title">1. Problem Statement</h2>
+            <span class="panel-tag mono">WHY IT MATTERS</span>
+          </div>
+          <p class="body-text">
+            Các hệ thống LLM độc lập thường gặp hiện tượng <strong>ảo giác thông tin thời sự</strong>, tự ý suy đoán khi câu hỏi thiếu ngữ cảnh (như thiếu tên tài khoản hoặc URL), chọn sai công cụ truy xuất, hoặc tự động thực thi các hành động nhạy cảm (như đăng bài lên kênh chung) mà không xin phép người dùng.
+          </p>
+          <p class="body-text">
+            <strong>Research Agent</strong> giải quyết bài toán này thông qua quy trình <strong>Evidence-Driven Tool Calling</strong>: kết nối trực tiếp tới các nguồn dữ liệu thực, ghi nhận toàn bộ dấu vết thực thi vào JSON log và kiểm soát rủi ro bằng guardrail xác nhận.
+          </p>
+        </section>
+
+        <section class="panel fill">
+          <div class="panel-header">
+            <h2 class="panel-title">2. Agent Capabilities &amp; Key Features</h2>
+            <span class="panel-tag mono">ARCHITECTURE</span>
+          </div>
+          <ul class="cap-list">
+            <li class="cap-item">
+              <strong>Multi-Source Live Research (Web, Social, arXiv, URL)</strong>
+              <span class="sub">Tra cứu tin tức web qua Tavily (<code>lookup</code>), theo dõi bài đăng X/Twitter theo tài khoản (<code>timeline</code>) hoặc từ khóa (<code>social_search</code>), đọc chi tiết trang web qua Firecrawl (<code>fetch</code>).</span>
+            </li>
+            <li class="cap-item">
+              <strong>Scientific Literature &amp; Internal Policy Grounding</strong>
+              <span class="sub">Tìm bài báo khoa học trên arXiv (<code>papers</code>), tải PDF và trích xuất nội dung bằng <code>pypdf</code> (<code>paper_text</code>), đối chiếu quy định nội bộ chống prompt-injection (<code>policy</code>).</span>
+            </li>
+            <li class="cap-item">
+              <strong>Real-Time Tool Call Inspector (Streamlit Console)</strong>
+              <span class="sub">Hiển thị minh bạch từng bước gọi tool: Tên tool, Arguments JSON, Trạng thái (<code>Pending</code> / <code>Running</code> / <code>Completed</code> / <code>Failed</code> / <code>Awaiting Confirmation</code>), Raw Output và Final Answer.</span>
+            </li>
+            <li class="cap-item">
+              <strong>Artifact Versioning &amp; Full Transcript Auditing</strong>
+              <span class="sub">Định danh mỗi phiên bản bằng SHA-256 hash (<code>v3+pf0c107a9d7a1+t8db0ba629f52</code>) và tự động lưu lịch sử đa lượt vào <code>transcripts/*.transcript.json</code>.</span>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- COLUMN 2: TOOL ECOSYSTEM -->
+      <div class="column">
+        <section class="panel fill">
+          <div class="panel-header">
+            <h2 class="panel-title">3. Registered Tool Ecosystem</h2>
+            <span class="panel-tag mono">10 TOOLS IN artifacts/tools.yaml</span>
+          </div>
+          <table class="tool-table">
+            <thead>
+              <tr>
+                <th>Tool Name</th>
+                <th>Track</th>
+                <th>Description &amp; Primary Arguments</th>
+                <th>Custom?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code class="tool-name">clarify</code></td>
+                <td><span class="badge badge-core">Core</span></td>
+                <td>Hỏi lại người dùng khi thiếu thông tin (tài khoản, URL) hoặc cần xác nhận (<code>question</code>, <code>response_type</code>: <code>text|yes_no|choice</code>).</td>
+                <td><span class="badge badge-no">No</span></td>
+              </tr>
+              <tr>
+                <td><code class="tool-name">timeline</code></td>
+                <td><span class="badge badge-core">Core</span></td>
+                <td>Lấy các bài đăng X/Twitter gần đây của một tài khoản cụ thể qua RapidAPI (<code>screenname</code> không kèm <code>@</code>, <code>limit</code>).</td>
+                <td><span class="badge badge-no">No</span></td>
+              </tr>
+              <tr>
+                <td><code class="tool-name">social_search</code></td>
+                <td><span class="badge badge-core">Core</span></td>
+                <td>Tìm kiếm bài đăng mạng xã hội theo chủ đề/từ khóa (<code>query</code>, <code>search_type</code>: <code>Latest|Top</code>, <code>limit</code>).</td>
+                <td><span class="badge badge-no">No</span></td>
+              </tr>
+              <tr>
+                <td><code class="tool-name">lookup</code></td>
+                <td><span class="badge badge-core">Core</span></td>
+                <td>Tìm kiếm thông tin và tin tức thời sự trên Internet qua Tavily API (<code>query</code>, <code>topic</code>: <code>general|news</code>, <code>timeframe</code>).</td>
+                <td><span class="badge badge-no">No</span></td>
+              </tr>
+              <tr>
+                <td><code class="tool-name">fetch</code></td>
+                <td><span class="badge badge-core">Core</span></td>
+                <td>Đọc và trích xuất nội dung Markdown (tối đa 4000 ký tự) từ một URL cụ thể qua Firecrawl API (<code>url</code>).</td>
+                <td><span class="badge badge-no">No</span></td>
+              </tr>
+              <tr>
+                <td><code class="tool-name">format</code></td>
+                <td><span class="badge badge-core">Core</span></td>
+                <td>Trình bày danh sách <code>items</code> đã thu thập thành bản tin Markdown theo mẫu (<code>brief</code>, <code>sections</code>, <code>bullets</code>, <code>thread</code>, <code>daily_ai_vn</code>).</td>
+                <td><span class="badge badge-no">No</span></td>
+              </tr>
+              <tr>
+                <td><code class="tool-name">send</code></td>
+                <td><span class="badge badge-bonus">Bonus</span></td>
+                <td>Gửi bản tin lên Telegram channel (<code>text</code>, <code>confirmed</code>). Chặn gửi khi <code>confirmed=false</code> (trả về <code>needs_confirmation</code>).</td>
+                <td><span class="badge badge-no">No</span></td>
+              </tr>
+              <tr>
+                <td><code class="tool-name">policy</code></td>
+                <td><span class="badge badge-bonus">Bonus</span></td>
+                <td>Tra cứu sổ tay chính sách nội bộ công ty (<code>query</code>, <code>policy_area</code>, <code>top_k</code>) kèm lọc <code>untrusted_text</code>.</td>
+                <td><span class="badge badge-no">No</span></td>
+              </tr>
+              <tr>
+                <td><code class="tool-name">papers</code></td>
+                <td><span class="badge badge-bonus">Bonus</span></td>
+                <td>Tìm kiếm bài báo khoa học trên arXiv API (<code>query</code>, <code>max_results</code>, <code>sort_by</code>: <code>relevance|lastUpdatedDate</code>).</td>
+                <td><span class="badge badge-no">No</span></td>
+              </tr>
+              <tr>
+                <td><code class="tool-name">paper_text</code></td>
+                <td><span class="badge badge-bonus">Bonus</span></td>
+                <td>Tải file PDF từ arXiv và trích xuất văn bản cục bộ qua <code>pypdf</code> (<code>arxiv_url</code>, <code>max_pages</code>, <code>max_chars</code>).</td>
+                <td><span class="badge badge-no">No</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+
+      <!-- COLUMN 3: CLARIFICATION, GUARDRAILS & SAMPLE PROMPTS -->
+      <div class="column">
+        <section class="panel">
+          <div class="panel-header">
+            <h2 class="panel-title">4. Clarification &amp; Safety Guardrails</h2>
+            <span class="panel-tag mono">HUMAN-IN-THE-LOOP</span>
+          </div>
+          <div class="guardrail-grid">
+            <div class="guardrail-box ok">
+              <div class="guardrail-title">❓ Clarification Loop (<code>clarify</code>)</div>
+              <p class="guardrail-desc">
+                Khi yêu cầu thiếu thông tin thiết yếu, công cụ trả về cờ <code>awaiting_user: true</code>. Vòng lặp <code>run_model_tool_loop</code> tạm dừng ngay lập tức (<code>waiting_for_user</code>) để nhận bổ sung từ người dùng ở lượt kế tiếp.
+              </p>
+            </div>
+            <div class="guardrail-box warn">
+              <div class="guardrail-title">🛡️ Write-Action Guardrail (<code>send</code>)</div>
+              <p class="guardrail-desc">
+                Mọi lệnh gọi <code>send</code> chưa được duyệt đều bị đặt <code>confirmed=False</code>, trả về <code>status: "needs_confirmation"</code>. Giao diện hiển thị hộp xác nhận <strong>Approve &amp; Send</strong> / <strong>Reject Action</strong> chống thực thi tự động và chống lặp khi rerun.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel fill">
+          <div class="panel-header">
+            <h2 class="panel-title">5. Sample Prompts for Showdown Testing</h2>
+            <span class="panel-tag mono">TRY LIVE NOW</span>
+          </div>
+          <div class="prompt-list">
+            <div class="prompt-card">
+              <div class="prompt-meta">
+                <span>01 · WEB NEWS + DIGEST FORMAT</span>
+                <span class="mono">lookup → format</span>
+              </div>
+              <div class="prompt-quote">"Tìm tin tức AI mới nhất và tổng hợp 5 thông tin quan trọng nhất."</div>
+            </div>
+
+            <div class="prompt-card">
+              <div class="prompt-meta">
+                <span>02 · SOCIAL MEDIA TIMELINE</span>
+                <span class="mono">timeline → format</span>
+              </div>
+              <div class="prompt-quote">"Lấy 5 bài đăng mới nhất của Elon Musk trên Twitter/X và tóm tắt."</div>
+            </div>
+
+            <div class="prompt-card">
+              <div class="prompt-meta">
+                <span>03 · ARXIV RESEARCH + PDF EXTRACTION</span>
+                <span class="mono">papers / paper_text</span>
+              </div>
+              <div class="prompt-quote">"Tìm các bài báo arXiv mới nhất về AI Agent Evaluation và đọc 2 trang đầu của paper 1706.03762."</div>
+            </div>
+
+            <div class="prompt-card">
+              <div class="prompt-meta">
+                <span>04 · INTERNAL COMPANY POLICY</span>
+                <span class="mono">policy</span>
+              </div>
+              <div class="prompt-quote">"Theo company policy, đăng bản tin lên Telegram channel có cần xác nhận trước không?"</div>
+            </div>
+
+            <div class="prompt-card">
+              <div class="prompt-meta">
+                <span>05 · CLARIFICATION &amp; TELEGRAM GUARDRAIL</span>
+                <span class="mono">clarify / send</span>
+              </div>
+              <div class="prompt-quote">"Tóm tắt 5 bài đăng mới nhất." &nbsp;→&nbsp; "Đăng bản tin này lên Telegram."</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- FOOTER BAR -->
+    <footer class="footer-bar">
+      <div class="metric-strip mono">
+        <span class="metric-chip">Artifact Hash: <strong>v3+pf0c107a9d7a1+t8db0ba629f52</strong></span>
+        <span class="metric-chip">Contract Tests: <strong>62 Passed (test_tool_contract.py 100% green)</strong></span>
+        <span class="metric-chip">Live Transcripts: <strong>3 Verified Scenarios in transcripts/</strong></span>
+      </div>
+      <div class="mono">
+        Member 3 — UI, Live Demo &amp; Report Lead · Streamlit Operations Console
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
+
