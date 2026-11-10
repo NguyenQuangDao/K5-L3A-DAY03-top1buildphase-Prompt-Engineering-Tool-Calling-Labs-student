@@ -43,39 +43,39 @@ Bonus:
 Đánh dấu khi xong. Mỗi dòng trỏ tới file cần sửa và bằng chứng cần nộp.
 
 **Setup**
-- [ ] `.env` có provider key + `TAVILY_API_KEY`, `FIRECRAWL_API_KEY`, `RAPIDAPI_KEY`
-- [ ] `python scripts/preflight_provider.py --provider openrouter` pass
-- [ ] `pytest` chạy được: contract test + example test xanh, TODO test đang `skipped`
+- [x] `.env` có provider key + `TAVILY_API_KEY`, `FIRECRAWL_API_KEY`, `RAPIDAPI_KEY` *(đã kiểm tra có `OPENROUTER_API_KEY`, `TAVILY_API_KEY`, `FIRECRAWL_API_KEY`, `RAPIDAPI_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`; lưu ý `.env` local chưa có `OPENAI_API_KEY`)*
+- [x] `python scripts/preflight_provider.py --provider openrouter` pass *(`OK provider=openrouter model=openai/gpt-4o-mini`)*
+- [x] `pytest` chạy được: contract test + example test xanh, TODO test đang `skipped` *(hiện tại đã hoàn thiện cả TODO test: `121 passed, 0 failed, 0 skipped`)*
 
 **Prompt & tool declaration**
-- [ ] Chạy baseline `v0`, ghi vào `artifacts/version_log.csv`
-- [ ] Liệt kê các case FAIL của `v0` và gán mỗi case một loại lỗi (`wrong_tool`, `wrong_arg_value`, `missing_info`...)
-- [ ] `artifacts/system_prompt.md`: bỏ các chỉ dẫn xấu cố ý của starter (đoán thay vì hỏi, gửi không cần xác nhận, ép một bước)
-- [ ] `artifacts/system_prompt.md`: thêm rule routing (khi nào `timeline` / `social_search` / `lookup` / `fetch` / `clarify`)
-- [ ] `artifacts/tools.yaml`: viết lại `description` mỗi tool: làm gì, **khi nào dùng / khi nào không dùng**
-- [ ] `artifacts/tools.yaml`: mô tả rõ convention args (handle không có `@`, `topic=news` cho tin tức, `timeframe`, `search_type=Top|Latest`)
-- [ ] `artifacts/tools.yaml`: `send` mô tả rõ chỉ gửi khi user đã xác nhận (`confirmed=true`)
-- [ ] `v1`, `v2`, `v3`: mỗi version **một** giả thuyết, metric trước/sau trong `version_log.csv`
+- [x] Chạy baseline `v0`, ghi vào `artifacts/version_log.csv` *(`runs/v0_B_base_openai_20261110T102720056843.json`)*
+- [ ] Liệt kê các case FAIL của `v0` và gán mỗi case một loại lỗi (`wrong_tool`, `wrong_arg_value`, `missing_info`...) *(Chưa có bảng liệt kê riêng các case FAIL của `v0` OpenAI trong `REPORT.md` `B2`; `B2` hiện chỉ ghi 3 lỗi còn lại của `v3`, còn `analysis/base_runs.csv` là log `v0` OpenRouter cũ)*
+- [x] `artifacts/system_prompt.md`: bỏ các chỉ dẫn xấu cố ý của starter (đoán thay vì hỏi, gửi không cần xác nhận, ép một bước)
+- [x] `artifacts/system_prompt.md`: thêm rule routing (khi nào `timeline` / `social_search` / `lookup` / `fetch` / `clarify`)
+- [x] `artifacts/tools.yaml`: viết lại `description` mỗi tool: làm gì, **khi nào dùng / khi nào không dùng**
+- [x] `artifacts/tools.yaml`: mô tả rõ convention args (handle không có `@`, `topic=news` cho tin tức, `timeframe`, `search_type=Top|Latest`)
+- [x] `artifacts/tools.yaml`: `send` mô tả rõ chỉ gửi khi user đã xác nhận (`confirmed=true`)
+- [x] `v1`, `v2`, `v3`: mỗi version **một** giả thuyết, metric trước/sau trong `version_log.csv`
 
 **Tool mới**
-- [ ] `tools/<tên>/tool.py` + `TOOL.md` (frontmatter đúng contract trong `tools/README.md`)
-- [ ] Đăng ký trong `tools/__init__.py` (`TOOL_FUNCTIONS`) và `artifacts/tools.yaml`
-- [ ] Unit test cho tool mới trong `tests/test_tools_todo.py` (≥ 3 test)
-- [ ] Ít nhất 1 eval case trong `data/eval_group.json` kiểm tra model có route tới tool mới đúng lúc
+- [x] `tools/<tên>/tool.py` + `TOOL.md` (frontmatter đúng contract trong `tools/README.md`) *(4 tool mới: `hn_search`, `wiki`, `github_repos`, `hf_models`)*
+- [x] Đăng ký trong `tools/__init__.py` (`TOOL_FUNCTIONS`) và `artifacts/tools.yaml`
+- [x] Unit test cho tool mới trong `tests/test_tools_todo.py` (≥ 3 test)
+- [x] Ít nhất 1 eval case trong `data/eval_group.json` kiểm tra model có route tới tool mới đúng lúc *(`G05_new_tool_github_repos`, `G08_multiturn_correct_limit` cho `github_repos`)*
 
 **Testing**
-- [ ] `data/eval_group.json`: case cho model (routing / args / boundary), xem Step 4
-- [ ] `tests/test_tools_todo.py`: unit test cho code của tool, xem Step 4b
-- [ ] `pytest`: 0 failed, 0 skipped
+- [x] `data/eval_group.json`: case cho model (routing / args / boundary), xem Step 4 *(đủ 10 cases `G01`–`G10`: 5 single-turn, 5 multi-turn)*
+- [x] `tests/test_tools_todo.py`: unit test cho code của tool, xem Step 4b
+- [x] `pytest`: 0 failed, 0 skipped *(`121 passed in 1.31s`)*
 
 **Demo & report**
-- [ ] UI chạy được + link dùng thử
-- [ ] `chat.py`: ≥ 3 lượt live, có transcript
-- [ ] `artifacts/REPORT.md` Phần A trước 16:30, Phần B trước khi nộp
+- [x] UI chạy được + link dùng thử *(đã có `https://k5-l3a-day03-top1buildphase.streamlit.app/`, lưu ý link đang trả `HTTP 303` yêu cầu đăng nhập Streamlit Share — cần bật Public nếu share bên ngoài)*
+- [x] `chat.py`: ≥ 3 lượt live, có transcript *(đã có 5 transcript trong `starter_v0/transcripts/`)*
+- [ ] `artifacts/REPORT.md` Phần A trước 16:30, Phần B trước khi nộp *(Phần A & phần Thành viên 1, Thành viên 3 đã xong; còn chờ Thành viên 2 cập nhật kết quả `pytest` mới `121 passed` + 4 tool mới ở `B5` và xác nhận ở `B6`)*
 
 **Bonus (tuỳ chọn)**
-- [ ] `send` có xác nhận trước khi gửi, có transcript chứng minh
-- [ ] Small Local Model Challenge (Step 7)
+- [x] `send` có xác nhận trước khi gửi, có transcript chứng minh *(`live_confirmation.transcript.json` & `v3_openrouter_20261110T105249646669.transcript.json`)*
+- [ ] Small Local Model Challenge (Step 7) *(Chưa làm — máy kiểm tra chưa cài `ollama`, chưa có run JSON local, `REPORT.md` `B7` ghi `N/A — chưa thử nghiệm`)*
 
 ## Folder Map
 
