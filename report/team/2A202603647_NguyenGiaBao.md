@@ -1,8 +1,8 @@
-# Báo cáo cá nhân — GiaBao-2A202603647
+# Báo cáo cá nhân — NguyenGiaBao-2A202603647
 
 ## 1. Thông tin thành viên
 
-- Họ tên: Gia Bảo _(bổ sung họ đầy đủ)_
+- Họ tên: Nguyễn Gia Bảo
 - MSSV: 2A202603647
 - Email: 26ai.baong5@vinuni.edu.vn
 - GitHub: `Billy3005`
