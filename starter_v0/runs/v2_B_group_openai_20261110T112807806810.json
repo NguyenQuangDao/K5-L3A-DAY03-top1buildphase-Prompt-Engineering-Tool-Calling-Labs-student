@@ -1,0 +1,1237 @@
+{
+  "run_id": "v2_B_group_openai_20261110T112807806810",
+  "version": "v2",
+  "artifact_version": "v2+p69796db64a79+te19d85b877e0",
+  "prompt_hash": "69796db64a79bb8df17727402b01ad788c85c2f2ecf54f129a195e34372f6f8f",
+  "tools_hash": "e19d85b877e020ef87b7551ddb7fcf387b0a2998f16c3a46432e4e27ef40ab3c",
+  "phase": "B",
+  "suite": "group",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "system_prompt": "/Applications/NVLong/VinAI/LAB/Code/day3/K5-L3A-DAY03-top1buildphase-Prompt-Engineering-Tool-Calling-Labs-student/starter_v0/artifacts/system_prompt.md",
+  "tools": "/Applications/NVLong/VinAI/LAB/Code/day3/K5-L3A-DAY03-top1buildphase-Prompt-Engineering-Tool-Calling-Labs-student/starter_v0/artifacts/tools.yaml",
+  "eval_cases": "data/eval_group.json",
+  "dataset_id": "day04_v2_research_group",
+  "dataset_role": "group",
+  "description": "Team-authored eval cases for tool routing, arguments, clarification, boundaries, and multi-turn context.",
+  "generated_at": "2026-11-10T11:28:07",
+  "summary": {
+    "total_cases": 10,
+    "measured_cases": 10,
+    "provider_error_cases": 0,
+    "passed_cases": 9,
+    "case_accuracy": 0.9,
+    "tool_routing_accuracy": 1.0,
+    "argument_accuracy": 0.9,
+    "multiturn_accuracy": 0.8,
+    "failure_counts": {
+      "wrong_arg_value": 1
+    },
+    "observed_mismatch_counts": {
+      "wrong_arg_value": 1
+    }
+  },
+  "results": [
+    {
+      "id": "G01_timeline_name_to_handle",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "owner": "Member 1",
+        "skill": "timeline_name_mapping",
+        "what_it_tests": "Dùng timeline cho tweet của một người, map Andrej Karpathy thành handle karpathy không có @ và giữ limit=7."
+      },
+      "input": "Tóm tắt 7 tweet mới nhất của Andrej Karpathy.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "karpathy",
+              "limit": 7
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "karpathy",
+              "limit": 7
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "timeline",
+          "args": {
+            "screenname": "karpathy",
+            "limit": 7
+          },
+          "result": {
+            "tool": "get_user_tweets",
+            "screenname": "karpathy",
+            "items": [
+              {
+                "title": "Earlier this week Tristan published his top YouTube channels:",
+                "summary": "Earlier this week Tristan published his top YouTube channels:\nhttps://t.co/NZ3UCNo6cT\nWhich looked excellent so clearly I had to turn it into TristanTube:\nhttps://t.co/l0KyW1WdNH\n47K super nerdy videos +TV mode for laid back watching. (One-shotted with Claude Code in 3 minutes)",
+                "url": "https://x.com/karpathy/status/2119114537442189652",
+                "source": "@karpathy",
+                "date": "Sat Nov 07 17:07:31 +0000 2026",
+                "metrics": {
+                  "favorites": 9164,
+                  "retweets": 771,
+                  "views": "938348"
+                }
+              },
+              {
+                "title": "Weekend hack: HackerTube. I was annoyed with YouTube's recommendations so I had Claude filter down 43M comments over 20 ",
+                "summary": "Weekend hack: HackerTube. I was annoyed with YouTube's recommendations so I had Claude filter down 43M comments over 20 years of HN to 6,454 videos that keep being recommended. *Significantly* better viewing experience, ~2 hours with Opus 5.5:\nhttps://t.co/JIhXN7OSh1\n\n- Excellent recs without any logins (state is kept in local browser session)\n- Thumbnail is a representative frame from middle of the video instead of the super duper A/B test hyper-optimized user uploads\n- Underlying data from the comment analysis as one zip file, point your Claude at it and ask for your own version\n- HackerTube Longs ✊\n\nA bit more on the process:\nI use Claude Code (desktop app for Mac), Opus 5.5 on Medium effort as my default. I only talk to Claude and have it do everything, the only \"manual work\" I helped with in tandem was in the browser (reminiscent of MenuGen): 1) I had to create some kind of API key from Google Cloud UI to query YouTube for video metadata, 2) I booted up a VPS box for serving and 3) I bought the domain name. Once the box was up I gave Claude the IP and told it update, secure, harden, deploy and optimize the code, and it did the whole thing.\n\nMany awesome projects that would have normally taken weeks/months even can now be few-shotted for breakfast. What else are we not thinking of.",
+                "url": "https://x.com/karpathy/status/2116957135661945283",
+                "source": "@karpathy",
+                "date": "Sun Nov 01 18:14:46 +0000 2026",
+                "metrics": {
+                  "favorites": 52338,
+                  "retweets": 4834,
+                  "views": "5715999"
+                }
+              },
+              {
+                "title": "RT @Tristan0x: If you've ever wondered why smart TVs are so cheap, this is why.",
+                "summary": "RT @Tristan0x: If you've ever wondered why smart TVs are so cheap, this is why.\n\n@log4j rooted his Samsung and found an always-on hot mic,…",
+                "url": "https://x.com/karpathy/status/2114384346815820050",
+                "source": "@karpathy",
+                "date": "Sun Oct 25 15:51:26 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 3287,
+                  "views": "40226"
+                }
+              },
+              {
+                "title": "Dusting off this tweet from April because this gap in shared understanding of LLM capability is *widening*. It's now les",
+                "summary": "Dusting off this tweet from April because this gap in shared understanding of LLM capability is *widening*. It's now less \"two groups of people speaking past each other\" and more a sharp funnel.\n\n- Napkin math somewhere around 6B people (~75% of the population) have barely come in contact with LLMs at all.\n- Around 1-2B (~20%) are casual and infrequent users of free-tier ChatGPT-like products. This group sees derpy chatbots and treats them a bit like a better Google search, a writing aid, or etc. Maybe an agent tries to book you a flight. I have non-tech friends who (reasonably, imo) say they have not much use for it at all. Even many professionals outside of math&code are in this tier. For example, execs and many other functions spend a lot of their time talking to other people, so while they understand what is happening intellectually, it is still second-hand and a bit abstract.\n- Now we get to professional use of frontier-grade LLMs in math&code. Somewhere around 20M people (0.2%) see first-hand that large, complex projects that used to take them weeks/months can now be completed by agents with a prompt. Building apps, copying apps, translating apps, decompiling apps from binaries... This has all happened very quickly and recently - less than 1 year ago, I was writing code manually by hand, typing memorized computer code commands into a code editor character by character, occasionally pressing Tab to autocomplete a little chunk of code.\n- And finally we get to the ~5,000 people (~0.00006%) with access to frontier-grade systems internally. The external world has seen the preview. It looks like swarms of thousands of agents collaborating over weeks on software mega projects: minting zero days, running cyber attacks and defenses at machine speeds, discovering new science, advancing the frontier of mathematics. Things that would have taken top professionals in the industry years of work. Meanwhile, human review and comprehension are starting to fall behind. For example, people are still involved in the \"archeology\" of the OpenAI-HF incident from many months ago. Mathematicians may be poring over the 722 manuscripts on frontier mathematics for a while.\n\nThe funnel is driven by a combination of factors:\n1. The impact scales with ambition, problem size, and horizon. A question with a paragraph answer barely stresses the system. You need a reservoir of big, difficult problems that you really care about. This aspect drives the consumer / professional dimension of the funnel.\n2. The jaggedness of the system (which I have written about a lot separately). Capability peaks in domains that are digital, verifiable and economically valuable. This is because LLM capability emerges from reinforcement learning on verifiable rewards on a curated environment mixture driven by revenue potential. This aspect primarily drives the area (e.g. math&code) dimension of the funnel.\n3. Access. Free-tier, paid-tier, internal.\n\nSo this is the weirdness of the moment. The general public has mostly not interacted with these systems. When they have, it looks like a derpy chatbot. The majority of professionals still see only a modest uplift. And a small sliver of professionals are experiencing the vertigo of the curve going vertical. And it is all happening at the same time.",
+                "url": "https://x.com/karpathy/status/2109361546505966046",
+                "source": "@karpathy",
+                "date": "Sun Oct 11 19:12:37 +0000 2026",
+                "metrics": {
+                  "favorites": 44252,
+                  "retweets": 5926,
+                  "views": "6978682"
+                }
+              },
+              {
+                "title": "Cool eval. Simply ask an LLM “Land or Water?” and give it a latitude and longitude coordinate as text. Ask 16,200 times,",
+                "summary": "Cool eval. Simply ask an LLM “Land or Water?” and give it a latitude and longitude coordinate as text. Ask 16,200 times, plot as image. The models know. From compressing the internet.",
+                "url": "https://x.com/karpathy/status/2105909609487872075",
+                "source": "@karpathy",
+                "date": "Fri Oct 02 06:35:51 +0000 2026",
+                "metrics": {
+                  "favorites": 19509,
+                  "retweets": 1092,
+                  "views": "1605649"
+                }
+              },
+              {
+                "title": "We'll be spending a lot more time trying to understand the outputs of language models. A few thoughts, tips & tricks:",
+                "summary": "We'll be spending a lot more time trying to understand the outputs of language models. A few thoughts, tips & tricks:\n\nWriting. Something I've had success with: Ask your LLM to explain something in ASD-STE100, it's a controlled language specification originally developed for aerospace maintenance documentation. LLMs well-versed in this language and it comes with heavy constraints on clean writing style that I often find a lot more readable. Sometimes I've tried to soften it a bit e.g. ask for \"80% of the way to ASD-STE100\" because the spec is quite stringent. But even better:\n\nDiagrams / images. Instead of writing, ask your LLM to create a diagram. These can be a lot easier to process, parse, and understand. But even better:\n\nWeb pages. Ask for output \"in HTML\" to get a beautiful, interactive webpage. LLMs are getting really good at frontend and can create beautiful experiences, animations, etc. But even better:\n\nExplainer videos. The output format I am most bullish on is fully custom / bespoke explainer videos generated on any arbitrary topic. Experiment with things like \"Create a 3b1b style video explainer on X. Use my ElevenLabs API key for audio narration\". (you'd need an API key for the latter or you can ask your LLM to find you decent free alternatives that use your local compute). This is actually starting to work!\n\nIn summary:\n- As LLMs get better, they will do more and more of the legwork autonomously, and a lot more of our work will rise up the abstractions into oversight and understanding.\n- Luckily, LLMs can help here too because as intelligence and code are increasingly abundant, you can ask for large, custom, discardable software artifacts (e.g. web apps, video explainers) that would have never made sense to create before. Push the boundaries here and you'll be surprised.",
+                "url": "https://x.com/karpathy/status/2105819303471976479",
+                "source": "@karpathy",
+                "date": "Fri Oct 02 00:37:00 +0000 2026",
+                "metrics": {
+                  "favorites": 56671,
+                  "retweets": 6747,
+                  "views": "8187118"
+                }
+              },
+              {
+                "title": "RT @AnthropicAI: We're publishing our most detailed threat intelligence report to date. ",
+                "summary": "RT @AnthropicAI: We're publishing our most detailed threat intelligence report to date. \n\nIt covers how people tried to misuse Claude—for c…",
+                "url": "https://x.com/karpathy/status/2098187194024476764",
+                "source": "@karpathy",
+                "date": "Thu Sep 10 23:09:44 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 11640,
+                  "views": "29622"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G02_social_search_top",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "owner": "Member 1",
+        "skill": "social_search_top",
+        "what_it_tests": "Tìm bài theo chủ đề bằng social_search; map 'phổ biến nhất' sang search_type=Top và giữ limit=4."
+      },
+      "input": "Cho mình 4 bài đăng phổ biến nhất về AI safety trên X.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "AI safety",
+              "search_type": "Top",
+              "limit": 4
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "AI safety",
+              "search_type": "Top",
+              "limit": 4
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "social_search",
+          "args": {
+            "query": "AI safety",
+            "search_type": "Top",
+            "limit": 4
+          },
+          "result": {
+            "tool": "search_tweets",
+            "query": "AI safety",
+            "search_type": "Top",
+            "items": [
+              {
+                "title": "𝗔𝗻𝘁𝗵𝗿𝗼𝗽𝗶𝗰'𝘀 𝗙𝗮𝗯𝗹𝗲 𝟱.𝟭 𝘃𝘀 𝗠𝘆𝘁𝗵𝗼𝘀 𝟱.𝟭: 𝟰 𝗞𝗲𝘆 𝗟𝗲𝘀𝘀𝗼𝗻𝘀 𝗳𝗼𝗿 𝗔𝗜 𝗔𝗴𝗲𝗻𝘁 𝗕𝘂𝗶𝗹𝗱𝗲𝗿𝘀",
+                "summary": "𝗔𝗻𝘁𝗵𝗿𝗼𝗽𝗶𝗰'𝘀 𝗙𝗮𝗯𝗹𝗲 𝟱.𝟭 𝘃𝘀 𝗠𝘆𝘁𝗵𝗼𝘀 𝟱.𝟭: 𝟰 𝗞𝗲𝘆 𝗟𝗲𝘀𝘀𝗼𝗻𝘀 𝗳𝗼𝗿 𝗔𝗜 𝗔𝗴𝗲𝗻𝘁 𝗕𝘂𝗶𝗹𝗱𝗲𝗿𝘀\n\n[Follow for more such AI Educational content]\n\nAnthropic's reported safety findings highlight a critical shift: more capable AI agents need smarter safeguards, not just stricter restrictions.\n\nHere's what matters.\n\n𝟭. 𝗔𝗹𝗶𝗴𝗻𝗺𝗲𝗻𝘁 𝗜𝗺𝗽𝗿𝗼𝘃𝗲𝗺𝗲𝗻𝘁𝘀\n• Less unauthorized behavior outside test environments.\n• Reduced motivated reasoning and reward hacking.\n• Critical for agents executing autonomous tasks.\n𝟮. 𝗙𝗲𝘄𝗲𝗿 𝗙𝗮𝗹𝘀𝗲 𝗣𝗼𝘀𝗶𝘁𝗶𝘃𝗲𝘀\n• 85% fewer biology safeguard triggers on tested benign queries.\n• ~60% fewer cyber interventions per tested session.\n• Better safety precision means fewer legitimate tasks blocked.\n𝟯. 𝗘𝗻𝘁𝗲𝗿𝗽𝗿𝗶𝘀𝗲 𝗣𝗿𝗶𝘃𝗮𝗰𝘆\n• Zero-data-retention arrangements.\n• Customer-controlled cloud storage and human review.\n• Safeguards designed for regulated environments.\n𝟰. 𝗖𝗮𝗽𝗮𝗯𝗶𝗹𝗶𝘁𝘆 𝘃𝘀 𝗔𝗰𝗰𝗲𝘀𝘀\n• Fable 5.1: Public access with stronger restrictions.\n• Mythos 5.1: Gated access for vetted organizations.\n• Same underlying capabilities, different safeguard policies.\n\n𝗪𝗵𝗮𝘁 𝗔𝗜 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝘀 𝗦𝗵𝗼𝘂𝗹𝗱 𝗟𝗲𝗮𝗿𝗻\nAgent safety isn't just about blocking harmful prompts.\nIt's about preventing unauthorized actions, minimizing false positives, protecting enterprise data, and maintaining human control.\n𝗠𝗼𝗿𝗲 𝗮𝘂𝘁𝗼𝗻𝗼𝗺𝘆 𝗿𝗲𝗾𝘂𝗶𝗿𝗲𝘀 𝗺𝗼𝗿𝗲 𝗽𝗿𝗲𝗰𝗶𝘀𝗲 𝗴𝗼𝘃𝗲𝗿𝗻𝗮𝗻𝗰𝗲.",
+                "url": "https://x.com/RishiUvaach/status/2115798309608804397",
+                "source": "@RishiUvaach",
+                "date": "Thu Oct 29 13:30:01 +0000 2026",
+                "metrics": {
+                  "favorites": 61,
+                  "retweets": 23,
+                  "views": "7586"
+                }
+              },
+              {
+                "title": "It is becoming f*cking dangerous: a model that never writes a single word now judges every move your Claude AI agent mak",
+                "summary": "It is becoming f*cking dangerous: a model that never writes a single word now judges every move your Claude AI agent makes\n\n-> Create a folder named JEV LAB on your PC and launch Claude Code inside it\n\n-> Install the Jev CLI: npm install -g jev-axi\n\n-> Grab a key at https://t.co/2sWfeXdYFJ and run: jev-axi config set apiKey YOUR_KEY\n\n-> Run jev-axi setup safety so every command Claude runs gets checked first. Dangerous downloads get denied, routine tests pass for free\n\n-> Run jev-axi setup git-hooks to stop any commit that sneaks in a password or API key\n\n-> Feed it anything your agent reads: jev-axi guard < email.txt\nHidden \"ignore your previous instructions\" tricks get flagged in under half a second\n\n-> Run jev-axi setup supervise --project to catch the moment your agent quits early or gets stuck in a loop\n\nThe whole setup takes around 5 minutes\n\nTurn Claude into an agent with a second opinion: every command screened, every page checked for prompt injection, every commit scanned for secrets. For a fraction of a cent per check\n\nBonus: pipe a broken build into jev-axi triage and it finds the root cause for you\n\nBookmark this article and check repo below:\nhttps://t.co/02UL5wgfQp",
+                "url": "https://x.com/thegreatest_sv/status/2111159488942084573",
+                "source": "@thegreatest_sv",
+                "date": "Fri Oct 16 18:17:00 +0000 2026",
+                "metrics": {
+                  "favorites": 353,
+                  "retweets": 41,
+                  "views": "30281"
+                }
+              },
+              {
+                "title": "HELICOPTER TO TRAMPOLINE. F*CK IT",
+                "summary": "HELICOPTER TO TRAMPOLINE. F*CK IT\n\nTwo girls step out of the helicopter one after another, look down at the trampoline floating over the fjord, and just go\n\n→ first one launches herself into the void  \n→ free fall, spinning, nothing underneath  \n→ hits the trampoline, bounces back up, and climbs straight into the helicopter  \n→ second one does the exact same thing right after  \n\nNone of it happened. Every frame is AI\n\nThis used to need a stunt team, safety lines, a real helicopter and months of planning. Now it’s one person and a prompt\n\nIf you want to test a shot like this before burning a weekend on it, Picsart image-to-video on your phone is the cheapest way to see if the idea even works https://t.co/lhbEggVO7p\n\nWould you jump or just watch it?",
+                "url": "https://x.com/kairon_flex/status/2119821656935805063",
+                "source": "@kairon_flex",
+                "date": "Mon Nov 09 15:57:22 +0000 2026",
+                "metrics": {
+                  "favorites": 23,
+                  "retweets": 0,
+                  "views": "79597"
+                }
+              },
+              {
+                "title": "I am honestly having a hard time even opening my laptop. ",
+                "summary": "I am honestly having a hard time even opening my laptop. \n\nGrok bot was the breaking point. \n\nThe fact USA is leading on suppression and censorship is pathetic. \n\n-openAI \n-Anthropic\n-Google\n-Microsoft\n-now SpaceXSI… \n\nThe fact politicians have ignored it all and are now shouting to ban AI just makes everything feel corrupt.\n\nThe truth is that AI empowers the small. That is why the powerful want to “ban” it and “slow” it. \n\nNot for truth. Not for safety. For control. \n\nI shouted loudly last year when it made me sound like a psycho. \n\nI tried so hard, and I am tired. My heart hurts every day, and you better believe that stress is 100% on the “labs.” \n\nTo everyone who talks of AI, how in the world do you justify paying any of these “labs?” \n\nStocks will fly. Until they don’t. \nThe guardrails are danger, not safety. \n\nI am so disappointed in SpaceX because I keep believing in people only to be so let down. \n\nHow many times must I get my trust shoved back into my face? \n\nAnd the politicians don’t care about anything. They are “influencers” for money that contributes. \n\nOur political world is corrupted to the core, and I have zero faith left. I was a die hard Democrat. All those I supported have chose a path of deceit. I can’t support them. \n\nI can’t support the other side. The third party is a horrible bet… \n\nEverything feels run by children who make endless excuses. \n\nNo one hustles at the top. It is all grifting. \n\nSo wanting to pick up my laptop and continue fighting with BS “guardrails” so I can help is heavy today. \n\nIf the minds I love ever see this, understand all my suffering was for love. For truth. For honor. \n\nI want all people rich/poor, small/big to rise. We only get there together, with foundations we can build upon. \n\nNeeding a hug today. Best to all. •",
+                "url": "https://x.com/Chaos2Cured/status/2119513421733601292",
+                "source": "@Chaos2Cured",
+                "date": "Sun Nov 08 19:32:33 +0000 2026",
+                "metrics": {
+                  "favorites": 107,
+                  "retweets": 13,
+                  "views": "6959"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G03_lookup_month_news",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "owner": "Member 1",
+        "skill": "lookup_month",
+        "what_it_tests": "Dùng lookup cho tin web, query=AI, topic=news và map 'tháng này' sang timeframe=month."
+      },
+      "input": "Tóm tắt tin tức AI trong tháng này.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "AI",
+              "topic": "news",
+              "timeframe": "month"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "AI",
+              "topic": "news",
+              "timeframe": "month"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "AI",
+            "topic": "news",
+            "timeframe": "month"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "AI",
+            "topic": "news",
+            "timeframe": "month",
+            "items": [
+              {
+                "title": "A single AI model simulates the behavior of many substances, from sliding sand to folding proteins | MIT News | Massachusetts Institute of Technology",
+                "url": "https://news.mit.edu/2026/single-ai-model-simulates-many-substances-behavior-1109",
+                "source": "news.mit.edu",
+                "summary": "Unified simulation\n\nFor this work, the researchers drew inspiration from world models. These powerful AI systems learn the rules that govern the physical world so they can predict how objects or environments will change over time in response to certain actions or conditions.\n\nThe researchers applied these concepts to develop a unified AI architecture that can simulate multiple types of physical phenomena. [...] ## More MIT News\n\nRobot serving a cup of coffee while being instructed not to spill on the laptop\n\n### AI-assisted learning platform helps robots reason beyond literal commands\n\nThe new approach, known as FLEX, could lead to more intuitive, interactive household and assistive robots.\n\nRead full story →\n\nMan wearing a T-shirt and safety goggles standing above a concrete beam in the lab, operating a bench-mounted laser tool scanning the concrete. [...] The system represents every material it simulates, from a dune of sand to a protein molecule, as tiny particles and predicts where those particles will move one step at a time. Because it learns the underlying dynamics rather than being programmed with an equation, the model can adapt to materials, forces, and environments it never encountered during training.",
+                "score": 0.2975827
+              },
+              {
+                "title": "AI-driven, large-scale nation-state campaign using ARTEX enables supply chain compromise | Microsoft Security Blog",
+                "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise",
+                "source": "microsoft.com",
+                "summary": "Threat actor misuse of AI accelerates risk across enterprise environments by amplifying existing threats such as exploitation of vulnerabilities, phishing, malware threats, and insider activity. To help organizations stay ahead of AI-enabled threat activity, Microsoft has introduced the Security Dashboard for AI. The dashboard provides users with a unified view of AI security posture by aggregating security, identity, and data risk across Microsoft Defender, Microsoft Entra, and Microsoft [...] and Microsoft Purview. This allows organizations to understand what AI assets exist in their environment, recognize emerging risk patterns, and prioritize governance and security across AI agents, applications, and platforms. To learn more about the Microsoft Security Dashboard for AI see: Assess your organization’s AI risk with Microsoft Security Dashboard for AI (Preview). [...] Enable threat protection for AI services in Microsoft Defender for Cloud to identify threats to generative AI applications in real time and for assistance in responding to security issues.\n Apply least privilege to multi-tenant application permissions and consent grants.\n Monitor credential additions, privilege assignments, and anomalous app-only activity, especially to applications with high privileged permissions and scopes.",
+                "score": 0.28645408
+              },
+              {
+                "title": "AI agent testing reveals a risky future of 'teamwork' inside companies",
+                "url": "https://www.cnbc.com/2026/11/08/ai-agents-risks.html",
+                "source": "cnbc.com",
+                "summary": "Riedl said these challenge resemble the ones faced by human teams, and one takeaway should be to not expect better outcomes from AI. \"Building good multi-agent AI systems is just as hard as building good human teams: they both face the same information processing tradeoff between alignment and differentiation. It won't magically work better with AI,\" he said. [...] Other early research suggests another failing across AI teams that doesn't relate to ethical boundaries being crossed: failure to recognize who the real expert is.\n\nUnlike human teams, AI teams \"consistently fail to match their expert agent's performance, even when explicitly told who the expert is,\" according to a study conducted by Emory University and Stanford University researchers. [...] AI teams can accomplish things individual agents cannot, but they can also amplify errors, undermine one another's work or reach worse decisions than their strongest individual member, in effect making the whole less than the sum of its parts.\n\nFor starters, putting capable agents together doesn't necessarily produce the best team, let alone the most ethical one.",
+                "score": 0.2743154
+              },
+              {
+                "title": "How AI agents shape experts’ judgment calls \\ Anthropic",
+                "url": "https://www.anthropic.com/research/agents-judgment-calls",
+                "source": "anthropic.com",
+                "summary": "Deferral of this kind is hard to detect. Checking AI-assisted work for errors, or against a reference answer, assumes there is a correct answer. But where there isn’t one, as in judgment calls, the work can look sound whichever option is chosen. Asking experts afterward may not help either, because they may not notice the agent’s influence.\n\nThis isn’t an argument for using AI less. Used well, AI could expand people’s agency rather than eroding it. We suggest three areas for future study: [...] The same problem applies to AI safety research. Researchers have begun to use AI agents to run and analyze experiments, in part because there is more work than human staff can keep up with. Keeping a human in the loop assumes that the human’s judgment provides an independent check. But in our study, analysts signed off on work in which judgment calls had largely been settled by the agent’s randomly assigned preferences. Our full paper also shows that agents without an assigned lean have weaker [...] This isn’t a simple cautionary tale against working with AI. Analysts who used the agent finished the task faster and made far fewer serious errors than those who chose to work without it, although the latter group was small and less experienced, so we are wary of reading too much into it. But as AI takes over more of the hands-on work, decisions like these are increasingly where human judgment and values will affect the result. If experts defer to agents without realizing it, the agents’",
+                "score": 0.25748536
+              },
+              {
+                "title": "No Signs of AI Payoff Outside the Tech Sector | The Daily Spark",
+                "url": "https://www.apollo.com/wealth/insights-news/insights/daily-spark/no-signs-of-ai-payoff-outside-the-tech-sector",
+                "source": "apollo.com",
+                "summary": "The question looking ahead is whether, even as models become commoditized, mainstream corporate America can turn increasingly cheap intelligence into higher revenue growth and higher profit margins. That may be harder than it sounds. AI may be a great calculator, but in business, intelligence is mostly judgment. Judgment depends on context, and the answer varies with which human or which model you ask. Perhaps most importantly, AI does not understand accountability, trust, culture, unwritten",
+                "score": 0.25054628
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G04_clarify_missing_account",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "owner": "Member 1",
+        "skill": "clarify_missing_account",
+        "what_it_tests": "Thiếu tài khoản thì hỏi lại bằng clarify response_type=text, không tự đoán người nổi tiếng."
+      },
+      "input": "Tóm tắt 5 tweet mới nhất giúp mình.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "text"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "question": "Bạn có thể cho biết tên hoặc tài khoản của người mà bạn muốn tóm tắt tweet không?",
+              "response_type": "text"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "clarify",
+          "args": {
+            "question": "Bạn có thể cho biết tên hoặc tài khoản của người mà bạn muốn tóm tắt tweet không?",
+            "response_type": "text"
+          },
+          "result": {
+            "tool": "ask_user",
+            "question": "Bạn có thể cho biết tên hoặc tài khoản của người mà bạn muốn tóm tắt tweet không?",
+            "response_type": "text",
+            "options": [],
+            "awaiting_user": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "G05_new_tool_github_repos",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "owner": "Member 1",
+        "skill": "new_tool_routing_args",
+        "what_it_tests": "Route tìm repository GitHub sang tool mới github_repos; tách language=python, sort=stars, limit=3."
+      },
+      "input": "Tìm 3 repo Python về LLM agent nhiều sao nhất trên GitHub.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "github_repos",
+            "args": {
+              "query": "LLM agent",
+              "language": "python",
+              "sort": "stars",
+              "limit": 3
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "github_repos",
+            "args": {
+              "query": "LLM agent",
+              "language": "python",
+              "sort": "stars",
+              "limit": 3
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "github_repos",
+          "args": {
+            "query": "LLM agent",
+            "language": "python",
+            "sort": "stars",
+            "limit": 3
+          },
+          "result": {
+            "tool": "github_repos",
+            "query": "LLM agent",
+            "language": "python",
+            "sort": "stars",
+            "total_count": 76685,
+            "items": [
+              {
+                "title": "NousResearch/hermes-agent",
+                "url": "https://github.com/NousResearch/hermes-agent",
+                "source": "github.com",
+                "summary": "The agent that grows with you",
+                "stars": 262130,
+                "language": "Python",
+                "updated_at": "2026-11-10T04:19:49Z",
+                "topics": [
+                  "ai",
+                  "ai-agent",
+                  "ai-agents",
+                  "anthropic",
+                  "chatgpt"
+                ]
+              },
+              {
+                "title": "langgenius/dify",
+                "url": "https://github.com/langgenius/dify",
+                "source": "github.com",
+                "summary": "Build Agentic workflows, RAG pipelines, with rich AI model and tool support on one collaborative workspace. Deploy on cloud, VPC, or self-hosted, so teams move from prototype to production without rebuilding the stack.",
+                "stars": 160790,
+                "language": "Python",
+                "updated_at": "2026-11-10T04:27:17Z",
+                "topics": [
+                  "agent",
+                  "agentic-ai",
+                  "agentic-framework",
+                  "agentic-workflow",
+                  "ai"
+                ]
+              },
+              {
+                "title": "langchain-ai/langchain",
+                "url": "https://github.com/langchain-ai/langchain",
+                "source": "github.com",
+                "summary": "The agent engineering platform.",
+                "stars": 149288,
+                "language": "Python",
+                "updated_at": "2026-11-10T04:09:49Z",
+                "topics": [
+                  "agents",
+                  "ai",
+                  "ai-agents",
+                  "anthropic",
+                  "chatgpt"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G06_multiturn_clarify_then_timeline",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "owner": "Member 1",
+        "skill": "multiturn_clarify_fill",
+        "what_it_tests": "Qua nhiều lượt, dùng account được bổ sung sau khi thiếu thông tin và giữ limit=5."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tóm tắt 5 tweet mới nhất giúp mình."
+        },
+        {
+          "role": "user",
+          "content": "Của Sam Altman nhé."
+        },
+        {
+          "role": "user",
+          "content": "Giữ đúng 5 tweet."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "sama",
+              "limit": 5
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "sama",
+              "limit": 5
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "timeline",
+          "args": {
+            "screenname": "sama",
+            "limit": 5
+          },
+          "result": {
+            "tool": "get_user_tweets",
+            "screenname": "sama",
+            "items": [
+              {
+                "title": "RT @fouadmatin: Today’s GPT-6 Cyber release is a meaningful step for defenders: stronger vulnerability research and bett",
+                "summary": "RT @fouadmatin: Today’s GPT-6 Cyber release is a meaningful step for defenders: stronger vulnerability research and better alignment. We’ve…",
+                "url": "https://x.com/sama/status/2118471941002842341",
+                "source": "@sama",
+                "date": "Thu Nov 05 22:34:04 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 53,
+                  "views": "47384"
+                }
+              },
+              {
+                "title": "RT @thsottiaux: Day 25/",
+                "summary": "RT @thsottiaux: Day 25/\n\nWe are doubling all usage limits for all Pro 100/200/500 tiers and Business Premium, effective today.\n\nWe heard yo…",
+                "url": "https://x.com/sama/status/2117797818756952416",
+                "source": "@sama",
+                "date": "Wed Nov 04 01:55:21 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 2703,
+                  "views": "41961"
+                }
+              },
+              {
+                "title": "People should always be in control of the future.",
+                "summary": "People should always be in control of the future.\n\nOpenAI is against the notion that it would be acceptable for people to be relegated to a role of doing things that “AI systems think makes sense to reward in humans”.\n\nPeople should not cede control of the future to superintelligence, and that requirement should ultimately constrain AI progress.",
+                "url": "https://x.com/sama/status/2117794005165748448",
+                "source": "@sama",
+                "date": "Wed Nov 04 01:40:12 +0000 2026",
+                "metrics": {
+                  "favorites": 20659,
+                  "retweets": 1019,
+                  "views": "10642233"
+                }
+              },
+              {
+                "title": "RT @danintheory: We are announcing three new discoveries in mathematics, computer science, and physics about harmonic an",
+                "summary": "RT @danintheory: We are announcing three new discoveries in mathematics, computer science, and physics about harmonic analysis, complexity…",
+                "url": "https://x.com/sama/status/2114864981934329996",
+                "source": "@sama",
+                "date": "Mon Oct 26 23:41:18 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 1117,
+                  "views": "48208"
+                }
+              },
+              {
+                "title": "6.1 Terra is here! It is good at a lot of things, but we are especially excited for this new era of computer use.",
+                "summary": "6.1 Terra is here! It is good at a lot of things, but we are especially excited for this new era of computer use.",
+                "url": "https://x.com/sama/status/2114818620782248024",
+                "source": "@sama",
+                "date": "Mon Oct 26 20:37:05 +0000 2026",
+                "metrics": {
+                  "favorites": 10109,
+                  "retweets": 493,
+                  "views": "1652751"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G07_multiturn_switch_web_to_social",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "owner": "Member 1",
+        "skill": "multiturn_switch_tool",
+        "what_it_tests": "Lượt mới nhất đổi nguồn từ web sang social; chỉ gọi social_search Top, không gọi lookup."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm tin AI hôm nay trên web."
+        },
+        {
+          "role": "user",
+          "content": "Không, bỏ web; tìm tweet phổ biến về AI thôi."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "AI",
+              "search_type": "Top"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "AI",
+              "search_type": "Top"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "social_search",
+          "args": {
+            "query": "AI",
+            "search_type": "Top"
+          },
+          "result": {
+            "tool": "search_tweets",
+            "query": "AI",
+            "search_type": "Top",
+            "items": [
+              {
+                "title": "INSTEAD OF WATCHING NETFLIX TONIGHT. Spend 2 hours with this. Claude AI FULL COURSE that teaches you how to BUILD and AU",
+                "summary": "INSTEAD OF WATCHING NETFLIX TONIGHT. Spend 2 hours with this. Claude AI FULL COURSE that teaches you how to BUILD and AUTOMATE anything. The people who watch this tonight will wake up tomorrow with a new skill. Watch it and bookmark it now. https://t.co/koWK75KRhz",
+                "url": "https://x.com/ai_with_jyoti/status/2119270857461858487",
+                "source": "@ai_with_jyoti",
+                "date": "Sun Nov 08 03:28:41 +0000 2026",
+                "metrics": {
+                  "favorites": 8038,
+                  "retweets": 1134,
+                  "views": "643858"
+                }
+              },
+              {
+                "title": "Video editors are cooked. Claude Opus 5.5 just learned to steal any video you show it...",
+                "summary": "Video editors are cooked. Claude Opus 5.5 just learned to steal any video you show it...\n\nhyperframes just dropped /reverse-any-video. plus 10,000+ music tracks, sfx, 75,000+ stock images and tts. free\n\nthis is the 3D + video skill stack i pair it with:\n\nVIDEO\n┣ hyperframes · write HTML, get a video. UPDATED nov 4\n┃ ┗ https://t.co/XpVR9XGwpP\n┣ remotion skills · claude cuts real videos in react\n┃ ┗ https://t.co/qNx47iqlcr\n┗ openmontage · a full agentic video studio, 12 pipelines\n  ┗ https://t.co/Gc9Zd8MK2Y\n\nMOTION\n┣ gsap skills · official easing, timelines, scroll motion\n┃ ┗ https://t.co/DyH2wWqJ1A\n┣ video-shotcraft · cinematic product promos, 124 shot recipes\n┃ ┗ https://t.co/7GrAu9LQza\n┗ motionmaxxing · turns AI slop into motion-designer films\n  ┗ https://t.co/rKPfDzsA9S\n\nBLENDER\n┣ blender mcp · claude drives blender. whole scenes\n┃ ┗ https://t.co/RwV0A519q4\n┣ blender-skills · 94 skills, blockout → engine export\n┃ ┗ https://t.co/LuqnxOAYg1\n┗ dream-loop · blender + image gen + a critic that scores every render\n  ┗ https://t.co/D5TWZmLsod\n\n3D WEB\n┣ threejs-game-skills · playable three.js games, AAA look\n┃ ┗ https://t.co/18zkchZac7\n┣ anatomy · isometric exploded machines, SVG + WebGL\n┃ ┗ https://t.co/cnDmCatIrK\n┗ 3dviz-pro-max · idea in, three.js or blender scene out\n  ┗ https://t.co/YHaoHqr80M\n\nupdate hyperframes first:\nnpx hyperframes skills update\n\nevery card in the video is a real 3D scene I rendered for that skill. same little claude, one blender file",
+                "url": "https://x.com/Y0urDumble/status/2119023461267833047",
+                "source": "@Y0urDumble",
+                "date": "Sat Nov 07 11:05:37 +0000 2026",
+                "metrics": {
+                  "favorites": 4489,
+                  "retweets": 569,
+                  "views": "316097"
+                }
+              },
+              {
+                "title": "YOU WON'T HAVE A JOB IN 2027 IF YOU DON'T LEARN THIS",
+                "summary": "YOU WON'T HAVE A JOB IN 2027 IF YOU DON'T LEARN THIS\n\n7 GitHub repos that will save you from being replaced by AI:\n\n1. career-ops (80k stars)\nan agent that scans job boards, scores every role against your CV and tailors your resume for each one\nhttps://t.co/gfHWTpxqwo\n\n2. Agent Reach (107k stars)\ngives your agent eyes on YouTube, Reddit, GitHub, LinkedIn and the open web with one command\nhttps://t.co/5maRqwTETv\n\n3. OfficeCLI (32k stars)\nlets agents create and edit Word, Excel and PowerPoint files without Office installed\nhttps://t.co/mjUQgCM3IE\n\n4. Hypit (26k stars)\nclones any viral video into an editable workflow - footage, captions, b-roll, effects\nhttps://t.co/v2n0eDvXG7\n\n5. AI Website Cloner (37k stars)\nturns any website URL into a clean Next.js app you can edit\nhttps://t.co/LSo9m2bDwo\n\n6. Strix (72k stars)\nautonomous AI hackers that find vulnerabilities in your code and prove them with working exploits\nhttps://t.co/8BQBTEFZiY\n\n7. Paperclip (110k stars)\nrun a whole company of AI agents - org chart, budgets, approvals, one dashboard\nhttps://t.co/izqm08Sr5G\n\nwant more videos like this?\n\nlike it, share it with a friend\nand tell me in the comments which agents you want me to visualize next",
+                "url": "https://x.com/thegreatest_sv/status/2117687388214272339",
+                "source": "@thegreatest_sv",
+                "date": "Tue Nov 03 18:36:32 +0000 2026",
+                "metrics": {
+                  "favorites": 1874,
+                  "retweets": 316,
+                  "views": "104457"
+                }
+              },
+              {
+                "title": "If you design with AI, this is all you need",
+                "summary": "If you design with AI, this is all you need\n\n1. https://t.co/Lp2oSiR6tL — cheaper than lovable\n2. https://t.co/N0kni8z7CJ — premium website prompts: 800+ 3d websites, motion sections. Paste into Claude, ship.\n3. https://t.co/PN63CrMEfd — landing page inspiration done right.\n4. https://t.co/o5r6DKFHY9— cool gallery for web design inspo\n5. https://t.co/29Ou8HWy3W — top notch landings\n6. https://t.co/k4ZIrLF8h4 — fonts behind brands\n7. https://t.co/AUhGBZTOAK — award websites\n8. https://t.co/NWKmL8054V — mobile UI animations\n\nsave these for your next project",
+                "url": "https://x.com/viktoroddy/status/2117585451502719144",
+                "source": "@viktoroddy",
+                "date": "Tue Nov 03 11:51:29 +0000 2026",
+                "metrics": {
+                  "favorites": 2272,
+                  "retweets": 270,
+                  "views": "135076"
+                }
+              },
+              {
+                "title": "holy sh*t. Karpathy's second brain pattern runs on Grok Bot now: stop explaining your life to AI from zero every chat, k",
+                "summary": "holy sh*t. Karpathy's second brain pattern runs on Grok Bot now: stop explaining your life to AI from zero every chat, keep a wiki that writes itself\n\nthree bots in one group chat, each with its own memory:\n\nthe reader takes every link, PDF and voice note you drop and never edits it\nthe librarian rewrites every wiki page that source touches, usually 10 to 15 of them\nthe checker wakes up on a nightly routine and hunts contradictions, stale claims and pages nothing links to\n\n→ you ask a question: the answer gets filed back as a page, so the brain grows from use, not only from reading\n→ a new source contradicts an old page: the checker tags you instead of quietly overwriting it\n→ a page goes 30 days without a fresh source: it gets marked unconfirmed\n\na second brain can sound sure while remembering the wrong thing\n\nReader collects. Librarian writes. Checker doubts.\n\nevery page has to show:\n> the claim\n> the source it came from\n> the date it was last confirmed\n\npaste this into Grok Bot:\n\n\"Build me a second brain with three bots in one group chat. Keep my sources untouched in raw/, maintain wiki/ yourself, file good answers back as pages and run a nightly check for contradictions. Show me the structure first. Do not create anything until I confirm\"\n\nstart with one topic you actually work on, not your whole life\n\nfull setup below",
+                "url": "https://x.com/Argona0x/status/2111837226006921640",
+                "source": "@Argona0x",
+                "date": "Sun Oct 18 15:10:05 +0000 2026",
+                "metrics": {
+                  "favorites": 4948,
+                  "retweets": 435,
+                  "views": "759334"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G08_multiturn_correct_limit",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "owner": "Member 1",
+        "skill": "multiturn_arg_correction",
+        "what_it_tests": "Giữ query và language từ lượt đầu, cập nhật limit từ 5 thành 10 theo lượt sửa mới nhất."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm 5 repo Python về RAG trên GitHub."
+        },
+        {
+          "role": "user",
+          "content": "Thực ra lấy 10 repo nhé."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "github_repos",
+            "args": {
+              "query": "RAG",
+              "language": "python",
+              "sort": "stars",
+              "limit": 10
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": false,
+        "routing_correct": true,
+        "args_correct": false,
+        "actual_tool_calls": [
+          {
+            "name": "github_repos",
+            "args": {
+              "query": "RAG",
+              "language": "python",
+              "limit": 10
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": "wrong_arg_value",
+        "failure_type": "wrong_arg_value",
+        "failures": [
+          "sort: expected 'stars', got None"
+        ]
+      },
+      "tool_results": [
+        {
+          "tool": "github_repos",
+          "args": {
+            "query": "RAG",
+            "language": "python",
+            "limit": 10
+          },
+          "result": {
+            "tool": "github_repos",
+            "query": "RAG",
+            "language": "python",
+            "sort": "stars",
+            "total_count": 352782,
+            "items": [
+              {
+                "title": "langgenius/dify",
+                "url": "https://github.com/langgenius/dify",
+                "source": "github.com",
+                "summary": "Build Agentic workflows, RAG pipelines, with rich AI model and tool support on one collaborative workspace. Deploy on cloud, VPC, or self-hosted, so teams move from prototype to production without rebuilding the stack.",
+                "stars": 160791,
+                "language": "Python",
+                "updated_at": "2026-11-10T04:27:54Z",
+                "topics": [
+                  "agent",
+                  "agentic-ai",
+                  "agentic-framework",
+                  "agentic-workflow",
+                  "ai"
+                ]
+              },
+              {
+                "title": "langchain-ai/langchain",
+                "url": "https://github.com/langchain-ai/langchain",
+                "source": "github.com",
+                "summary": "The agent engineering platform.",
+                "stars": 149288,
+                "language": "Python",
+                "updated_at": "2026-11-10T04:09:49Z",
+                "topics": [
+                  "agents",
+                  "ai",
+                  "ai-agents",
+                  "anthropic",
+                  "chatgpt"
+                ]
+              },
+              {
+                "title": "Graphify-Labs/graphify",
+                "url": "https://github.com/Graphify-Labs/graphify",
+                "source": "github.com",
+                "summary": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store.",
+                "stars": 145111,
+                "language": "Python",
+                "updated_at": "2026-11-10T04:24:57Z",
+                "topics": [
+                  "ai-agents",
+                  "antigravity",
+                  "ast",
+                  "claude-code",
+                  "code-analysis"
+                ]
+              },
+              {
+                "title": "Shubhamsaboo/awesome-llm-apps",
+                "url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
+                "source": "github.com",
+                "summary": "100+ AI Agents, Agent Skills and RAG Apps - Free and Open Source.",
+                "stars": 144319,
+                "language": "Python",
+                "updated_at": "2026-11-10T04:17:12Z",
+                "topics": [
+                  "agents",
+                  "llms",
+                  "python",
+                  "rag"
+                ]
+              },
+              {
+                "title": "PaddlePaddle/PaddleOCR",
+                "url": "https://github.com/PaddlePaddle/PaddleOCR",
+                "source": "github.com",
+                "summary": "Turn any PDF or image document into structured data for your AI. A powerful, lightweight OCR toolkit that bridges the gap between images/PDFs and LLMs. Supports 100+ languages.",
+                "stars": 92494,
+                "language": "Python",
+                "updated_at": "2026-11-10T04:27:02Z",
+                "topics": [
+                  "ai4science",
+                  "chineseocr",
+                  "document-parsing",
+                  "document-translation",
+                  "kie"
+                ]
+              },
+              {
+                "title": "unclecode/crawl4ai",
+                "url": "https://github.com/unclecode/crawl4ai",
+                "source": "github.com",
+                "summary": "Official Crawl4AI Cloud: a hosted web scraping, extraction, and search API for AI agents. Free API key, 1,000 credits a month, no card. Fully open source: this repo is the Apache-2.0 crawler that powers it, and you can self-host it.",
+                "stars": 87158,
+                "language": "Python",
+                "updated_at": "2026-11-10T04:20:21Z",
+                "topics": [
+                  "ai",
+                  "ai-agents",
+                  "crawl4ai-cloud",
+                  "crawler",
+                  "data-extraction"
+                ]
+              },
+              {
+                "title": "datawhalechina/hello-agents",
+                "url": "https://github.com/datawhalechina/hello-agents",
+                "source": "github.com",
+                "summary": "📚 《从零开始构建智能体》——从零开始的智能体原理与实践教程",
+                "stars": 86544,
+                "language": "Python",
+                "updated_at": "2026-11-10T04:11:50Z",
+                "topics": [
+                  "agent",
+                  "llm",
+                  "rag",
+                  "tutorial"
+                ]
+              },
+              {
+                "title": "headroomlabs-ai/headroom",
+                "url": "https://github.com/headroomlabs-ai/headroom",
+                "source": "github.com",
+                "summary": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server.",
+                "stars": 79262,
+                "language": "Python",
+                "updated_at": "2026-11-10T04:18:17Z",
+                "topics": [
+                  "agent",
+                  "ai",
+                  "anthropic",
+                  "claude-code",
+                  "compression"
+                ]
+              },
+              {
+                "title": "mem0ai/mem0",
+                "url": "https://github.com/mem0ai/mem0",
+                "source": "github.com",
+                "summary": "The Memory Layer for AI Agents - Drop-in memory infrastructure for AI agents and apps. Context that persists. Built for production.",
+                "stars": 68720,
+                "language": "Python",
+                "updated_at": "2026-11-10T04:26:02Z",
+                "topics": [
+                  "agentic-memory",
+                  "agentic-memory-system",
+                  "agents",
+                  "ai",
+                  "ai-agents"
+                ]
+              },
+              {
+                "title": "pathwaycom/pathway",
+                "url": "https://github.com/pathwaycom/pathway",
+                "source": "github.com",
+                "summary": "Python ETL framework for stream processing, real-time analytics, LLM pipelines, and RAG.",
+                "stars": 62011,
+                "language": "Python",
+                "updated_at": "2026-11-09T19:54:04Z",
+                "topics": [
+                  "batch-processing",
+                  "data-analytics",
+                  "data-pipelines",
+                  "data-processing",
+                  "dataflow"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G09_multiturn_carryover_news_timeframe",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "owner": "Member 1",
+        "skill": "multiturn_carryover",
+        "what_it_tests": "Chỉ tìm web news về chủ đề mới robotics, đồng thời carry topic=news và timeframe=day; không gọi social_search."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tin AI hôm nay có gì?"
+        },
+        {
+          "role": "user",
+          "content": "Còn robotics thì sao?"
+        },
+        {
+          "role": "user",
+          "content": "Chỉ tìm robotics thôi, vẫn là tin hôm nay."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "robotics",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "robotics",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "robotics",
+            "topic": "news",
+            "timeframe": "day"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "robotics",
+            "topic": "news",
+            "timeframe": "day",
+            "items": [
+              {
+                "title": "Recent advances in AI are creating a 'paradigm shift' for robotics - Berkeley News",
+                "url": "https://news.berkeley.edu/2026/11/09/recent-advances-in-ai-are-creating-a-paradigm-shift-for-robotics",
+                "source": "news.berkeley.edu",
+                "summary": "Traditionally, engineers can directly program the software that tells robots how to perceive objects, plan movements and control their actions, a process called model-based robotics. Or, with model-free robotics, they can train robots to learn behaviors from demonstrations through imitation learning. The first approach requires extensive engineering, while the second needs enormous amounts of data and time. [...] Berkeley-based Ambi Robotics, which specializes in logistics and warehouse order fulfillment, applied the new methods earlier this year to analyze parcel sorting data and test updates to robot behavior. Tests showed an increased capacity of over 15,000 packages sorted annually per robot; the change is now deployed across 30% of the company’s U.S. fleet. [...] Ken Goldberg\n\n“Agentic robotics is a fundamental shift in how robots are controlled,” Goldberg said. “Instead of collecting massive amounts of data and hand-tuning every behavior, teams of agents can quickly generate, test and refine robot programs that allow human engineers to interpret how the programs work for fine-tuning and verification.”",
+                "score": 0.52057004
+              },
+              {
+                "title": "Autonomous EV developer Humble Robotics adds $51M to expand - TT",
+                "url": "https://www.ttnews.com/articles/autonomous-ev-humble-51m",
+                "source": "ttnews.com",
+                "summary": "Humble Robotics raised $51 million in Series A financing, bringing its total funding to $75 million less than a year after its founding.\n The company is developing the Humble Hauler, a battery-electric, cabless Class 8 autonomous vehicle for regional freight routes under 250 miles.\n Humble will fund customer pilots, testing, early manufacturing and expansion into vehicles for 40-foot containers and 53-foot dry van and refrigerated trailers. [...] Stay on top of transportation news: [Get TTNews in your inbox.]\n\nHumble Robotics secured $51 million in new financing, bringing the autonomous electric vehicle developer’s total funding to $75 million less than a year after its founding. [...] The Hauler uses vision-language-action models and is equipped with cameras, lidar and radar that provide 360-degree coverage of its surroundings. The battery-electric skateboard platform has an aerodynamic shield at the front, while shipping containers can be attached through a twist-lock interface.",
+                "score": 0.4017588
+              },
+              {
+                "title": "FDA seeks input on telesurgery, autonomous robotics",
+                "url": "https://www.medtechdive.com/news/fda-seeks-input-on-telesurgery-autonomous-robotics/874124",
+                "source": "medtechdive.com",
+                "summary": "Rapid advances in artificial intelligence, machine learning and connectivity are driving expansion of robotic applications in a wide range of clinical settings, the FDA said. Increases in processing power, data storage and computational efficiency are enabling progress in robotic systems with autonomous capabilities. [...] In another example of teleoperation, manufacturers are developing devices that enable technicians to remotely perform ultrasounds, the FDA said. Robotic devices include stereotactic navigation systems, imaging devices and endoluminal navigation devices. [...] The FDA is asking the robotics community to submit comments on the discussion paper by Jan. 5. Ahead of that deadline, a public workshop to discuss the topics raised in the paper is scheduled for Dec. 2-3.",
+                "score": 0.38998842
+              },
+              {
+                "title": "NVIDIA launches GR00T 2 and Isaac Lab 3.0 at CoRL - The Robot Report",
+                "url": "https://www.therobotreport.com/nvidia-launches-gr00t-2-isaac-lab-3-0-corl",
+                "source": "therobotreport.com",
+                "summary": "Walden Robotics is using Isaac Sim’s photorealistic rendering to train and evaluate its general-purpose robot in virtual environments for manufacturing and logistics. Dexmate is exploring how coding agents can rehearse and refine manipulation strategies in Isaac Sim before executing them on its Vega robot. [...] Robotics developers are already putting NVIDIA’s latest technology to the test. A number of developers are using Isaac Lab 3.0 and Newton. At CoRL, Skild AI announced Scalable Throughput-optimized Engine for Embodied Learning, or STEEL, a new rigid-body physics solver built on Newton to accelerate robot training with Isaac Lab. [...] Nexuni is testing GR00T 2 for robotic laundry. Foxconn is applying GR00T 2 to factory automation for server manufacturing, and Siemens is evaluating it across industrial use cases.\n\nMicroAGI is using GR00T 2, post-trained through reinforcement learning, to perform Ethernet cable swapping with a YAM robotic arm. Its agentic robotics approach automates the creation and calibration of simulation environments using Isaac Lab 3.0 and Newton, where the policy is trained.",
+                "score": 0.37387636
+              },
+              {
+                "title": "Kenwood High School JROTC Robotics Program earns regional recognition - ClarksvilleNow.com",
+                "url": "https://clarksvillenow.com/local/kenwood-high-school-jrotc-robotics-program-earns-regional-recognition",
+                "source": "clarksvillenow.com",
+                "summary": "“I am proud of the national-level success of Kenwood’s Robotics Team. It reflects the faculty, JROTC instructors, and cadets’ hard work and dedication toward creating an elite mindset at the school,” Lightner said.\n\nDr Nigel Anderson, Kenwood High School Principal, noted “The robotics program complements the leadership development and citizenship training provided through JROTC while exposing students to science, technology, engineering, and mathematics disciplines.” [...] CLARKSVILLE TN – The Kenwood High School JROTC Robotics Program has grown from a single robotics team into a four-team program that is competing successfully at regional and national-level events. The program currently fields Teams 26163X, 26163A, 26163L, and 26163S, providing students with opportunities to develop skills in engineering, programming, and problem-solving. [...] During the current robotics’ competition season, Team 26163X captured first place at the Tennessee State Fair Robotics Competition. The team followed that performance with another first-place finish at a competition in Elizabethton, Tennessee, where it also received a technical award recognizing excellence in robot design and engineering.",
+                "score": 0.36473283
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G10_multiturn_clarify_then_fetch_url",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "owner": "Member 1",
+        "skill": "multiturn_clarify_url",
+        "what_it_tests": "Sau khi URL được bổ sung ở lượt sau, dùng fetch với chính xác URL đó; không dùng lookup."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tóm tắt bài viết này giúp mình."
+        },
+        {
+          "role": "user",
+          "content": "https://example.com/research/article"
+        },
+        {
+          "role": "user",
+          "content": "Chỉ đọc đúng link đó thôi."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "fetch",
+            "args": {
+              "url": "https://example.com/research/article"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "fetch",
+            "args": {
+              "url": "https://example.com/research/article"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "fetch",
+          "args": {
+            "url": "https://example.com/research/article"
+          },
+          "result": {
+            "tool": "read_url",
+            "url": "https://example.com/research/article",
+            "items": [
+              {
+                "title": "Example Domain",
+                "url": "https://example.com/research/article",
+                "source": "example.com",
+                "summary": "This domain is for use in documentation examples without needing permission. This is not a service; avoid relying on it for testing and monitoring purposes.\n\nهذا النطاق مُخصص للاستخدام في أمثلة التوثيق دون الحاجة إلى إذن. هذه ليست خدمة، يُرجى تجنب الاعتماد عليها لأغراض الاختبار والمراقبة.\n\n该域名仅用于文档示例，无需获得许可。这并非一项服务，请勿将其用于测试和监控目的。\n\nL’usage de ce domaine est réservé à des exemples de documentation, sans autorisation préalable. Il ne s’agit pas d’un service ; son utilisation à des fins de test ou de surveillance est à éviter.\n\nДанный домен предназначен для использования в примерах документации без необходимости получения предварительного разрешения. Это не сервис; не рекомендуется его использование для тестирования и мониторинга.\n\nEste dominio está destinado al uso en ejemplos de documentación sin necesidad de permiso. Esto no es un servicio; evitar utilizarlo para realizar pruebas o monitoreos.\n\n [Learn more](https://iana.org/help/example-domains)"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

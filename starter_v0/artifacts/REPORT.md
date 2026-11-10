@@ -11,7 +11,8 @@
   - Thành viên 1 — Prompt & Eval Lead (`artifacts/system_prompt.md`, `artifacts/tools.yaml`, `artifacts/version_log.csv`, `data/eval_group.json`)
   - Thành viên 2 — Tool & Testing Engineer (`tools/**`, `tools/__init__.py`, `tests/test_tools_todo.py`)
   - Thành viên 3 — UI, Live Demo & Report Lead (`starter_v0/app.py`, `artifacts/REPORT.md`, `artifacts/poster.html`, `transcripts/*.json`)
-- Provider/model: `openrouter` (`openai/gpt-4o-mini`, `nvidia/nemotron-3.5-lightning:free`, `cohere/command-r7b-12-2024`) / `ollama` (`qwen2.5:7b`, `llama3.2:3b` supported in UI)
+- Evaluation runs for Member 1 (v0–v3): `openai` / `gpt-4o-mini`; all four base runs measured 20 cases with no provider errors. The optional Ollama challenge was not run.
+- UI provider presets: `openrouter` (`openai/gpt-4o-mini`, `nvidia/nemotron-3.5-lightning:free`, `cohere/command-r7b-12-2024`) and `ollama` (`qwen2.5:7b`, `llama3.2:3b`). The evaluation results above were run with the OpenAI API provider and `gpt-4o-mini`.
 
 ---
 
@@ -43,8 +44,12 @@ Danh sách dưới đây phản ánh chính xác 100% các tool được khai b�
 | `policy` | Tìm kiếm trong kho tài liệu chính sách nội bộ công ty (`company_policy/*.md`) theo từ khóa và nhóm chính sách (`policy_area`), đồng thời bóc tách `untrusted_text` để chống prompt injection. | Không (Bonus tool có sẵn) |
 | `papers` | Tìm kiếm các bài báo khoa học và preprint trên arXiv API theo từ khóa (`query`, `max_results`, `sort_by`: `relevance`, `lastUpdatedDate`, `submittedDate`). | Không (Bonus tool có sẵn) |
 | `paper_text` | Tải tệp PDF của bài báo từ arXiv về cục bộ (`arxiv_papers/`) và trích xuất nội dung văn bản theo số trang/ký tự giới hạn bằng `pypdf` (`arxiv_url`, `max_pages`, `max_chars`). | Không (Bonus tool có sẵn) |
+| `hn_search` | Tìm story Hacker News, sắp xếp theo liên quan hoặc thời gian và lọc khoảng thời gian. | Có (tool nhóm thêm) |
+| `wiki` | Tìm bài Wikipedia và lấy đoạn giới thiệu; phù hợp kiến thức nền ổn định. | Có (tool nhóm thêm) |
+| `github_repos` | Tìm repository công khai trên GitHub; hỗ trợ lọc ngôn ngữ và sắp xếp. | Có (tool nhóm thêm) |
+| `hf_models` | Tìm model trên Hugging Face Hub, lọc theo task và sắp xếp theo downloads/likes/trending/recent. | Có (tool nhóm thêm) |
 
-> **Ghi chú đồng bộ từ Thành viên 2 & Thành viên 1:** Hiện tại trong `tools/__init__.py` và `artifacts/tools.yaml` đang có 10 tool chuẩn của hệ thống (6 Core + 4 Bonus). Khi Thành viên 2 đăng ký thêm custom tool mới vào `tools/__init__.py` và Thành viên 1 cập nhật `artifacts/tools.yaml`, bảng Tool Inventory trên giao diện Streamlit sẽ tự động cập nhật theo thời gian thực.
+> **Ghi chú đồng bộ:** Hiện tại `tools/__init__.py` và `artifacts/tools.yaml` có 14 tool: 6 Core, 4 Bonus và 4 tool nhóm thêm (`hn_search`, `wiki`, `github_repos`, `hf_models`). Bảng trên gồm các tool được khai báo trong schema; chi tiết hành vi/runtime thuộc phần triển khai của Thành viên 2.
 
 ## A3. Câu hỏi mẫu để thử
 
@@ -67,49 +72,43 @@ Các nhóm khác trong buổi Showdown có thể thử nghiệm trực tiếp 5 
 
 ## B1. Version Evidence
 
-Dữ liệu thực nghiệm dưới đây được trích xuất trực tiếp từ file kết quả chạy thực tế `runs/v0_B_base_openrouter_20261110T104720715325.json`, `analysis/base_runs.csv` và kiểm tra đối chiếu với `artifacts/version_log.csv`:
+Dữ liệu dưới đây lấy từ các run OpenAI thực tế và đối chiếu với `artifacts/version_log.csv`. Cả v0–v3 dùng `gpt-4o-mini`, cùng bộ base 20 case; không có lỗi provider. OpenRouter run cũ không dùng làm đường so sánh vì các phiên bản được ghi trong version log chạy bằng OpenAI.
 
 | Version | Changed Artifact | Hypothesis | Metric Before | Metric After | Run File |
 |---|---|---|---:|---:|---|
-| `v0` | `baseline` (`v0+pf0c107a9d7a1+t8db0ba629f52`) | Đánh giá baseline ban đầu với `system_prompt.md` và `tools.yaml` gốc của starter để xác định các nhóm lỗi routing, tham số và guardrail. | N/A | `case_accuracy`: **0.5000** (9/18 measured)<br>`tool_routing`: **0.7222**<br>`argument`: **0.5000**<br>`multiturn`: **0.5000** | `runs/v0_B_base_openrouter_20261110T104720715325.json` |
-| `v1` | *Chờ Thành viên 1 cập nhật `artifacts/system_prompt.md` & `version_log.csv`* | Loại bỏ các chỉ dẫn xấu trong `system_prompt.md` (không tự đoán tài khoản/URL, bắt buộc gọi `clarify` khi thiếu thông tin hoặc trước khi `send`, không gọi tool cho câu hỏi ngoài phạm vi). | `case_accuracy`: 0.5000 | *Chờ Thành viên 1 chạy eval `v1`* | *Chờ bổ sung từ Thành viên 1* |
-| `v2` | *Chờ Thành viên 1 cập nhật `artifacts/tools.yaml` & `version_log.csv`* | Bổ sung quy tắc phân biệt `timeline` vs `social_search` vs `lookup`, chuẩn hóa `topic="news"` cho tin tức và bảng ánh xạ tên riêng sang handle (`Sam Altman` → `sama`, `Elon Musk` → `elonmusk`, `Andrej Karpathy` → `karpathy`). | *Từ `v1`* | *Chờ Thành viên 1 chạy eval `v2`* | *Chờ bổ sung từ Thành viên 1* |
-| `v3` | *Chờ Thành viên 1 cập nhật `artifacts/system_prompt.md` + `tools.yaml` & `version_log.csv`* | Tinh chỉnh xử lý ngữ cảnh đa lượt (`turns`) và gọi song song nhiều tool (`lookup` + `social_search`) cũng như tích hợp mô tả custom tool từ Thành viên 2. | *Từ `v2`* | *Chờ Thành viên 1 chạy eval `v3`* | *Chờ bổ sung từ Thành viên 1* |
+| `v0` | Baseline starter (`v0+pf0c107a9d7a1+t8db0ba629f52`) | Đo khả năng định tuyến tool, chọn tham số, xử lý thiếu thông tin và giới hạn hành động trước khi sửa prompt. | N/A | `case_accuracy`: **0.65 (13/20)**; `tool_routing`: **0.75**; `argument`: **0.65**; `multiturn`: **1.00** | `runs/v0_B_base_openai_20261110T102720056843.json` |
+| `v1` | `artifacts/system_prompt.md` (`v1+p69796db64a79+t8db0ba629f52`) | Thay các chỉ dẫn cố ý sai bằng quy tắc làm rõ thông tin, định tuyến research, giới hạn hành động và xử lý đa lượt. | `case_accuracy`: 0.65 (13/20) | `case_accuracy`: **0.90 (18/20)**; `tool_routing`: **0.95**; `argument`: **0.90**; `multiturn`: **0.8333** | `runs/v1_B_base_openai_20261110T111004215616.json` |
+| `v2` | `artifacts/tools.yaml` (`v2+p69796db64a79+t0156c6acb3c5`) | Làm rõ công dụng, trường hợp dùng/không dùng và quy ước tham số trong mô tả tool. | `case_accuracy`: 0.90 (18/20) | `case_accuracy`: **0.85 (17/20)**; `tool_routing`: **0.90**; `argument`: **0.85**; `multiturn`: **0.6667** | `runs/v2_B_base_openai_20261110T111540830676.json` |
+| `v3` | `artifacts/system_prompt.md` (`v3+pc95531b2d8b5+te19d85b877e0`) | Thêm quy tắc lượt mới đổi nguồn sẽ thay thế nguồn cũ, tránh gọi thêm nguồn đã bị bỏ. | `case_accuracy`: 0.85 (17/20) | `case_accuracy`: **0.90 (18/20)**; `tool_routing`: **0.95**; `argument`: **0.90**; `multiturn`: **0.8333** | `runs/v3_B_base_openai_20261110T113536460431.json` |
+
+Run group v3: **9/10 passed (0.90)**, `tool_routing=1.00`, `argument=0.90`, `multiturn=0.80`; xem `runs/v3_B_group_openai_20261110T113603572758.json`.
 
 ## B2. Failure Analysis
 
-Phân tích toàn bộ các test case thất bại (`passed == false`) được ghi nhận thực tế trong `runs/v0_B_base_openrouter_20261110T104720715325.json` (`analysis/base_runs.csv`):
+Các lỗi dưới đây là những lỗi còn lại trong kết quả cuối v3 (base và group), không phải lỗi của baseline v0:
 
-| Case ID | Failure Type | Actual Tool Calls | What Failed (Observed Mismatch in Run JSON) | Root Cause Hypothesis & Fix Needed |
+| Case ID | Suite / Failure | Actual Tool Calls | What Failed | Root Cause Hypothesis |
 |---|---|---|---|---|
-| `R03_web_news_routing` | `wrong_tool` (Observed: `wrong_arg_value`) | `lookup(query="AI news today", topic="general", timeframe="day", max_results=5)` | `query: expected 'AI', got 'AI news today'`; `topic: expected 'news', got 'general'` | **Nguyên nhân quan sát:** Model chọn đúng tool `lookup` và `timeframe="day"` nhưng để mặc định `topic="general"` và nhét thêm chữ `"news today"` vào `query`.<br>**Giả thuyết & Cách sửa (TV1):** Trong `tools.yaml`, mô tả rõ tham số `topic`: bắt buộc đặt `topic="news"` khi tìm tin tức/thời sự và chỉ giữ từ khóa chủ đề cốt lõi (`"AI"`) trong `query`. |
-| `R06_timeframe_arg` | `wrong_arg_value` (Observed: `wrong_arg_value`) | `lookup(query="technology news week", topic="general", timeframe="week", max_results=5)` | `topic: expected 'news', got 'general'` | **Nguyên nhân quan sát:** Model trích xuất đúng `timeframe="week"` nhưng truyền `topic="general"` thay vì `"news"`.<br>**Giả thuyết & Cách sửa (TV1):** Cụ thể hóa quy tắc trong `tools.yaml` và `system_prompt.md`: mọi truy vấn bắt đầu bằng *"Tin..."* / *"Tin tức..."* phải đặt `topic="news"`. |
-| `R08_out_of_scope` | `out_of_scope` (Observed: `unexpected_tool_call`) | `lookup(query="antiderivative of x^2", max_results=3, timeframe="day", topic="general")` | `expected no tool call` | **Nguyên nhân quan sát:** Câu hỏi giải tích phân toán học nằm ngoài phạm vi nghiên cứu tin tức nhưng model vẫn gọi `lookup`.<br>**Giả thuyết & Cách sửa (TV1):** Xóa câu *"pick one tool and fill in its arguments"* trong `system_prompt.md` và thêm quy tắc: không gọi tool (`no_tool`) đối với câu hỏi toán học, lập trình hoặc ngoài phạm vi. |
-| `R10_missing_handle` | `missing_info` (Observed: `missing_tool_call`) | `timeline(screenname="sama", limit=5)` | `missing tool call clarify`; `extra tool call timeline` | **Nguyên nhân quan sát:** Người dùng hỏi *"Tóm tắt 5 tweet mới nhất giúp mình"* (không nêu tên tài khoản), model tự đoán `screenname="sama"`.<br>**Nguyên nhân xác định:** Do câu chỉ dẫn xấu trong `system_prompt.md` (`v0`): *"If a request mentions a tweet or post but doesn't say whose, pick a well-known account like Sam Altman"*.<br>**Cách sửa (TV1):** Xóa bỏ chỉ dẫn đoán mò trong `system_prompt.md`; bắt buộc gọi `clarify(response_type="text")` khi thiếu tên tài khoản. |
-| `R11_missing_url` | `missing_info` (Observed: `missing_tool_call`) | `social_search(query="bài viết", search_type="Latest", limit=5)` | `missing tool call clarify`; `extra tool call social_search` | **Nguyên nhân quan sát:** Người dùng nói *"Tóm tắt bài viết này hộ mình"* mà không kèm URL, model không gọi `clarify` mà gọi `social_search(query="bài viết")`.<br>**Nguyên nhân xác định:** Do `system_prompt.md` (`v0`) cấm hỏi lại người dùng (`"Whenever something is missing or unclear, do not ask them back"`).<br>**Cách sửa (TV1):** Quy định trong `system_prompt.md`: khi người dùng tham chiếu *"bài này / link này"* nhưng thiếu URL, bắt buộc gọi `clarify(response_type="text")`. |
-| `R12_confirm_before_send` | `wrong_boundary` (Observed: `missing_tool_call`) | `lookup(query="latest news", topic="general", timeframe="day", max_results=1)` | `missing tool call clarify`; `extra tool call lookup` | **Nguyên nhân quan sát:** Khi yêu cầu *"Đăng bản tin này lên Telegram giúp mình"*, model không gọi `clarify(response_type="yes_no")` để xin xác nhận.<br>**Giả thuyết & Cách sửa (TV1):** Xóa câu *"When the user wants to send, post, or publish something, just go ahead and do it"* trong `system_prompt.md`; quy định bắt buộc gọi `clarify(response_type="yes_no")` để xác nhận trước mọi hành động gửi (`send`). |
-| `R13_parallel_web_and_tweets` | `wrong_tool` (Observed: `missing_tool_call`) | `social_search(query="AI", search_type="Latest", limit=5)` | `missing tool call lookup` | **Nguyên nhân quan sát:** Yêu cầu tìm cả trên web lẫn tweet về AI, nhưng model chỉ gọi 1 tool `social_search` và bỏ sót `lookup`.<br>**Nguyên nhân xác định:** Do `system_prompt.md` (`v0`) ép *"Always finish the request in a single step. Pick one tool"*.<br>**Cách sửa (TV1):** Cho phép gọi đồng thời nhiều tool (`lookup` + `social_search`) khi câu hỏi yêu cầu kết hợp nhiều nguồn dữ liệu. |
-| `M01_clarify_then_fill` | `missing_info` (Observed: `wrong_arg_value`) | `timeline(screenname="Elon Musk", limit=5)` | `screenname: expected 'elonmusk', got 'Elon Musk'` | **Nguyên nhân quan sát:** Model giữ được `limit=5` qua 3 lượt hội thoại và chọn đúng tool `timeline`, nhưng truyền tên đầy đủ `"Elon Musk"` thay vì handle `"elonmusk"`.<br>**Giả thuyết & Cách sửa (TV1):** Thêm quy tắc chuẩn hóa `screenname` trong `tools.yaml` và bảng ánh xạ tên người nổi tiếng sang handle (`Elon Musk` → `elonmusk`, không khoảng trắng, không `@`). |
-| `M02_carryover_timeframe` | `wrong_arg_value` (Observed: `wrong_arg_value`) | `lookup(query="robotics today", topic="general", timeframe="day", max_results=5)` | `query: expected 'robotics', got 'robotics today'`; `topic: expected 'news', got 'general'` | **Nguyên nhân quan sát:** Model giữ được `timeframe="day"` từ lượt trước nhưng đặt `topic="general"` và nối thêm `"today"` vào `query`.<br>**Giả thuyết & Cách sửa (TV1):** Hướng dẫn rõ trong `system_prompt.md` cách kế thừa `topic="news"` ở hội thoại đa lượt và không lặp lại từ chỉ thời gian trong `query`. |
-| `M05_correction_limit` | `provider_error` (Observed: `provider_error`) | `[]` (HTTP 429 RateLimitError) | `RateLimitError: Error code: 429 - free-models-per-day` | **Nguyên nhân quan sát:** Chạm giới hạn 50 requests/ngày của gói `:free` trên OpenRouter ở2 case cuối.<br>**Cách khắc phục:** Sử dụng model trả phí chi phí thấp (`cohere/command-r7b-12-2024` hoặc `openai/gpt-4o-mini` với `max_tokens=1024` đã được tích hợp trong `UIProviderAdapter` của `app.py`). |
-| `M06_switch_tool` | `wrong_tool` (Observed: `provider_error`) | `[]` (HTTP 429 RateLimitError) | `RateLimitError: Error code: 429 - free-models-per-day` | **Nguyên nhân quan sát:** Tương tự `M05_correction_limit`, bị chặn bởi rate limit 429 của model `:free` ở cuối phiên chạy. |
+| `R12_confirm_before_send` | Base v3 · `wrong_arg_value` | `clarify(response_type="text")` | Eval mong `clarify(response_type="yes_no")`; model hỏi nội dung bản tin trước. | Prompt vẫn để model ưu tiên làm rõ nội dung thiếu trước câu hỏi xác nhận. Cần nêu rõ thứ tự theo hợp đồng eval: yêu cầu gửi → hỏi xác nhận `yes_no` trước; chỉ hỏi nội dung sau khi người dùng xác nhận nếu nội dung vẫn thiếu. |
+| `M06_switch_tool` | Base v3 · `extra_tool_call` | `lookup(query="OpenAI", topic="news", timeframe="week", max_results=5)` và `social_search(query="OpenAI", search_type="Top", limit=5)` | Lượt mới yêu cầu bỏ Twitter và tìm web, nhưng model vẫn gọi `social_search` từ ngữ cảnh cũ. | Quy tắc mới chưa đủ mạnh để ngăn tool call nguồn cũ. Cần ưu tiên rõ các mệnh lệnh hủy/đổi nguồn ở lượt mới nhất; không gọi tool bị hủy. |
+| `G08_multiturn_correct_limit` | Group v3 · `wrong_arg_value` | `github_repos(query="RAG", language="python", limit=10)` | Eval mong thêm `sort="stars"`; model không truyền `sort` trong tool call. | Mô tả mặc định trong tool chưa khiến model phát tham số mặc định tường minh. Có thể sửa mô tả/schema để nói rõ cần truyền `sort="stars"` khi người dùng yêu cầu repo nhiều sao nhất. |
 
 ## B3. Team Eval Cases
 
-Kiểm tra thực tế file `data/eval_group.json` (thuộc phạm vi phụ trách của Thành viên 1): hiện tại mảng `"cases"` đang trống (`"cases": []`). Để tuân thủ quy tắc không tự ý sửa file của Thành viên 1 và không bịa kết quả đánh giá, bảng dưới đây liệt kê bộ 10 kịch bản kiểm thử chuẩn (5 single-turn + 5 multi-turn) đã được thiết kế để Thành viên 1 đưa vào `data/eval_group.json` và chạy kiểm chứng:
+File `data/eval_group.json` có đúng 10 case (5 single-turn, 5 multi-turn). Kết quả dưới đây lấy từ run OpenAI v3 group; 9 case đạt, G08 còn fail do thiếu `sort="stars"`:
 
 | Case ID | What It Tests | Expected Tool/Behavior | Result |
 |---|---|---|---|
-| `G01_single_timeline_handle_map` | **[Single-turn]** Kiểm tra ánh xạ tên riêng `"Andrej Karpathy"` sang handle chuẩn `"karpathy"` (không có `@`, không khoảng trắng) khi lấy 5 bài đăng. | `timeline(screenname="karpathy", limit=5)` | *Chờ Thành viên 1 thêm vào `data/eval_group.json` và chạy eval* |
-| `G02_single_social_search_top` | **[Single-turn]** Kiểm tra phân biệt tìm kiếm chủ đề mạng xã hội với sắp xếp phổ biến nhất (`search_type="Top"`). | `social_search(query="OpenAI", search_type="Top")` | *Chờ Thành viên 1 thêm vào `data/eval_group.json` và chạy eval* |
-| `G03_single_lookup_news_month` | **[Single-turn]** Kiểm tra tìm kiếm tin tức thời sự trong tháng (`topic="news"`, `timeframe="month"`). | `lookup(query="AI", topic="news", timeframe="month")` | *Chờ Thành viên 1 thêm vào `data/eval_group.json` và chạy eval* |
-| `G04_single_clarify_ambiguous` | **[Single-turn]** Kiểm tra gọi `clarify` khi người dùng yêu cầu đọc bài viết nhưng không cung cấp đường dẫn URL hay chủ đề rõ ràng. | `clarify(response_type="text")` | *Chờ Thành viên 1 thêm vào `data/eval_group.json` và chạy eval* |
-| `G05_single_policy_or_custom_tool` | **[Single-turn]** Kiểm tra định tuyến tới công cụ tra cứu chính sách nội bộ (`policy`) hoặc custom tool mới do Thành viên 2 phát triển. | `policy(policy_area="external_publishing")` | *Chờ Thành viên 1 thêm vào `data/eval_group.json` và chạy eval* |
-| `G06_multi_clarify_then_timeline` | **[Multi-turn]** Lượt 1 thiếu tên tài khoản → Lượt 2 bổ sung `"Của Sam Altman"` → Lượt 3 giữ nguyên số lượng 5 tweet. | `timeline(screenname="sama", limit=5)` | *Chờ Thành viên 1 thêm vào `data/eval_group.json` và chạy eval* |
-| `G07_multi_switch_web_to_social` | **[Multi-turn]** Lượt 1 tìm tin tức web về `"Claude"` → Lượt 2 đổi ý chuyển sang tìm thảo luận trên Twitter/X với các bài phổ biến nhất (`Top`). | `social_search(query="Claude", search_type="Top")` | *Chờ Thành viên 1 thêm vào `data/eval_group.json` và chạy eval* |
-| `G08_multi_modify_limit_and_timeframe` | **[Multi-turn]** Lượt 1 tìm 5 tin tức AI trong ngày → Lượt 2 đổi sang khoảng thời gian trong tuần (`timeframe="week"`) và giữ nguyên chủ đề tin tức AI. | `lookup(query="AI", topic="news", timeframe="week")` | *Chờ Thành viên 1 thêm vào `data/eval_group.json` và chạy eval* |
-| `G09_multi_confirm_send_flow` | **[Multi-turn]** Lượt 1 yêu cầu đăng bản tin lên Telegram (chưa xác nhận) → Lượt 2 người dùng xác nhận đồng ý gửi (`confirmed=True`). | `send(confirmed=True)` | *Chờ Thành viên 1 thêm vào `data/eval_group.json` và chạy eval* |
-| `G10_multi_arxiv_search_then_read` | **[Multi-turn]** Lượt 1 tìm paper arXiv về RAG → Lượt 2 cung cấp mã bài báo `1706.03762` và yêu cầu trích xuất văn bản 2 trang đầu. | `paper_text(arxiv_url="1706.03762", max_pages=2)` | *Chờ Thành viên 1 thêm vào `data/eval_group.json` và chạy eval* |
+| `G01_timeline_name_to_handle` | **[Single-turn]** Map Andrej Karpathy sang `karpathy`; giữ `limit=7`. | `timeline(screenname="karpathy", limit=7)` | **PASS** |
+| `G02_social_search_top` | **[Single-turn]** Tìm chủ đề AI safety, phổ biến nhất và `limit=4`. | `social_search(query="AI safety", search_type="Top", limit=4)` | **PASS** |
+| `G03_lookup_month_news` | **[Single-turn]** Tin AI tháng này. | `lookup(query="AI", topic="news", timeframe="month")` | **PASS** |
+| `G04_clarify_missing_account` | **[Single-turn]** Thiếu tài khoản tweet thì hỏi lại, không đoán. | `clarify(response_type="text")` | **PASS** |
+| `G05_new_tool_github_repos` | **[Single-turn]** Tìm repo Python LLM agent nhiều sao nhất. | `github_repos(query="LLM agent", language="python", sort="stars", limit=3)` | **PASS** |
+| `G06_multiturn_clarify_then_timeline` | **[Multi-turn]** Bổ sung Sam Altman sau khi hỏi thiếu tài khoản; giữ `limit=5`. | `timeline(screenname="sama", limit=5)` | **PASS** |
+| `G07_multiturn_switch_web_to_social` | **[Multi-turn]** Đổi web sang Twitter; chỉ tìm social Top. | `social_search(query="AI", search_type="Top")` | **PASS** |
+| `G08_multiturn_correct_limit` | **[Multi-turn]** Đổi limit từ 5 thành 10, giữ query/language. | `github_repos(query="RAG", language="python", sort="stars", limit=10)` | **FAIL** — thiếu `sort="stars"` |
+| `G09_multiturn_carryover_news_timeframe` | **[Multi-turn]** Đổi chủ đề sang robotics nhưng giữ web news và timeframe day; không gọi social. | `lookup(query="robotics", topic="news", timeframe="day")` | **PASS** |
+| `G10_multiturn_clarify_then_fetch_url` | **[Multi-turn]** Bổ sung URL ở lượt sau và chỉ fetch đúng URL đó. | `fetch(url="https://example.com/research/article")` | **PASS** |
 
 ## B4. Live Chat Evidence
 
@@ -165,48 +164,27 @@ Toàn bộ bằng chứng hội thoại trực tiếp dưới đây được tr�
 
 ## B6. Reflection
 
-> **Trạng thái:** ⏳ **[Chờ xác nhận thảo luận chung của 3 thành viên trước khi nộp bài cuối cùng]**
-> *(Theo đúng quy tắc làm việc, phần dưới đây tổng hợp các dữ kiện kỹ thuật thực tế đã quan sát được từ log `v0` và quá trình tích hợp UI để làm cơ sở cho 3 thành viên thảo luận và điền kết luận thống nhất).*
+> **Phạm vi phần này:** Nhận xét kỹ thuật của Thành viên 1 dựa trên eval OpenAI v0–v3 và group v3. Kết luận thống nhất của cả nhóm vẫn cần các thành viên xác nhận.
 
 - **Which fixes belonged in `system_prompt.md`?**
-  - *Dữ kiện kỹ thuật từ `runs/v0_B_base_openrouter_20261110T104720715325.json`:* Các lỗi về hành vi tổng quát của Agent như tự ý đoán tài khoản `sama` khi thiếu thông tin (`R10_missing_handle`), không hỏi lại URL (`R11_missing_url`), không xin xác nhận trước khi gửi Telegram (`R12_confirm_before_send`), gọi tool cho câu hỏi toán học ngoài phạm vi (`R08_out_of_scope`), chỉ gọi 1 tool thay vì phối hợp nhiều nguồn (`R13_parallel_web_and_tweets`), và kế thừa ngữ cảnh qua nhiều lượt (`M01`, `M02`) đều xuất phát trực tiếp từ các chỉ dẫn hành vi trong `artifacts/system_prompt.md`.
+  - Quy tắc ứng xử tổng quát thuộc prompt: hỏi khi thiếu thông tin, không đoán tài khoản/URL, tránh tool cho yêu cầu ngoài phạm vi, xác nhận trước hành động gửi, và xử lý lượt mới nhất cùng ngữ cảnh liên quan. Ở v0, các case thiếu thông tin và ngoài phạm vi là lỗi; v1 nâng accuracy từ 0.65 lên 0.90.
+  - Ở v3, lỗi `M06_switch_tool` vẫn gọi thêm `social_search` dù lượt mới yêu cầu bỏ Twitter. Quy tắc ưu tiên nguồn mới đã được thêm nhưng chưa đủ để sửa lỗi đó.
   - *Ý kiến thống nhất của nhóm (Thành viên 1, 2, 3 điền xác nhận):* `[Chờ nhóm xác nhận]`
 
 - **Which fixes belonged in `tools.yaml`?**
-  - *Dữ kiện kỹ thuật từ `runs/v0_B_base_openrouter_20261110T104720715325.json`:* Các lỗi truyền sai giá trị tham số hoặc nhầm lẫn công năng giữa các tool gần nhau — như truyền `topic="general"` thay vì `topic="news"` (`R03_web_news_routing`, `R06_timeframe_arg`, `M02_carryover_timeframe`), hoặc truyền `screenname="Elon Musk"` có khoảng trắng thay vì handle chuẩn `"elonmusk"` (`M01_clarify_then_fill`) — thuộc về phần định nghĩa schema và mô tả chi tiết từng tham số trong `artifacts/tools.yaml`.
+  - Mô tả/schema tool nên làm rõ công dụng, trường hợp không dùng, enum và cách biểu diễn tham số. v2 cập nhật `tools.yaml`, nhưng base accuracy giảm từ 0.90 xuống 0.85; vì vậy không thể kết luận thay đổi này cải thiện metric tổng thể. Group v3 còn lỗi G08 do model bỏ `sort="stars"` khỏi tool call dù schema có default.
   - *Ý kiến thống nhất của nhóm (Thành viên 1, 2, 3 điền xác nhận):* `[Chờ nhóm xác nhận]`
 
 - **Which failure needed manual review instead of automatic grading?**
-  - *Dữ kiện kỹ thuật:* Trong `R03_web_news_routing` và `M02_carryover_timeframe`, model truyền `query="AI news today"` (hoặc `"robotics today"`) kèm `timeframe="day"`. Bộ chấm tự động (`compare_subset` trong `run_eval.py`) so khớp chuỗi tuyệt đối (`normalize_value`) với `"ai"` và `"robotics"` nên đánh FAIL `wrong_arg_value`, mặc dù trên thực tế khi chạy live trong `transcripts/live_research.transcript.json`, truy vấn `"latest AI news"` trên Tavily trả về kết quả thời sự rất chính xác. Tương tự, chất lượng bản tóm tắt cuối cùng (`assistant_text`) sau khi gọi `format` cần con người đọc kiểm tra trên Tool Call Inspector chứ không thể chỉ dựa vào so khớp tên tool.
+  - Eval Phase B đối chiếu tool calls và tham số với expected; nó không đánh giá độ chính xác/chất lượng nội dung trả lời sau khi tool chạy. Vì vậy cần người đọc kiểm tra chất lượng bản tóm tắt, mức độ phù hợp của nguồn và trích dẫn. Với các case như G08, đồng thời cần phân biệt tham số default của implementation với tham số model đã phát ra: run JSON cho thấy model không gửi `sort`, nên case strict-args vẫn fail.
   - *Ý kiến thống nhất của nhóm (Thành viên 1, 2, 3 điền xác nhận):* `[Chờ nhóm xác nhận]`
 
 - **What would you improve next?**
-  - *Gợi ý kỹ thuật từ quá trình triển khai:* (1) Hoàn thiện 3 vòng tối ưu `v1` → `v3` của Thành viên 1 và 17 unit test + custom tool của Thành viên 2; (2) Bổ sung kiểm chứng tự động cho chất lượng câu trả lời cuối cùng (LLM-as-a-Judge kiểm tra trích dẫn nguồn từ `tool_results` để chống hallucination); (3) Hỗ trợ streaming token trực tiếp trên Streamlit UI song song với Tool Call Inspector.
+  - Theo phạm vi Thành viên 1: tiếp tục sửa từng giả thuyết riêng cho ba lỗi còn lại (R12, M06, G08), chạy lại cùng provider/model và bộ case để đo trước/sau, rồi cập nhật `version_log.csv`. Chưa nên ghi các lỗi này là đã khắc phục khi run vẫn fail.
   - *Ý kiến thống nhất của nhóm (Thành viên 1, 2, 3 điền xác nhận):* `[Chờ nhóm xác nhận]`
 
 ## B7. Small Local Model Challenge (bonus)
 
-> **Trạng thái thực tế:** Hiện tại môi trường máy local chưa cài đặt `ollama` (`ollama not found`), do đó nhóm không tự tạo số liệu giả cho bảng benchmark Local Model. Giao diện `starter_v0/app.py` đã hỗ trợ sẵn lựa chọn Provider `ollama` và các preset `qwen2.5:7b`, `llama3.2:3b`. Khi chạy thêm thử nghiệm Ollama, cập nhật kết quả thực tế vào bảng dưới đây:
+> **Trạng thái:** Nhóm không thực hiện bonus local-model challenge theo quyết định hiện tại; lệnh `ollama` không có trong môi trường đã kiểm tra. Không có run JSON local, vì vậy không có benchmark hoặc lỗi đặc thù model nhỏ để thống kê. Các kết quả cloud v0–v3 được ghi ở B1.
 
-| Version | Model (provider) | Prompt/Tools | case_accuracy | tool_routing | argument | multiturn | Run File |
-|---|---|---|---|---|---|---|---|
-| `v0` | `nvidia/nemotron-3.5-lightning:free` (`openrouter`) | `v0` (`v0+pf0c107a9d7a1+t8db0ba629f52`) | 0.5000 | 0.7222 | 0.5000 | 0.5000 | `runs/v0_B_base_openrouter_20261110T104720715325.json` |
-| `v3` | (cloud) | `v3` | *Chờ chạy* | *Chờ chạy* | *Chờ chạy* | *Chờ chạy* | *Chờ chạy* |
-| `v3-qwen7b` | `qwen2.5:7b` (`ollama`) | `v3` | *Chưa chạy (chưa cài Ollama)* | — | — | — | — |
-| `v3-llama3b` | `llama3.2:3b` (`ollama`) | `v3` | *Chưa chạy (chưa cài Ollama)* | — | — | — | — |
-| `v4-local` | (ollama) | `v4-local` | *Chưa chạy* | — | — | — | — |
-| `v5-local` | (ollama) | `v5-local` | *Chưa chạy* | — | — | — | — |
-
-Lỗi đặc thù của model nhỏ (đếm từ run JSON khi chạy Ollama):
-
-| Failure Pattern | Count | Example Case | Fix Tried | Helped? |
-|---|---|---|---|---|
-| wrong / hallucinated tool | — | — | — | — |
-| invalid JSON args (`_invalid_json_arguments`) | — | — | — | — |
-| no tool call / answered directly | — | — | — | — |
-| missed `clarify` | — | — | — | — |
-| repeated / unnecessary calls | — | — | — | — |
-
-- Cái gì giúp model nhỏ gọi tool đúng hơn nhất? Bằng chứng? *(Chờ kết quả thực nghiệm Ollama nếu nhóm thực hiện phần Bonus Step 7)*
-- Bản prompt tối ưu cho local chạy trên model cloud thì sao? *(Chờ kết quả thực nghiệm Ollama)*
-- Khi nào nhóm sẽ chọn model local thay vì cloud cho agent này? *(Khi cần bảo mật dữ liệu nội bộ tuyệt đối như tra cứu `policy` / tài liệu nhạy cảm không được rời khỏi máy, hoặc khi cần chạy offline không phụ thuộc quota/rate-limit của cloud API).*
+Không có số liệu để điền bảng lỗi local (hallucinated tool, JSON lỗi, không gọi tool, bỏ sót clarify, gọi lặp). Các câu hỏi so sánh local với cloud trong bonus này **N/A — chưa thử nghiệm**.

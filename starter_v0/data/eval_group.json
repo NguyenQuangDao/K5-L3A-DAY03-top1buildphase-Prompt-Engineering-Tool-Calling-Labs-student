@@ -1,107 +1,116 @@
 {
   "dataset_id": "day04_v2_research_group",
   "dataset_role": "group",
-  "description": "Case do NHÓM tự viết thêm để cover thêm trường hợp. Mỗi case cần: id, phase='B', query HOẶC turns, failure_type (thuộc allowed_failure_types), và expect (tool_calls[...] hoặc no_tool=true). Nên kèm metadata.what_it_tests.",
+  "description": "Team-authored eval cases for tool routing, arguments, clarification, boundaries, and multi-turn context.",
   "allowed_failure_types": ["wrong_tool", "wrong_arg_value", "wrong_boundary", "unnecessary_tool", "out_of_scope", "missing_info"],
   "cases": [
     {
-      "id": "G01_hn_routing_timeframe",
+      "id": "G01_timeline_name_to_handle",
       "phase": "B",
       "suite": "group",
-      "query": "Dân Hacker News đang bàn gì về Rust trong tuần này?",
-      "failure_type": "wrong_tool",
-      "expect": {"tool_calls": [{"name": "hn_search", "args": {"timeframe": "week"}}]},
-      "metadata": {
-        "owner": "B",
-        "skill": "new_tool_routing",
-        "what_it_tests": "Nhắc 'Hacker News' phải route sang hn_search (không phải social_search/lookup) và map 'tuần này' -> timeframe=week."
-      }
+      "query": "Tóm tắt 7 tweet mới nhất của Andrej Karpathy.",
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "timeline", "args": {"screenname": "karpathy", "limit": 7}}]},
+      "metadata": {"owner": "Member 1", "skill": "timeline_name_mapping", "what_it_tests": "Dùng timeline cho tweet của một người, map Andrej Karpathy thành handle karpathy không có @ và giữ limit=7."}
     },
     {
-      "id": "G02_wiki_definition_routing",
+      "id": "G02_social_search_top",
       "phase": "B",
       "suite": "group",
-      "query": "Retrieval-augmented generation là gì? Giải thích ngắn gọn giúp mình.",
-      "failure_type": "wrong_tool",
-      "expect": {"tool_calls": [{"name": "wiki", "args": {}}]},
-      "metadata": {
-        "owner": "B",
-        "skill": "new_tool_routing",
-        "what_it_tests": "Câu hỏi định nghĩa/kiến thức nền phải dùng wiki, không dùng lookup (web/news) hay papers."
-      }
+      "query": "Cho mình 4 bài đăng phổ biến nhất về AI safety trên X.",
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "social_search", "args": {"query": "AI safety", "search_type": "Top", "limit": 4}}]},
+      "metadata": {"owner": "Member 1", "skill": "social_search_top", "what_it_tests": "Tìm bài theo chủ đề bằng social_search; map 'phổ biến nhất' sang search_type=Top và giữ limit=4."}
     },
     {
-      "id": "G03_github_language_limit_args",
+      "id": "G03_lookup_month_news",
+      "phase": "B",
+      "suite": "group",
+      "query": "Tóm tắt tin tức AI trong tháng này.",
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "lookup", "args": {"query": "AI", "topic": "news", "timeframe": "month"}}]},
+      "metadata": {"owner": "Member 1", "skill": "lookup_month", "what_it_tests": "Dùng lookup cho tin web, query=AI, topic=news và map 'tháng này' sang timeframe=month."}
+    },
+    {
+      "id": "G04_clarify_missing_account",
+      "phase": "B",
+      "suite": "group",
+      "query": "Tóm tắt 5 tweet mới nhất giúp mình.",
+      "failure_type": "missing_info",
+      "expect": {"tool_calls": [{"name": "clarify", "args": {"response_type": "text"}}]},
+      "metadata": {"owner": "Member 1", "skill": "clarify_missing_account", "what_it_tests": "Thiếu tài khoản thì hỏi lại bằng clarify response_type=text, không tự đoán người nổi tiếng."}
+    },
+    {
+      "id": "G05_new_tool_github_repos",
       "phase": "B",
       "suite": "group",
       "query": "Tìm 3 repo Python về LLM agent nhiều sao nhất trên GitHub.",
-      "failure_type": "wrong_arg_value",
-      "expect": {"tool_calls": [{"name": "github_repos", "args": {"language": "python", "limit": 3, "sort": "stars"}}]},
-      "metadata": {
-        "owner": "B",
-        "skill": "new_tool_args",
-        "what_it_tests": "Tách ngôn ngữ ra arg language (không nhét 'Python' vào query), limit=3 đúng con số user nói, sort=stars cho 'nhiều sao nhất'."
-      }
-    },
-    {
-      "id": "G04_hf_task_arg",
-      "phase": "B",
-      "suite": "group",
-      "query": "Trên Hugging Face, model nhận dạng giọng nói nào được tải nhiều nhất?",
-      "failure_type": "wrong_arg_value",
-      "expect": {"tool_calls": [{"name": "hf_models", "args": {"task": "automatic-speech-recognition", "sort": "downloads"}}]},
-      "metadata": {
-        "owner": "B",
-        "skill": "new_tool_args",
-        "what_it_tests": "Map 'nhận dạng giọng nói' -> pipeline tag automatic-speech-recognition và 'tải nhiều nhất' -> sort=downloads."
-      }
-    },
-    {
-      "id": "G05_hf_news_boundary",
-      "phase": "B",
-      "suite": "group",
-      "query": "Hôm nay có tin tức gì mới về công ty Hugging Face không?",
       "failure_type": "wrong_tool",
-      "expect": {"tool_calls": [{"name": "lookup", "args": {"topic": "news", "timeframe": "day"}}]},
-      "metadata": {
-        "owner": "B",
-        "skill": "new_tool_boundary",
-        "what_it_tests": "Ranh giới: nhắc 'Hugging Face' nhưng hỏi TIN TỨC -> lookup(topic=news, timeframe=day), không phải hf_models."
-      }
+      "expect": {"tool_calls": [{"name": "github_repos", "args": {"query": "LLM agent", "language": "python", "sort": "stars", "limit": 3}}]},
+      "metadata": {"owner": "Member 1", "skill": "new_tool_routing_args", "what_it_tests": "Route tìm repository GitHub sang tool mới github_repos; tách language=python, sort=stars, limit=3."}
     },
     {
-      "id": "G06_github_multiturn_carryover",
+      "id": "G06_multiturn_clarify_then_timeline",
       "phase": "B",
       "suite": "group",
       "turns": [
-        {"role": "user", "content": "Tìm repo về RAG trên GitHub giúp mình"},
-        {"role": "user", "content": "Chỉ lấy repo viết bằng TypeScript thôi"},
-        {"role": "user", "content": "Lấy 5 repo nhé"}
+        {"role": "user", "content": "Tóm tắt 5 tweet mới nhất giúp mình."},
+        {"role": "user", "content": "Của Sam Altman nhé."},
+        {"role": "user", "content": "Giữ đúng 5 tweet."}
       ],
-      "failure_type": "wrong_arg_value",
-      "expect": {"tool_calls": [{"name": "github_repos", "args": {"language": "typescript", "limit": 5}}]},
-      "metadata": {
-        "owner": "B",
-        "skill": "multiturn_carryover",
-        "difficulty": "hard",
-        "what_it_tests": "3 lượt: giữ chủ đề RAG từ lượt 1, language=typescript từ lượt 2, limit=5 từ lượt 3."
-      }
+      "failure_type": "missing_info",
+      "expect": {"tool_calls": [{"name": "timeline", "args": {"screenname": "sama", "limit": 5}}]},
+      "metadata": {"owner": "Member 1", "skill": "multiturn_clarify_fill", "what_it_tests": "Qua nhiều lượt, dùng account được bổ sung sau khi thiếu thông tin và giữ limit=5."}
     },
     {
-      "id": "G07_hf_to_github_switch_tool",
+      "id": "G07_multiturn_switch_web_to_social",
       "phase": "B",
       "suite": "group",
       "turns": [
-        {"role": "user", "content": "Model text-to-image nào đang hot trên Hugging Face?"},
-        {"role": "user", "content": "À không, mình muốn xem repo code về text-to-image trên GitHub cơ"}
+        {"role": "user", "content": "Tìm tin AI hôm nay trên web."},
+        {"role": "user", "content": "Không, bỏ web; tìm tweet phổ biến về AI thôi."}
       ],
       "failure_type": "wrong_tool",
-      "expect": {"tool_calls": [{"name": "github_repos", "args": {}}]},
-      "metadata": {
-        "owner": "B",
-        "skill": "multiturn_switch_tool",
-        "what_it_tests": "User đổi ý từ model (hf_models) sang repo code -> chỉ gọi github_repos, không gọi thêm hf_models."
-      }
+      "expect": {"tool_calls": [{"name": "social_search", "args": {"query": "AI", "search_type": "Top"}}]},
+      "metadata": {"owner": "Member 1", "skill": "multiturn_switch_tool", "what_it_tests": "Lượt mới nhất đổi nguồn từ web sang social; chỉ gọi social_search Top, không gọi lookup."}
+    },
+    {
+      "id": "G08_multiturn_correct_limit",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tìm 5 repo Python về RAG trên GitHub."},
+        {"role": "user", "content": "Thực ra lấy 10 repo nhé."}
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "github_repos", "args": {"query": "RAG", "language": "python", "sort": "stars", "limit": 10}}]},
+      "metadata": {"owner": "Member 1", "skill": "multiturn_arg_correction", "what_it_tests": "Giữ query và language từ lượt đầu, cập nhật limit từ 5 thành 10 theo lượt sửa mới nhất."}
+    },
+    {
+      "id": "G09_multiturn_carryover_news_timeframe",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tin AI hôm nay có gì?"},
+        {"role": "user", "content": "Còn robotics thì sao?"},
+        {"role": "user", "content": "Chỉ tìm robotics thôi, vẫn là tin hôm nay."}
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "lookup", "args": {"query": "robotics", "topic": "news", "timeframe": "day"}}]},
+      "metadata": {"owner": "Member 1", "skill": "multiturn_carryover", "what_it_tests": "Chỉ tìm web news về chủ đề mới robotics, đồng thời carry topic=news và timeframe=day; không gọi social_search."}
+    },
+    {
+      "id": "G10_multiturn_clarify_then_fetch_url",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tóm tắt bài viết này giúp mình."},
+        {"role": "user", "content": "https://example.com/research/article"},
+        {"role": "user", "content": "Chỉ đọc đúng link đó thôi."}
+      ],
+      "failure_type": "missing_info",
+      "expect": {"tool_calls": [{"name": "fetch", "args": {"url": "https://example.com/research/article"}}]},
+      "metadata": {"owner": "Member 1", "skill": "multiturn_clarify_url", "what_it_tests": "Sau khi URL được bổ sung ở lượt sau, dùng fetch với chính xác URL đó; không dùng lookup."}
     }
   ]
 }
