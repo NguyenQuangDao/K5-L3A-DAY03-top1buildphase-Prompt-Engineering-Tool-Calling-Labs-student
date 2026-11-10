@@ -123,3 +123,61 @@ tools:
         max_pages: {type: integer, default: 5, description: "Số trang"}
         max_chars: {type: integer, default: 8000, description: "Số ký tự"}
       required: [arxiv_url]
+
+  # ---------------- Team tools (người B) ----------------
+  - name: hn_search
+    description: >-
+      Tìm bài (story) trên Hacker News — cộng đồng lập trình viên/startup — kèm số điểm và số bình luận.
+      DÙNG KHI: user nhắc Hacker News / HN, hoặc hỏi dân tech/developer đang bàn gì về một chủ đề.
+      KHÔNG DÙNG cho Twitter/X (dùng social_search), tin tức báo chí chung (dùng lookup với topic=news),
+      hay khi user đưa sẵn URL (dùng fetch).
+    parameters:
+      type: object
+      properties:
+        query: {type: string, default: "", description: "Từ khóa tìm, ngắn gọn, nên bằng tiếng Anh (vd 'LLM agents'). Không để trống."}
+        sort: {type: string, enum: [relevance, date], default: "relevance", description: "relevance = nổi bật/liên quan nhất (mặc định); date = mới nhất, dùng khi user nói 'mới nhất', 'gần đây nhất'."}
+        timeframe: {type: string, enum: [day, week, month, year, all], default: "all", description: "Giới hạn thời gian đăng: 'hôm nay'=day, 'tuần này'=week, 'tháng này'=month, 'năm nay'=year. Không nói gì = all."}
+        limit: {type: integer, default: 5, description: "Số bài cần lấy, 1-20. Dùng đúng con số user yêu cầu."}
+      required: [query]
+
+  - name: wiki
+    description: >-
+      Lấy đoạn tóm tắt mở đầu của bài Wikipedia phù hợp nhất với từ khóa.
+      DÙNG KHI: user hỏi định nghĩa / kiến thức nền ổn định ("X là gì?", "giải thích khái niệm X", tiểu sử, lịch sử).
+      KHÔNG DÙNG cho tin tức hay sự kiện gần đây (dùng lookup với topic=news), paper khoa học (dùng papers),
+      hay câu hỏi tính toán/lập trình nằm ngoài phạm vi research.
+    parameters:
+      type: object
+      properties:
+        query: {type: string, default: "", description: "Tên khái niệm/thực thể cần tra, ngắn gọn (vd 'Retrieval-augmented generation'). Không để trống."}
+        lang: {type: string, enum: [en, vi], default: "en", description: "Ngôn ngữ Wikipedia. Mặc định en (bài đầy đủ hơn); chỉ dùng vi khi user yêu cầu nguồn Wikipedia tiếng Việt."}
+        max_results: {type: integer, default: 1, description: "Số bài, 1-5. Mặc định 1 cho câu hỏi định nghĩa."}
+      required: [query]
+
+  - name: github_repos
+    description: >-
+      Tìm repository mã nguồn mở trên GitHub, mặc định xếp theo số sao.
+      DÙNG KHI: user tìm repo, thư viện, framework, project open-source, code mẫu trên GitHub.
+      KHÔNG DÙNG để tìm model AI đã train sẵn (dùng hf_models), paper (dùng papers), hay tin tức (dùng lookup).
+    parameters:
+      type: object
+      properties:
+        query: {type: string, default: "", description: "Từ khóa chủ đề repo, không chứa tên ngôn ngữ (vd 'llm agent framework'). Không để trống."}
+        language: {type: string, default: "", description: "Ngôn ngữ lập trình nếu user nêu rõ, viết thường (vd 'python', 'typescript', 'rust'). Không nêu thì để trống."}
+        sort: {type: string, enum: [stars, updated, best_match], default: "stars", description: "stars = nhiều sao/phổ biến nhất (mặc định); updated = mới cập nhật gần đây; best_match = liên quan nhất."}
+        limit: {type: integer, default: 5, description: "Số repo, 1-20. Dùng đúng con số user yêu cầu."}
+      required: [query]
+
+  - name: hf_models
+    description: >-
+      Tìm model AI trên Hugging Face Hub, kèm task, lượt tải và lượt thích.
+      DÙNG KHI: user tìm model / checkpoint / weights có sẵn để dùng (vd 'model nhận dạng giọng nói', 'model Qwen nào tải nhiều nhất').
+      KHÔNG DÙNG để tìm paper (dùng papers), repo code (dùng github_repos), hay tin tức về model (dùng lookup với topic=news).
+    parameters:
+      type: object
+      properties:
+        query: {type: string, default: "", description: "Từ khóa trong tên model hoặc tên hãng (vd 'qwen', 'whisper', 'llama'). Có thể để trống nếu đã có task."}
+        task: {type: string, default: "", description: "Pipeline tag của Hugging Face nếu user nêu loại việc: text-generation, automatic-speech-recognition, text-to-image, feature-extraction (embedding), translation, image-classification. Không rõ thì để trống."}
+        sort: {type: string, enum: [downloads, likes, trending, recent], default: "downloads", description: "downloads = tải nhiều nhất (mặc định); likes = nhiều like nhất; trending = đang hot; recent = mới đăng."}
+        limit: {type: integer, default: 5, description: "Số model, 1-20. Dùng đúng con số user yêu cầu."}
+      required: [query]

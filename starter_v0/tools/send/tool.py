@@ -8,8 +8,16 @@ import requests
 from tools._shared import TIMEOUT, err
 
 
+def _is_confirmed(value: Any) -> bool:
+    # Bug fix: models sometimes send booleans as strings. `not "false"` is False, so the old
+    # `if not confirmed` check let confirmed="false" through and posted to Telegram.
+    if isinstance(value, bool):
+        return value
+    return isinstance(value, str) and value.strip().lower() == "true"
+
+
 def send_telegram(text: str = "", confirmed: bool = False) -> dict[str, Any]:
-    if not confirmed:
+    if not _is_confirmed(confirmed):
         return {
             "tool": "send_telegram",
             "status": "needs_confirmation",
