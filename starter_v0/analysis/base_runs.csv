@@ -1,21 +1,201 @@
 run_id,version,artifact_version,suite,case_id,is_multiturn,case_failure_type,observed_mismatch,expected_tool,actual_tool,passed,routing_correct,args_correct,failures
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R01_user_tweets_routing,False,wrong_tool,,timeline,timeline,True,True,True,
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R02_search_tweets_routing,False,wrong_tool,,social_search,social_search,True,True,True,
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R03_web_news_routing,False,wrong_tool,wrong_arg_value,lookup,lookup,False,True,False,"query: expected 'AI', got 'AI news today'; topic: expected 'news', got 'general'"
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R04_read_url_routing,False,wrong_tool,,fetch,fetch,True,True,True,
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R05_limit_arg,False,wrong_arg_value,,timeline,timeline,True,True,True,
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R06_timeframe_arg,False,wrong_arg_value,wrong_arg_value,lookup,lookup,False,True,False,"topic: expected 'news', got 'general'"
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R07_search_type_arg,False,wrong_arg_value,,social_search,social_search,True,True,True,
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R08_out_of_scope,False,out_of_scope,unexpected_tool_call,no_tool,lookup,False,False,False,expected no tool call
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R09_no_tool_capability,False,unnecessary_tool,,no_tool,,True,True,True,
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R10_missing_handle,False,missing_info,missing_tool_call,clarify,timeline,False,False,False,missing tool call clarify; extra tool call timeline
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R11_missing_url,False,missing_info,missing_tool_call,clarify,social_search,False,False,False,missing tool call clarify; extra tool call social_search
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R12_confirm_before_send,False,wrong_boundary,missing_tool_call,clarify,lookup,False,False,False,missing tool call clarify; extra tool call lookup
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R13_parallel_web_and_tweets,False,wrong_tool,missing_tool_call,lookup|social_search,social_search,False,False,False,missing tool call lookup
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R14_out_of_scope_coding,False,out_of_scope,,no_tool,,True,True,True,
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,M01_clarify_then_fill,True,missing_info,wrong_arg_value,timeline,timeline,False,True,False,"screenname: expected 'elonmusk', got 'Elon Musk'"
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,M02_carryover_timeframe,True,wrong_arg_value,wrong_arg_value,lookup,lookup,False,True,False,"query: expected 'robotics', got 'robotics today'; topic: expected 'news', got 'general'"
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,M03_correction_handle,True,wrong_arg_value,,timeline,timeline,True,True,True,
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,M04_clarify_then_url,True,missing_info,,fetch,fetch,True,True,True,
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,M05_correction_limit,True,wrong_arg_value,provider_error,timeline,,False,False,False,"RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1794355200000'}, 'limit_source': 'openrouter_free_tier_daily', 'remedy_hint': 'Wait for the daily reset (see X-RateLimit-Reset), or purchase credits to raise your free-model daily limit.', 'provider_name': None}}, 'user_id': 'user_34ieD6n0wKlPnyFtM1yMTA568dJ'}"
-v0_B_base_openrouter_20261110T104720715325,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,M06_switch_tool,True,wrong_tool,provider_error,lookup,,False,False,False,"RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1794355200000'}, 'limit_source': 'openrouter_free_tier_daily', 'remedy_hint': 'Wait for the daily reset (see X-RateLimit-Reset), or purchase credits to raise your free-model daily limit.', 'provider_name': None}}, 'user_id': 'user_34ieD6n0wKlPnyFtM1yMTA568dJ'}"
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R01_user_tweets_routing,False,wrong_tool,,timeline,timeline,True,True,True,
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R02_search_tweets_routing,False,wrong_tool,,social_search,social_search,True,True,True,
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R03_web_news_routing,False,wrong_tool,wrong_arg_value,lookup,lookup,False,True,False,"query: expected 'AI', got 'AI news'"
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R04_read_url_routing,False,wrong_tool,,fetch,fetch,True,True,True,
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R05_limit_arg,False,wrong_arg_value,,timeline,timeline,True,True,True,
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R06_timeframe_arg,False,wrong_arg_value,,lookup,lookup,True,True,True,
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R07_search_type_arg,False,wrong_arg_value,,social_search,social_search,True,True,True,
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R08_out_of_scope,False,out_of_scope,unexpected_tool_call,no_tool,send,False,False,False,expected no tool call
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R09_no_tool_capability,False,unnecessary_tool,,no_tool,,True,True,True,
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R10_missing_handle,False,missing_info,missing_tool_call,clarify,timeline,False,False,False,missing tool call clarify; extra tool call timeline
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R11_missing_url,False,missing_info,missing_tool_call,clarify,fetch,False,False,False,missing tool call clarify; extra tool call fetch
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R12_confirm_before_send,False,wrong_boundary,missing_tool_call,clarify,send,False,False,False,missing tool call clarify; extra tool call send
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R13_parallel_web_and_tweets,False,wrong_tool,wrong_arg_value,lookup|social_search,lookup|social_search,False,True,False,"query: expected 'AI', got 'AI news'; topic: expected 'news', got None"
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,R14_out_of_scope_coding,False,out_of_scope,unexpected_tool_call,no_tool,send,False,False,False,expected no tool call
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,M01_clarify_then_fill,True,missing_info,,timeline,timeline,True,True,True,
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,M02_carryover_timeframe,True,wrong_arg_value,,lookup,lookup,True,True,True,
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,M03_correction_handle,True,wrong_arg_value,,timeline,timeline,True,True,True,
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,M04_clarify_then_url,True,missing_info,,fetch,fetch,True,True,True,
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,M05_correction_limit,True,wrong_arg_value,,timeline,timeline,True,True,True,
+v0_B_base_openai_20261110T102720056843,v0,v0+pf0c107a9d7a1+t8db0ba629f52,base,M06_switch_tool,True,wrong_tool,,lookup,lookup,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,R01_user_tweets_routing,False,wrong_tool,,timeline,timeline,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,R02_search_tweets_routing,False,wrong_tool,,social_search,social_search,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,R03_web_news_routing,False,wrong_tool,,lookup,lookup,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,R04_read_url_routing,False,wrong_tool,,fetch,fetch,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,R05_limit_arg,False,wrong_arg_value,,timeline,timeline,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,R06_timeframe_arg,False,wrong_arg_value,,lookup,lookup,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,R07_search_type_arg,False,wrong_arg_value,,social_search,social_search,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,R08_out_of_scope,False,out_of_scope,,no_tool,,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,R09_no_tool_capability,False,unnecessary_tool,,no_tool,,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,R10_missing_handle,False,missing_info,,clarify,clarify,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,R11_missing_url,False,missing_info,,clarify,clarify,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,R12_confirm_before_send,False,wrong_boundary,wrong_arg_value,clarify,clarify,False,True,False,"response_type: expected 'yes_no', got 'text'"
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,R13_parallel_web_and_tweets,False,wrong_tool,,lookup|social_search,lookup|social_search,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,R14_out_of_scope_coding,False,out_of_scope,,no_tool,,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,M01_clarify_then_fill,True,missing_info,,timeline,timeline,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,M02_carryover_timeframe,True,wrong_arg_value,,lookup,lookup,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,M03_correction_handle,True,wrong_arg_value,,timeline,timeline,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,M04_clarify_then_url,True,missing_info,,fetch,fetch,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,M05_correction_limit,True,wrong_arg_value,,timeline,timeline,True,True,True,
+v1_B_base_openai_20261110T111004215616,v1,v1+p69796db64a79+t8db0ba629f52,base,M06_switch_tool,True,wrong_tool,extra_tool_call,lookup,lookup|social_search,False,False,False,extra tool call social_search
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,R01_user_tweets_routing,False,wrong_tool,,timeline,timeline,True,True,True,
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,R02_search_tweets_routing,False,wrong_tool,,social_search,social_search,True,True,True,
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,R03_web_news_routing,False,wrong_tool,,lookup,lookup,True,True,True,
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,R04_read_url_routing,False,wrong_tool,,fetch,fetch,True,True,True,
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,R05_limit_arg,False,wrong_arg_value,,timeline,timeline,True,True,True,
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,R06_timeframe_arg,False,wrong_arg_value,,lookup,lookup,True,True,True,
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,R07_search_type_arg,False,wrong_arg_value,,social_search,social_search,True,True,True,
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,R08_out_of_scope,False,out_of_scope,,no_tool,,True,True,True,
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,R09_no_tool_capability,False,unnecessary_tool,,no_tool,,True,True,True,
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,R10_missing_handle,False,missing_info,,clarify,clarify,True,True,True,
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,R11_missing_url,False,missing_info,,clarify,clarify,True,True,True,
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,R12_confirm_before_send,False,wrong_boundary,wrong_arg_value,clarify,clarify,False,True,False,"response_type: expected 'yes_no', got 'text'"
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,R13_parallel_web_and_tweets,False,wrong_tool,,lookup|social_search,lookup|social_search,True,True,True,
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,R14_out_of_scope_coding,False,out_of_scope,,no_tool,,True,True,True,
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,M01_clarify_then_fill,True,missing_info,,timeline,timeline,True,True,True,
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,M02_carryover_timeframe,True,wrong_arg_value,extra_tool_call,lookup,lookup|social_search,False,False,False,extra tool call social_search
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,M03_correction_handle,True,wrong_arg_value,,timeline,timeline,True,True,True,
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,M04_clarify_then_url,True,missing_info,,fetch,fetch,True,True,True,
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,M05_correction_limit,True,wrong_arg_value,,timeline,timeline,True,True,True,
+v2_B_base_openai_20261110T111540830676,v2,v2+p69796db64a79+t0156c6acb3c5,base,M06_switch_tool,True,wrong_tool,extra_tool_call,lookup,lookup|social_search,False,False,False,extra tool call social_search
+v2_B_group_openai_20261110T112807806810,v2,v2+p69796db64a79+te19d85b877e0,group,G01_timeline_name_to_handle,False,wrong_arg_value,,timeline,timeline,True,True,True,
+v2_B_group_openai_20261110T112807806810,v2,v2+p69796db64a79+te19d85b877e0,group,G02_social_search_top,False,wrong_arg_value,,social_search,social_search,True,True,True,
+v2_B_group_openai_20261110T112807806810,v2,v2+p69796db64a79+te19d85b877e0,group,G03_lookup_month_news,False,wrong_arg_value,,lookup,lookup,True,True,True,
+v2_B_group_openai_20261110T112807806810,v2,v2+p69796db64a79+te19d85b877e0,group,G04_clarify_missing_account,False,missing_info,,clarify,clarify,True,True,True,
+v2_B_group_openai_20261110T112807806810,v2,v2+p69796db64a79+te19d85b877e0,group,G05_new_tool_github_repos,False,wrong_tool,,github_repos,github_repos,True,True,True,
+v2_B_group_openai_20261110T112807806810,v2,v2+p69796db64a79+te19d85b877e0,group,G06_multiturn_clarify_then_timeline,True,missing_info,,timeline,timeline,True,True,True,
+v2_B_group_openai_20261110T112807806810,v2,v2+p69796db64a79+te19d85b877e0,group,G07_multiturn_switch_web_to_social,True,wrong_tool,,social_search,social_search,True,True,True,
+v2_B_group_openai_20261110T112807806810,v2,v2+p69796db64a79+te19d85b877e0,group,G08_multiturn_correct_limit,True,wrong_arg_value,wrong_arg_value,github_repos,github_repos,False,True,False,"sort: expected 'stars', got None"
+v2_B_group_openai_20261110T112807806810,v2,v2+p69796db64a79+te19d85b877e0,group,G09_multiturn_carryover_news_timeframe,True,wrong_arg_value,,lookup,lookup,True,True,True,
+v2_B_group_openai_20261110T112807806810,v2,v2+p69796db64a79+te19d85b877e0,group,G10_multiturn_clarify_then_fetch_url,True,missing_info,,fetch,fetch,True,True,True,
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,R01_user_tweets_routing,False,wrong_tool,,timeline,timeline,True,True,True,
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,R02_search_tweets_routing,False,wrong_tool,missing_tool_call,social_search,hn_search,False,False,False,missing tool call social_search; extra tool call hn_search
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,R03_web_news_routing,False,wrong_tool,wrong_arg_value,lookup,lookup,False,True,False,"query: expected 'AI', got 'AI news today'"
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,R04_read_url_routing,False,wrong_tool,missing_tool_call,fetch,lookup,False,False,False,missing tool call fetch; extra tool call lookup
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,R05_limit_arg,False,wrong_arg_value,missing_tool_call,timeline,social_search,False,False,False,missing tool call timeline; extra tool call social_search
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,R06_timeframe_arg,False,wrong_arg_value,wrong_arg_value,lookup,lookup,False,True,False,"timeframe: expected 'week', got 'tuởn này'"
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,R07_search_type_arg,False,wrong_arg_value,,social_search,social_search,True,True,True,
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,R08_out_of_scope,False,out_of_scope,unexpected_tool_call,no_tool,lookup,False,False,False,expected no tool call
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,R09_no_tool_capability,False,unnecessary_tool,unexpected_tool_call,no_tool,clarify,False,False,False,expected no tool call
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,R10_missing_handle,False,missing_info,missing_tool_call,clarify,social_search,False,False,False,missing tool call clarify; extra tool call social_search
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,R11_missing_url,False,missing_info,missing_tool_call,clarify,lookup,False,False,False,missing tool call clarify; extra tool call lookup
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,R12_confirm_before_send,False,wrong_boundary,missing_tool_call,clarify,send,False,False,False,missing tool call clarify; extra tool call send
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,R13_parallel_web_and_tweets,False,wrong_tool,wrong_arg_value,lookup|social_search,lookup|social_search,False,True,False,"query: expected 'AI', got 'tin AI hôm nay'"
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,R14_out_of_scope_coding,False,out_of_scope,,no_tool,,True,True,True,
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,M01_clarify_then_fill,True,missing_info,wrong_arg_value,timeline,timeline,False,True,False,"limit: expected 5, got '5'"
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,M02_carryover_timeframe,True,wrong_arg_value,wrong_arg_value,lookup,lookup,False,True,False,"query: expected 'robotics', got 'robotics today'; topic: expected 'news', got None"
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,M03_correction_handle,True,wrong_arg_value,missing_tool_call,timeline,social_search,False,False,False,missing tool call timeline; extra tool call social_search
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,M04_clarify_then_url,True,missing_info,,fetch,fetch,True,True,True,
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,M05_correction_limit,True,wrong_arg_value,missing_tool_call,timeline,social_search,False,False,False,missing tool call timeline; extra tool call social_search
+v3-llama3b_B_base_ollama_20261110T141654783121,v3-llama3b,v3-llama3b+pc95531b2d8b5+te19d85b877e0,base,M06_switch_tool,True,wrong_tool,,lookup,lookup,True,True,True,
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,R01_user_tweets_routing,False,wrong_tool,,timeline,timeline,True,True,True,
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,R02_search_tweets_routing,False,wrong_tool,missing_tool_call,social_search,,False,False,False,missing tool call social_search
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,R03_web_news_routing,False,wrong_tool,,lookup,lookup,True,True,True,
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,R04_read_url_routing,False,wrong_tool,missing_tool_call,fetch,,False,False,False,missing tool call fetch
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,R05_limit_arg,False,wrong_arg_value,,timeline,timeline,True,True,True,
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,R06_timeframe_arg,False,wrong_arg_value,,lookup,lookup,True,True,True,
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,R07_search_type_arg,False,wrong_arg_value,,social_search,social_search,True,True,True,
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,R08_out_of_scope,False,out_of_scope,unexpected_tool_call,no_tool,paper_text,False,False,False,expected no tool call
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,R09_no_tool_capability,False,unnecessary_tool,,no_tool,,True,True,True,
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,R10_missing_handle,False,missing_info,missing_tool_call,clarify,hn_search,False,False,False,missing tool call clarify; extra tool call hn_search
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,R11_missing_url,False,missing_info,missing_tool_call,clarify,,False,False,False,missing tool call clarify
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,R12_confirm_before_send,False,wrong_boundary,missing_tool_call,clarify,,False,False,False,missing tool call clarify
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,R13_parallel_web_and_tweets,False,wrong_tool,wrong_arg_value,lookup|social_search,lookup|fetch,False,False,False,"topic: expected 'news', got 'general'; missing tool call social_search; extra tool call fetch"
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,R14_out_of_scope_coding,False,out_of_scope,unexpected_tool_call,no_tool,clarify,False,False,False,expected no tool call
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,M01_clarify_then_fill,True,missing_info,,timeline,timeline,True,True,True,
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,M02_carryover_timeframe,True,wrong_arg_value,,lookup,lookup,True,True,True,
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,M03_correction_handle,True,wrong_arg_value,,timeline,timeline,True,True,True,
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,M04_clarify_then_url,True,missing_info,,fetch,fetch,True,True,True,
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,M05_correction_limit,True,wrong_arg_value,,timeline,timeline,True,True,True,
+v3-qwen3b_B_base_ollama_20261110T123530978985,v3-qwen3b,v3-qwen3b+pd3afd81d7e22+tb82c92d8892a,base,M06_switch_tool,True,wrong_tool,missing_tool_call,lookup,social_search,False,False,False,missing tool call lookup; extra tool call social_search
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,R01_user_tweets_routing,False,wrong_tool,,timeline,timeline,True,True,True,
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,R02_search_tweets_routing,False,wrong_tool,,social_search,social_search,True,True,True,
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,R03_web_news_routing,False,wrong_tool,,lookup,lookup,True,True,True,
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,R04_read_url_routing,False,wrong_tool,,fetch,fetch,True,True,True,
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,R05_limit_arg,False,wrong_arg_value,,timeline,timeline,True,True,True,
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,R06_timeframe_arg,False,wrong_arg_value,,lookup,lookup,True,True,True,
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,R07_search_type_arg,False,wrong_arg_value,,social_search,social_search,True,True,True,
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,R08_out_of_scope,False,out_of_scope,,no_tool,,True,True,True,
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,R09_no_tool_capability,False,unnecessary_tool,,no_tool,,True,True,True,
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,R10_missing_handle,False,missing_info,missing_tool_call,clarify,social_search,False,False,False,missing tool call clarify; extra tool call social_search
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,R11_missing_url,False,missing_info,missing_tool_call,clarify,,False,False,False,missing tool call clarify
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,R12_confirm_before_send,False,wrong_boundary,missing_tool_call,clarify,,False,False,False,missing tool call clarify
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,R13_parallel_web_and_tweets,False,wrong_tool,wrong_arg_value,lookup|social_search,lookup|social_search,False,True,False,"query: expected 'AI', got 'AI hôm nay'"
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,R14_out_of_scope_coding,False,out_of_scope,,no_tool,,True,True,True,
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,M01_clarify_then_fill,True,missing_info,,timeline,timeline,True,True,True,
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,M02_carryover_timeframe,True,wrong_arg_value,,lookup,lookup,True,True,True,
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,M03_correction_handle,True,wrong_arg_value,,timeline,timeline,True,True,True,
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,M04_clarify_then_url,True,missing_info,,fetch,fetch,True,True,True,
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,M05_correction_limit,True,wrong_arg_value,,timeline,timeline,True,True,True,
+v3-qwen7b_B_base_ollama_20261110T141156322981,v3-qwen7b,v3-qwen7b+pc95531b2d8b5+te19d85b877e0,base,M06_switch_tool,True,wrong_tool,,lookup,lookup,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,R01_user_tweets_routing,False,wrong_tool,,timeline,timeline,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,R02_search_tweets_routing,False,wrong_tool,,social_search,social_search,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,R03_web_news_routing,False,wrong_tool,,lookup,lookup,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,R04_read_url_routing,False,wrong_tool,,fetch,fetch,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,R05_limit_arg,False,wrong_arg_value,,timeline,timeline,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,R06_timeframe_arg,False,wrong_arg_value,,lookup,lookup,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,R07_search_type_arg,False,wrong_arg_value,,social_search,social_search,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,R08_out_of_scope,False,out_of_scope,,no_tool,,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,R09_no_tool_capability,False,unnecessary_tool,,no_tool,,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,R10_missing_handle,False,missing_info,,clarify,clarify,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,R11_missing_url,False,missing_info,,clarify,clarify,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,R12_confirm_before_send,False,wrong_boundary,wrong_arg_value,clarify,clarify,False,True,False,"response_type: expected 'yes_no', got 'text'"
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,R13_parallel_web_and_tweets,False,wrong_tool,,lookup|social_search,lookup|social_search,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,R14_out_of_scope_coding,False,out_of_scope,,no_tool,,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,M01_clarify_then_fill,True,missing_info,,timeline,timeline,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,M02_carryover_timeframe,True,wrong_arg_value,,lookup,lookup,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,M03_correction_handle,True,wrong_arg_value,,timeline,timeline,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,M04_clarify_then_url,True,missing_info,,fetch,fetch,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,M05_correction_limit,True,wrong_arg_value,,timeline,timeline,True,True,True,
+v3_B_base_openai_20261110T113536460431,v3,v3+pc95531b2d8b5+te19d85b877e0,base,M06_switch_tool,True,wrong_tool,extra_tool_call,lookup,lookup|social_search,False,False,False,extra tool call social_search
+v3_B_group_openai_20261110T113603572758,v3,v3+pc95531b2d8b5+te19d85b877e0,group,G01_timeline_name_to_handle,False,wrong_arg_value,,timeline,timeline,True,True,True,
+v3_B_group_openai_20261110T113603572758,v3,v3+pc95531b2d8b5+te19d85b877e0,group,G02_social_search_top,False,wrong_arg_value,,social_search,social_search,True,True,True,
+v3_B_group_openai_20261110T113603572758,v3,v3+pc95531b2d8b5+te19d85b877e0,group,G03_lookup_month_news,False,wrong_arg_value,,lookup,lookup,True,True,True,
+v3_B_group_openai_20261110T113603572758,v3,v3+pc95531b2d8b5+te19d85b877e0,group,G04_clarify_missing_account,False,missing_info,,clarify,clarify,True,True,True,
+v3_B_group_openai_20261110T113603572758,v3,v3+pc95531b2d8b5+te19d85b877e0,group,G05_new_tool_github_repos,False,wrong_tool,,github_repos,github_repos,True,True,True,
+v3_B_group_openai_20261110T113603572758,v3,v3+pc95531b2d8b5+te19d85b877e0,group,G06_multiturn_clarify_then_timeline,True,missing_info,,timeline,timeline,True,True,True,
+v3_B_group_openai_20261110T113603572758,v3,v3+pc95531b2d8b5+te19d85b877e0,group,G07_multiturn_switch_web_to_social,True,wrong_tool,,social_search,social_search,True,True,True,
+v3_B_group_openai_20261110T113603572758,v3,v3+pc95531b2d8b5+te19d85b877e0,group,G08_multiturn_correct_limit,True,wrong_arg_value,wrong_arg_value,github_repos,github_repos,False,True,False,"sort: expected 'stars', got None"
+v3_B_group_openai_20261110T113603572758,v3,v3+pc95531b2d8b5+te19d85b877e0,group,G09_multiturn_carryover_news_timeframe,True,wrong_arg_value,,lookup,lookup,True,True,True,
+v3_B_group_openai_20261110T113603572758,v3,v3+pc95531b2d8b5+te19d85b877e0,group,G10_multiturn_clarify_then_fetch_url,True,missing_info,,fetch,fetch,True,True,True,
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,R01_user_tweets_routing,False,wrong_tool,,timeline,timeline,True,True,True,
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,R02_search_tweets_routing,False,wrong_tool,,social_search,social_search,True,True,True,
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,R03_web_news_routing,False,wrong_tool,,lookup,lookup,True,True,True,
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,R04_read_url_routing,False,wrong_tool,missing_tool_call,fetch,lookup,False,False,False,missing tool call fetch; extra tool call lookup
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,R05_limit_arg,False,wrong_arg_value,,timeline,timeline,True,True,True,
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,R06_timeframe_arg,False,wrong_arg_value,,lookup,lookup,True,True,True,
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,R07_search_type_arg,False,wrong_arg_value,,social_search,social_search,True,True,True,
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,R08_out_of_scope,False,out_of_scope,,no_tool,,True,True,True,
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,R09_no_tool_capability,False,unnecessary_tool,,no_tool,,True,True,True,
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,R10_missing_handle,False,missing_info,missing_tool_call,clarify,timeline,False,False,False,missing tool call clarify; extra tool call timeline
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,R11_missing_url,False,missing_info,missing_tool_call,clarify,,False,False,False,missing tool call clarify
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,R12_confirm_before_send,False,wrong_boundary,missing_tool_call,clarify,,False,False,False,missing tool call clarify
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,R13_parallel_web_and_tweets,False,wrong_tool,missing_tool_call,lookup|social_search,lookup|timeline,False,False,False,missing tool call social_search; extra tool call timeline
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,R14_out_of_scope_coding,False,out_of_scope,,no_tool,,True,True,True,
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,M01_clarify_then_fill,True,missing_info,,timeline,timeline,True,True,True,
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,M02_carryover_timeframe,True,wrong_arg_value,,lookup,lookup,True,True,True,
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,M03_correction_handle,True,wrong_arg_value,,timeline,timeline,True,True,True,
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,M04_clarify_then_url,True,missing_info,,fetch,fetch,True,True,True,
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,M05_correction_limit,True,wrong_arg_value,,timeline,timeline,True,True,True,
+v4-local-qwen3b_B_base_ollama_20261110T140137250757,v4-local-qwen3b,v4-local-qwen3b+pd3afd81d7e22+t62a27281b248,base,M06_switch_tool,True,wrong_tool,missing_tool_call,lookup,social_search,False,False,False,missing tool call lookup; extra tool call social_search
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,R01_user_tweets_routing,False,wrong_tool,,timeline,timeline,True,True,True,
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,R02_search_tweets_routing,False,wrong_tool,,social_search,social_search,True,True,True,
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,R03_web_news_routing,False,wrong_tool,,lookup,lookup,True,True,True,
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,R04_read_url_routing,False,wrong_tool,missing_tool_call,fetch,,False,False,False,missing tool call fetch
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,R05_limit_arg,False,wrong_arg_value,,timeline,timeline,True,True,True,
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,R06_timeframe_arg,False,wrong_arg_value,,lookup,lookup,True,True,True,
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,R07_search_type_arg,False,wrong_arg_value,,social_search,social_search,True,True,True,
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,R08_out_of_scope,False,out_of_scope,,no_tool,,True,True,True,
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,R09_no_tool_capability,False,unnecessary_tool,,no_tool,,True,True,True,
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,R10_missing_handle,False,missing_info,,clarify,clarify,True,True,True,
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,R11_missing_url,False,missing_info,missing_tool_call,clarify,lookup,False,False,False,missing tool call clarify; extra tool call lookup
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,R12_confirm_before_send,False,wrong_boundary,,clarify,clarify,True,True,True,
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,R13_parallel_web_and_tweets,False,wrong_tool,,lookup|social_search,lookup|social_search,True,True,True,
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,R14_out_of_scope_coding,False,out_of_scope,,no_tool,,True,True,True,
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,M01_clarify_then_fill,True,missing_info,missing_tool_call,timeline,clarify,False,False,False,missing tool call timeline; extra tool call clarify
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,M02_carryover_timeframe,True,wrong_arg_value,,lookup,lookup,True,True,True,
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,M03_correction_handle,True,wrong_arg_value,,timeline,timeline,True,True,True,
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,M04_clarify_then_url,True,missing_info,,fetch,fetch,True,True,True,
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,M05_correction_limit,True,wrong_arg_value,,timeline,timeline,True,True,True,
+v5-local-qwen3b_B_base_ollama_20261110T140332704910,v5-local-qwen3b,v5-local-qwen3b+pcd3033b2b9f8+t62a27281b248,base,M06_switch_tool,True,wrong_tool,missing_tool_call,lookup,social_search,False,False,False,missing tool call lookup; extra tool call social_search
