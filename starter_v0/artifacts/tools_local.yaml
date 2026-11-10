@@ -1,0 +1,113 @@
+# v4-local: v3 tool declarations, verbatim, limited to the 7 core tools
+# (clarify, timeline, social_search, lookup, fetch, format, send).
+# Hypothesis: small local models pick distractor tools when 14 tools are offered.
+tools:
+  # ---------------- Core tools ----------------
+  - name: clarify
+    description: >-
+      Asks the user for essential information that is missing or ambiguous, or
+      asks for explicit yes/no confirmation before an external action. Use only
+      when a required detail is missing or confirmation is needed. Do not use
+      when the request is clear and sufficiently specified; call the relevant
+      research tool instead.
+    parameters:
+      type: object
+      properties:
+        question: {type: string, default: "", description: "Concise question asking for the missing detail or explicit confirmation."}
+        response_type: {type: string, enum: [text, yes_no, choice], default: "text", description: "Use text for missing information, yes_no for action confirmation, or choice when offering listed options."}
+        options: {type: array, default: [], items: {type: string}, description: "Options to present when response_type is choice."}
+      required: [question]
+
+  - name: timeline
+    description: >-
+      Retrieves recent posts from one social media account. Use when the user
+      asks what a specific person or account posted. Do not use for searching
+      posts by many people about a topic; use social_search for that. Do not
+      guess an unidentified account; call clarify when the account is missing.
+    parameters:
+      type: object
+      properties:
+        screenname: {type: string, default: "", description: "Account handle without @, for example sama or elonmusk."}
+        limit: {type: integer, default: 5, description: "Maximum number of recent posts to retrieve; preserve the user's requested count."}
+      required: [screenname]
+
+  - name: social_search
+    description: >-
+      Searches social media posts by topic across accounts. Use when the user
+      asks what people are saying about a subject, including popular or recent
+      posts. Do not use for posts from one specific account (use timeline) or
+      for web news (use lookup).
+    parameters:
+      type: object
+      properties:
+        query: {type: string, default: "", description: "The topic or keywords to search; keep the query focused on the subject."}
+        search_type: {type: string, enum: [Latest, Top], default: "Latest", description: "Only Top or Latest. Use Top for popular/top posts; otherwise use Latest."}
+        limit: {type: integer, default: 5, description: "Maximum number of posts to retrieve; preserve the user's requested count."}
+      required: [query]
+
+  - name: lookup
+    description: >-
+      Searches the web for general information or news. Use for web research
+      when the user has not supplied a specific URL; set topic to news for
+      news requests and general for other web research. Do not use for social
+      media post searches (use social_search) or to read a supplied URL (use
+      fetch).
+    parameters:
+      type: object
+      properties:
+        query: {type: string, default: "", description: "Focused subject or keywords to search on the web."}
+        topic: {type: string, enum: [general, news], default: "general", description: "Use news for news requests and general for other web research."}
+        timeframe: {type: string, enum: [day, week, month, year], default: "week", description: "Allowed values are day, week, month, or year. Map today to day and this week to week; honor an explicit period."}
+        max_results: {type: integer, default: 5, description: "Maximum number of web results to retrieve."}
+      required: [query]
+
+  - name: fetch
+    description: >-
+      Retrieves and reads content from a specific URL supplied by the user.
+      Use when the user asks to read or summarize an available link. Do not use
+      to discover a URL or invent a missing one; call clarify for a missing URL.
+    parameters:
+      type: object
+      properties:
+        url: {type: string, default: "", description: "The exact URL supplied by the user; do not substitute or fabricate a URL."}
+      required: [url]
+
+  - name: format
+    description: >-
+      Formats a list of posts or research items already provided or retrieved
+      into a digest, sections, bullets, or a thread. Use when the source items
+      are available and the user asks to organize or present them. Do not use
+      to search for, retrieve, or invent items.
+    parameters:
+      type: object
+      properties:
+        items:
+          type: array
+          default: []
+          description: "Existing items to format; do not invent missing items."
+          items:
+            type: object
+            properties:
+              title: {type: string}
+              url: {type: string}
+              source: {type: string}
+              summary: {type: string}
+              section: {type: string}
+        template: {type: string, enum: [brief, sections, bullets, thread, daily_ai_vn], default: "sections", description: "Output format requested by the user; use a supported value."}
+        headline: {type: string, default: "", description: "Optional title for the formatted output."}
+      required: [items, template]
+
+  # ---------------- Bonus tools ----------------
+  - name: send
+    description: >-
+      Sends text to the configured Telegram destination, which is an external
+      action. Use only after the user has explicitly confirmed this specific
+      send and set confirmed=true. Do not use to draft a message, to provide an
+      ordinary answer, or before confirmation; call clarify with response_type
+      yes_no first and wait for the user's answer.
+    parameters:
+      type: object
+      properties:
+        text: {type: string, default: "", description: "The exact content the user requested to send."}
+        confirmed: {type: boolean, default: false, description: "Must be true only after the user explicitly confirms this specific send; otherwise do not call send."}
+      required: [text]
