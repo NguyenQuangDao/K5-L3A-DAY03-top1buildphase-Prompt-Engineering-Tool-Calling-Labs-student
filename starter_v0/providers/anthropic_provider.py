@@ -38,7 +38,7 @@ class AnthropicProvider:
         self,
         *,
         api_key_env: str = "ANTHROPIC_API_KEY",
-        default_model: str = "claude-haiku-4-5-20251001",
+        default_model: str = "claude-haiku-5-5",
     ) -> None:
         self.api_key_env = api_key_env
         self.default_model = default_model
@@ -62,11 +62,13 @@ class AnthropicProvider:
             raise RuntimeError(f"Missing API key env var: {self.api_key_env}")
 
         system, chat_messages = _split_system(messages)
+        # `temperature` is accepted for interface compatibility but NOT sent: the current SDK
+        # (API version 2026-10-21) rejects sampling parameters on every model.
+        # max_tokens leaves room for adaptive thinking, which counts toward the cap (Haiku 5.5+).
         kwargs: dict[str, Any] = {
             "model": model or self.default_model,
             "messages": chat_messages,
-            "max_tokens": 1024,
-            "temperature": temperature,
+            "max_tokens": 4096,
         }
         if system:
             kwargs["system"] = system

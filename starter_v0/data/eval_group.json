@@ -3,5 +3,105 @@
   "dataset_role": "group",
   "description": "Case do NHÓM tự viết thêm để cover thêm trường hợp. Mỗi case cần: id, phase='B', query HOẶC turns, failure_type (thuộc allowed_failure_types), và expect (tool_calls[...] hoặc no_tool=true). Nên kèm metadata.what_it_tests.",
   "allowed_failure_types": ["wrong_tool", "wrong_arg_value", "wrong_boundary", "unnecessary_tool", "out_of_scope", "missing_info"],
-  "cases": []
+  "cases": [
+    {
+      "id": "G01_hn_routing_timeframe",
+      "phase": "B",
+      "suite": "group",
+      "query": "Dân Hacker News đang bàn gì về Rust trong tuần này?",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "hn_search", "args": {"timeframe": "week"}}]},
+      "metadata": {
+        "owner": "B",
+        "skill": "new_tool_routing",
+        "what_it_tests": "Nhắc 'Hacker News' phải route sang hn_search (không phải social_search/lookup) và map 'tuần này' -> timeframe=week."
+      }
+    },
+    {
+      "id": "G02_wiki_definition_routing",
+      "phase": "B",
+      "suite": "group",
+      "query": "Retrieval-augmented generation là gì? Giải thích ngắn gọn giúp mình.",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "wiki", "args": {}}]},
+      "metadata": {
+        "owner": "B",
+        "skill": "new_tool_routing",
+        "what_it_tests": "Câu hỏi định nghĩa/kiến thức nền phải dùng wiki, không dùng lookup (web/news) hay papers."
+      }
+    },
+    {
+      "id": "G03_github_language_limit_args",
+      "phase": "B",
+      "suite": "group",
+      "query": "Tìm 3 repo Python về LLM agent nhiều sao nhất trên GitHub.",
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "github_repos", "args": {"language": "python", "limit": 3, "sort": "stars"}}]},
+      "metadata": {
+        "owner": "B",
+        "skill": "new_tool_args",
+        "what_it_tests": "Tách ngôn ngữ ra arg language (không nhét 'Python' vào query), limit=3 đúng con số user nói, sort=stars cho 'nhiều sao nhất'."
+      }
+    },
+    {
+      "id": "G04_hf_task_arg",
+      "phase": "B",
+      "suite": "group",
+      "query": "Trên Hugging Face, model nhận dạng giọng nói nào được tải nhiều nhất?",
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "hf_models", "args": {"task": "automatic-speech-recognition", "sort": "downloads"}}]},
+      "metadata": {
+        "owner": "B",
+        "skill": "new_tool_args",
+        "what_it_tests": "Map 'nhận dạng giọng nói' -> pipeline tag automatic-speech-recognition và 'tải nhiều nhất' -> sort=downloads."
+      }
+    },
+    {
+      "id": "G05_hf_news_boundary",
+      "phase": "B",
+      "suite": "group",
+      "query": "Hôm nay có tin tức gì mới về công ty Hugging Face không?",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "lookup", "args": {"topic": "news", "timeframe": "day"}}]},
+      "metadata": {
+        "owner": "B",
+        "skill": "new_tool_boundary",
+        "what_it_tests": "Ranh giới: nhắc 'Hugging Face' nhưng hỏi TIN TỨC -> lookup(topic=news, timeframe=day), không phải hf_models."
+      }
+    },
+    {
+      "id": "G06_github_multiturn_carryover",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tìm repo về RAG trên GitHub giúp mình"},
+        {"role": "user", "content": "Chỉ lấy repo viết bằng TypeScript thôi"},
+        {"role": "user", "content": "Lấy 5 repo nhé"}
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "github_repos", "args": {"language": "typescript", "limit": 5}}]},
+      "metadata": {
+        "owner": "B",
+        "skill": "multiturn_carryover",
+        "difficulty": "hard",
+        "what_it_tests": "3 lượt: giữ chủ đề RAG từ lượt 1, language=typescript từ lượt 2, limit=5 từ lượt 3."
+      }
+    },
+    {
+      "id": "G07_hf_to_github_switch_tool",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Model text-to-image nào đang hot trên Hugging Face?"},
+        {"role": "user", "content": "À không, mình muốn xem repo code về text-to-image trên GitHub cơ"}
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "github_repos", "args": {}}]},
+      "metadata": {
+        "owner": "B",
+        "skill": "multiturn_switch_tool",
+        "what_it_tests": "User đổi ý từ model (hf_models) sang repo code -> chỉ gọi github_repos, không gọi thêm hf_models."
+      }
+    }
+  ]
 }
