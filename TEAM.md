@@ -9,11 +9,11 @@
 
 ## Thành viên
 
-| STT | Họ tên | MSSV | Email | GitHub | Vai trò |
-| --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | Nguyễn Vũ Thành Long | 2A202603635 | 26ai.longnvt2@vinuni.edu.vn | `nvl191` | Prompt & Eval Lead: `system_prompt.md`, `tools.yaml`, v0–v3, `version_log.csv`, `eval_group.json` |
-|   2 | Nguyễn Gia Bảo | 2A202603647 | 26ai.baong5@vinuni.edu.vn | `Billy3005` | Tool & Testing Engineer: 4 tool mới, unit test, sửa bug tool, Small Local Model (Step 7) |
-|   3 | Nguyễn Quang Đạo | 2A202603614 | 26ai.daonq2@vinuni.edu.vn | `NguyenQuangDao` | UI, Live Demo & Report Lead: `app.py`, `ui_components/`, poster, REPORT, deploy |
+| STT | Họ tên               | MSSV        | Email                       | GitHub           | Vai trò                                                                                           |
+| --: | -------------------- | ----------- | --------------------------- | ---------------- | ------------------------------------------------------------------------------------------------- |
+|   1 | Nguyễn Vũ Thành Long | 2A202603635 | 26ai.longnvt2@vinuni.edu.vn | `nvl191`         | Prompt & Eval Lead: `system_prompt.md`, `tools.yaml`, v0–v3, `version_log.csv`, `eval_group.json` |
+|   2 | Nguyễn Gia Bảo       | 2A202603647 | 26ai.baong5@vinuni.edu.vn   | `Billy3005`      | Tool & Testing Engineer: 4 tool mới, unit test, sửa bug tool, Small Local Model (Step 7)          |
+|   3 | Nguyễn Quang Đạo     | 2A202603614 | 26ai.daonq2@vinuni.edu.vn   | `NguyenQuangDao` | UI, Live Demo & Report Lead: `app.py`, `ui_components/`, poster, REPORT, deploy                   |
 
 ## Cá nhân
 
@@ -61,7 +61,7 @@ Báo cáo chi tiết: [report/team/2A202603614_NguyenQuangDao.md](report/team/2A
 
 ### Đóng góp cụ thể
 
-- **AI Research Operations Console (`starter_v0/app.py` - 1.202 dòng mã nguồn):**
+- **AI Research Operations Console (`starter_v0/app.py`):**
   - Xây dựng ứng dụng Streamlit hoàn chỉnh hỗ trợ 5 providers (OpenRouter, Ollama, Gemini, OpenAI, Anthropic), nạp sẵn các preset mô hình phổ biến.
   - Tích hợp lớp `UIProviderAdapter` tự động xử lý lỗi token limit `HTTP 402` trên OpenRouter bằng cơ chế hạ `max_tokens` thông minh và fallback khi gặp rate-limit `HTTP 429`.
   - Quản lý vòng lặp agent tương tác đa lượt (`run_interactive_agent_turn`), nạp động 14 công cụ từ schema `tools.yaml`, tự động lưu vết transcript theo chuẩn JSON của `chat.py`.
@@ -100,4 +100,3 @@ Báo cáo chi tiết: [report/team/2A202603614_NguyenQuangDao.md](report/team/2A
 - **Địa chỉ Triển khai Live Demo:** https://k5-l3a-day03-top1buildphase.streamlit.app/
 - **Run JSONs (Đạt 100% Tuyệt đối):** `starter_v0/runs/v4_B_base_openrouter_20261110T160309218282.json`, `starter_v0/runs/v5_B_base_openrouter_20261110T160447011852.json`, `starter_v0/runs/v5_B_group_openrouter_20261110T160406570224.json`
 - **Transcript Logs Thực tế:** `starter_v0/transcripts/live_research.transcript.json`, `starter_v0/transcripts/live_clarify.transcript.json`, `starter_v0/transcripts/live_confirmation.transcript.json`, `starter_v0/transcripts/v3_openrouter_20261110T105249646669.transcript.json`, `starter_v0/transcripts/v3_openrouter_20261110T112336428327.transcript.json`
-

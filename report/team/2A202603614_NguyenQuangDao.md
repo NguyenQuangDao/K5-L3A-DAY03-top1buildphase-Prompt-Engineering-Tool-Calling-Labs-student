@@ -41,8 +41,8 @@ Trong dự án Day 03 Lab (Research Agent Operations Team — nhóm `top1buildph
    - Triển khai thành công ứng dụng thực tế lên **Streamlit Cloud** tại địa chỉ: https://k5-l3a-day03-top1buildphase.streamlit.app/.
 
 5. **Thiết kế Poster Thuyết trình Showdown (Part A — `starter_v0/artifacts/poster.html`):**
-   - Thiết kế poster kỹ thuật định dạng HTML/CSS hiện đại (640 dòng mã nguồn) với phong cách giao diện tối (Dark Mode), responsive, trực quan hoá đầy đủ: sơ đồ luồng hệ thống, bảng phân loại 14 công cụ, chu trình tối ưu v0–v5, bảng so sánh metrics và 6 câu hỏi mẫu.
-   - Hoàn thành trước hạn chót 16:30 làm tài liệu phụ trợ cho buổi Showdown/Debate giữa các nhóm.
+   - Thiết kế poster kỹ thuật định dạng HTML/CSS hiện đại với phong cách giao diện tối (Dark Mode), responsive, trực quan hoá đầy đủ: sơ đồ luồng hệ thống, bảng phân loại 14 công cụ, chu trình tối ưu v0–v5, bảng so sánh metrics và 6 câu hỏi mẫu.
+   - Hoàn thành làm tài liệu phụ trợ cho buổi Showdown/Debate giữa các nhóm.
 
 6. **Thu thập Thực nghiệm, Phân tích Transcripts & Hoàn thiện Báo cáo Nhóm:**
    - Trực tiếp chạy thử nghiệm và lưu trữ 5 phiên transcript thực tế (`transcripts/*.transcript.json`) bao quát đầy đủ các kịch bản: nghiên cứu web đa bước, vòng lặp clarification, guardrail xác nhận/từ chối Telegram và tra cứu chính sách công ty.
@@ -220,3 +220,4 @@ Tôi đã trực tiếp chạy các kịch bản tương tác và thu thập đ�
 1. **Quyền truy cập trên Streamlit Cloud:** Hiện tại ứng dụng trên Streamlit Cloud đang cấu hình trong không gian làm việc của Streamlit Community, người dùng ngoài có thể gặp yêu cầu xác thực SSO của nền tảng; cần hoàn thiện cấu hình public sharing mở rộng để người chấm tự do trải nghiệm mà không cần tài khoản Streamlit.
 2. **Cơ chế Token Xác thực (Confirmation Token):** Hiện tại UI kiểm soát quyền gửi dựa trên trạng thái nút bấm trong session; trong tương lai có thể cải tiến nâng cao theo đề xuất ở B6: UI sẽ cấp một mã token xác thực ngẫu nhiên dùng một lần (one-time nonce) sau bước người dùng bấm duyệt, và backend `send` chỉ chấp nhận thực thi khi nhận kèm đúng token này.
 3. **Cơ chế Streaming Tokens:** Do giới hạn giao tiếp hai chiều giữa Streamlit và custom React iframe component, hiện tại câu trả lời của trợ lý được hiển thị sau khi hoàn tất lượt suy nghĩ; có thể nghiên cứu cơ chế WebSocket hoặc Server-Sent Events (SSE) để truyền phát từng token (streaming) mượt mà hơn.
+
