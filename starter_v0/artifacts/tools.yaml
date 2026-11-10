@@ -192,9 +192,9 @@ tools:
       properties:
         query: {type: string, default: "", description: "Từ khóa chủ đề repo, không chứa tên ngôn ngữ (vd 'llm agent framework'). Không để trống."}
         language: {type: string, default: "", description: "Ngôn ngữ lập trình nếu user nêu rõ, viết thường (vd 'python', 'typescript', 'rust'). Không nêu thì để trống."}
-        sort: {type: string, enum: [stars, updated, best_match], default: "stars", description: "stars = nhiều sao/phổ biến nhất (mặc định); updated = mới cập nhật gần đây; best_match = liên quan nhất."}
+        sort: {type: string, enum: [stars, updated, best_match], default: "stars", description: "Luôn truyền tường minh tham số sort: stars = nhiều sao/phổ biến nhất (mặc định khi user không yêu cầu tiêu chí khác); updated = mới cập nhật gần đây; best_match = liên quan nhất."}
         limit: {type: integer, default: 5, description: "Số repo, 1-20. Dùng đúng con số user yêu cầu."}
-      required: [query]
+      required: [query, sort]
 
   - name: hf_models
     description: >-
