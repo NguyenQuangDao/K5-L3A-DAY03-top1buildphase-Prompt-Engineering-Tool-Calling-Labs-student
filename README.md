@@ -49,7 +49,7 @@ Bonus:
 
 **Prompt & tool declaration**
 - [x] Chạy baseline `v0`, ghi vào `artifacts/version_log.csv` *(`runs/v0_B_base_openai_20261110T102720056843.json`)*
-- [ ] Liệt kê các case FAIL của `v0` và gán mỗi case một loại lỗi (`wrong_tool`, `wrong_arg_value`, `missing_info`...) *(Chưa có bảng liệt kê riêng các case FAIL của `v0` OpenAI trong `REPORT.md` `B2`; `B2` hiện chỉ ghi 3 lỗi còn lại của `v3`, còn `analysis/base_runs.csv` là log `v0` OpenRouter cũ)*
+- [x] Liệt kê các case FAIL của `v0` và gán mỗi case một loại lỗi (`wrong_tool`, `wrong_arg_value`, `missing_info`...) *(Đã liệt kê đủ 7 case FAIL của `v0` OpenAI tại `REPORT.md` `B2` và đồng bộ đầy đủ 250 dòng run trong `analysis/base_runs.csv`)*
 - [x] `artifacts/system_prompt.md`: bỏ các chỉ dẫn xấu cố ý của starter (đoán thay vì hỏi, gửi không cần xác nhận, ép một bước)
 - [x] `artifacts/system_prompt.md`: thêm rule routing (khi nào `timeline` / `social_search` / `lookup` / `fetch` / `clarify`)
 - [x] `artifacts/tools.yaml`: viết lại `description` mỗi tool: làm gì, **khi nào dùng / khi nào không dùng**
@@ -71,11 +71,11 @@ Bonus:
 **Demo & report**
 - [x] UI chạy được + link dùng thử *(đã có `https://k5-l3a-day03-top1buildphase.streamlit.app/`, lưu ý link đang trả `HTTP 303` yêu cầu đăng nhập Streamlit Share — cần bật Public nếu share bên ngoài)*
 - [x] `chat.py`: ≥ 3 lượt live, có transcript *(đã có 5 transcript trong `starter_v0/transcripts/`)*
-- [ ] `artifacts/REPORT.md` Phần A trước 16:30, Phần B trước khi nộp *(Phần A & phần Thành viên 1, Thành viên 3 đã xong; còn chờ Thành viên 2 cập nhật kết quả `pytest` mới `121 passed` + 4 tool mới ở `B5` và xác nhận ở `B6`)*
+- [x] `artifacts/REPORT.md` Phần A trước 16:30, Phần B trước khi nộp *(Đã hoàn thiện Phần A + `poster.html` và Phần B `B1`–`B7`, gồm `v0`–`v5` đạt 20/20 base & 10/10 group, `121 passed` unit tests, 4 tool mới, kiểm chứng token `tiktoken` ở `B7.3`; còn lưu ý tùy chọn: ghi thêm transcript `v5` trên cloud và chạy `v5-local` trên cloud)*
 
 **Bonus (tuỳ chọn)**
 - [x] `send` có xác nhận trước khi gửi, có transcript chứng minh *(`live_confirmation.transcript.json` & `v3_openrouter_20261110T105249646669.transcript.json`)*
-- [ ] Small Local Model Challenge (Step 7) *(Chưa làm — máy kiểm tra chưa cài `ollama`, chưa có run JSON local, `REPORT.md` `B7` ghi `N/A — chưa thử nghiệm`)*
+- [x] Small Local Model Challenge (Step 7) *(Đã chạy 3 model local `qwen2.5:7b`, `qwen2.5:3b`, `llama3.2:3b` + 2 vòng tối ưu `v4-local`, `v5-local` trên `qwen2.5:3b`, đối chiếu token tại `B7.3` và ghi log đầy đủ ở `REPORT.md` `B7`; còn bước kiểm tra ngược `v5-local` trên cloud)*
 
 ## Folder Map
 
